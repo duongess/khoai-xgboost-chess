@@ -1,10 +1,16 @@
+import sys
+
 import chess
 import typer
 from typing import Optional, Annotated
 
+from config.Setting import get_play_path
+from core.utils import check_game_over
+from play.gui import BoardWidget
 from play.terminal import play_term
 from training.data_pipeline import process_pgn
 from training.train_xgboost import train_fischer_model
+from PySide6.QtWidgets import QApplication
 
 app = typer.Typer(help="Khoai Chess AI - Engine danh co bang XGBoost", 
                   rich_markup_mode="rich",
@@ -39,7 +45,15 @@ def play(
     board = chess.Board()
     if (ui == "term"):
         play_term(board, color, model_name)
-    # elif (ui == "gui"):
-    #     play_gui(board, color)
+    elif (ui == "gui"):
+        app_gui = QApplication(sys.argv)
+        bw = BoardWidget(board, model_name)
+        bw.show()
+        sys.exit(app_gui.exec())
+    
+    print("Tran dau ket thuc!")
+    check_game_over(board)
+    get_play_path(model_name).write_text(boardpgn=board.board_fen() + "\n" + board.result())
+        
 if __name__ == "__main__":
     app()

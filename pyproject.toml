@@ -10,13 +10,14 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = ">=3.10,<3.13"
 typer = {version = ">=0.12.3", extras = ["all"]}
 python-chess = "^1.999.0"
 xgboost = "^2.0.3"
 numpy = "^1.26.0"
 pandas = "^2.2.0"
 scikit-learn = "1.5.2"
+pyside6 = { version = "6.7.2", markers = "python_version < '3.14'" }
 
 [tool.poetry.scripts]
 khoai = "main:app"

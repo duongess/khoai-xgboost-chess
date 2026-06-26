@@ -1,5 +1,7 @@
+from shutil import move
+
 from PySide6.QtSvgWidgets import QSvgWidget
-from PySide6.QtWidgets import QLabel, QWidget, QGridLayout, QVBoxLayout
+from PySide6.QtWidgets import QInputDialog, QLabel, QWidget, QGridLayout, QVBoxLayout
 from PySide6.QtCore import Qt, QTimer
 import chess
 from config.Setting import SIZE_SQUARE, get_chess_pieces, get_model_path
@@ -80,17 +82,30 @@ class BoardWidget(QWidget):
         
         # Nếu đã chọn quân
         if self.selected_square is not None:
-            move = chess.Move(self.selected_square, clicked_sq)
+            # Lấy tất cả nước đi hợp lệ từ ô đang chọn
+            possible_moves = [m for m in self.board.legal_moves if m.from_square == self.selected_square]
             
-            if move in self.board.legal_moves:
+            move = None
+            for m in possible_moves:
+                if m.to_square == clicked_sq:
+                    move = m 
+                    break
+            
+            if move:
+                if move.promotion is not None:
+                    print("Đang gọi Dialog phong cấp...") 
+                    self.show_promotion_dialog(move)
+                    return
+                
+                # Nước đi thường
                 self.board.push(move)
                 self.selected_square = None
                 self.legal_moves_for_selected = []
                 self.draw_board()
                 
-                # Sau khi người chơi đi, gọi AI
                 if self.check_game_over(): return 
                 QTimer.singleShot(200, self.ai_move)
+                return
             
             # Nếu click vào quân của chính mình thì đổi chọn
             elif self.board.piece_at(clicked_sq) and self.board.piece_at(clicked_sq).color == self.board.turn:
@@ -107,6 +122,20 @@ class BoardWidget(QWidget):
         
         self.draw_board()
     
+    def show_promotion_dialog(self, move):
+        items = ["Queen", "Rook", "Bishop", "Knight"]
+        item, ok = QInputDialog.getItem(self, "Phong cấp", "Chọn quân:", items, 0, False)
+        
+        if ok and item:
+            promo = {"Queen": chess.QUEEN, "Rook": chess.ROOK, "Bishop": chess.BISHOP, "Knight": chess.KNIGHT}[item]
+            move.promotion = promo
+            self.board.push(move)
+            self.draw_board()
+            
+            # GỌI AI SAU KHI PHONG CẤP
+            if not self.check_game_over():
+                QTimer.singleShot(200, self.ai_move)
+        
     def ai_move(self):
         move = get_ai_move(self.board, self.model)
         if move:

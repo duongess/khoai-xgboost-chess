@@ -10,3 +10,14 @@
   │    ├── data_pipeline.py    // Chứa vòng for để cào PGN thành CSV
   │    └── train_xgboost.py    // Đọc CSV, train AI và xuất ra file ném vào /models
   └── .gitignore
+
+
+
+# Xem menu huong dan
+poetry run python main.py --help
+
+# Chay lenh train
+poetry run python main.py train Fischer
+
+# Chay lenh play
+poetry run python main.py play Fischer --ui gui

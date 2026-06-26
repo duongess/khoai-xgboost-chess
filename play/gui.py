@@ -113,18 +113,9 @@ class BoardWidget(QWidget):
             self.board.push(move)
             self.draw_board()
             self.check_game_over()
-    
+
     def check_game_over(self):
         if self.board.is_game_over():
-            result = self.board.result()
-            # 1-0: Trắng thắng, 0-1: Đen thắng, 1/2-1/2: Hòa
-            if result == "1-0" and self.board.turn == chess.BLACK: # Người chơi cầm trắng
-                print("Chúc mừng! Bạn đã thắng.")
-            elif result == "0-1" and self.board.turn == chess.WHITE: # Người chơi cầm đen
-                print("Chúc mừng! Bạn đã thắng.")
-            elif result == "1/2-1/2":
-                print("Trận đấu hòa.")
-            else:
-                print("Bạn đã thua. Hãy cố gắng lần sau!")
+            self.close()
             return True
         return False

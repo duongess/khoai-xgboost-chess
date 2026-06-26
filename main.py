@@ -5,6 +5,7 @@ import typer
 from typing import Optional, Annotated
 
 from config.Setting import get_play_path
+from core.utils import check_game_over
 from play.gui import BoardWidget
 from play.terminal import play_term
 from training.data_pipeline import process_pgn
@@ -51,7 +52,7 @@ def play(
         sys.exit(app_gui.exec())
     
     print("Tran dau ket thuc!")
-    print("Ket qua: ", board.result())
+    check_game_over(board)
     get_play_path(model_name).write_text(boardpgn=board.board_fen() + "\n" + board.result())
         
 if __name__ == "__main__":

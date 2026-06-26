@@ -56,6 +56,3 @@ def play_term(board, color, model_name):
             print("AI dang suy nghi...")
             move = get_ai_move(board, model)
             board.push(move)
-
-    print("Tran dau ket thuc!")
-    print(board.result())

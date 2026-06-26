@@ -1,10 +1,11 @@
 import chess
 
+
 def print_board(board: chess.Board, color: str = "white"):
     unicode_pieces = {
-        # Đen (chữ thường) - ông muốn là ♖ (nhìn đặc/đậm hơn)
+        # Trắng (chữ hoa) - ông muốn là ♖ (nhìn đặc/đậm hơn)
         'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟',
-        # Trắng (chữ hoa) - ông muốn là ♜ (nhìn rỗng/sáng hơn)
+        # Đen (chữ thường) - ông muốn là ♜ (nhìn rỗng/sáng hơn)
         'r': '♖', 'n': '♘', 'b': '♗', 'q': '♕', 'k': '♔', 'p': '♙',
         '.': '·'
     }

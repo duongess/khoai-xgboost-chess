@@ -26,6 +26,7 @@ def get_processed_csv_path(player_name: str) -> Path:
     # Trả về đường dẫn file CSV sau khi chạy vòng for bóc tách (Ví dụ: data/processed/Fischer.csv)
     return PROCESSED_DATA_DIR / f"{player_name}.csv"
 
-def get_model_path(player_name: str, version: str = "v1") -> Path:
+def get_model_path(model_name: str, version: str = "v1") -> Path:
     # Trả về đường dẫn file lưu mô hình XGBoost sau khi train (Ví dụ: models/Fischer_v1.json)
-    return MODEL_DIR / f"{player_name}_{version}.json"
+    print(f"Model path: {MODEL_DIR / f'{model_name}_{version}.json'}")
+    return MODEL_DIR / f"{model_name}_{version}.json"

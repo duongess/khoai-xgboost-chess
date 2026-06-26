@@ -1,6 +1,8 @@
+import chess
 import typer
 from typing import Optional, Annotated
 
+from play.terminal import play_term
 from training.data_pipeline import process_pgn
 from training.train_xgboost import train_fischer_model
 
@@ -25,15 +27,19 @@ def train(
 
 @app.command()
 def play(
-    model: Annotated[str, typer.Argument(help="Ten mo hinh de thach dau (VD: Fischer)")],
+    model_name: Annotated[str, typer.Argument(help="Ten mo hinh de thach dau (VD: Fischer)")],
     color: Annotated[str, typer.Option("--color", "-c", help="Chon quan: white hoac black")] = "white",
     ui: Annotated[str, typer.Option("--ui", "-u", help="Giao dien: term hoac gui")] = "term"
 ):
     """
     Bat dau tran dau voi mo hinh AI da duoc huan luyen.
     """
-    typer.secho(f"Khoi tao tran dau voi {model}. Ban cam quan {color}, UI: {ui}", fg=typer.colors.GREEN)
-    # TODO: Khởi tạo board và gọi module model_inference
-
+    typer.secho(f"Khoi tao tran dau voi {model_name}. Ban cam quan {color}, UI: {ui}", fg=typer.colors.GREEN)
+    
+    board = chess.Board()
+    if (ui == "term"):
+        play_term(board, color, model_name)
+    # elif (ui == "gui"):
+    #     play_gui(board, color)
 if __name__ == "__main__":
     app()

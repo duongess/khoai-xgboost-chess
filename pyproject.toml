@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "khoai-xgboost-chess"
+version = "0.1.0"
+description = "AI Chess Engine using XGBoost - Tabular Data Approach"
+authors = ["duongess <duongcantat@gmail.com>"]
+
+packages = [
+    { include = "main.py" },
+    { include = "core" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+typer = {extras = ["all"], version = "^0.12.0"}
+python-chess = "^1.999.0"
+xgboost = "^2.0.3"
+numpy = "^1.26.0"
+pandas = "^2.2.0"
+
+[tool.poetry.scripts]
+khoai = "main:app"

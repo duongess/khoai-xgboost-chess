@@ -12,6 +12,7 @@ BASE_DIR = CONFIG_DIR.parent
 DATA_DIR = BASE_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
+PLAY_DIR = BASE_DIR / "play"
 MODEL_DIR = BASE_DIR / "models"
 PUBLIC_DIR = BASE_DIR / "public"
 
@@ -20,6 +21,7 @@ RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
+PLAY_DIR.mkdir(parents=True, exist_ok=True)
 
 # Các hàm sinh đường dẫn động phục vụ trực tiếp cho các tham số từ CLI
 def get_raw_pgn_path(player_name: str) -> Path:
@@ -35,6 +37,10 @@ def get_model_path(model_name: str, version: str = "v1") -> Path:
     print(f"Model path: {MODEL_DIR / f'{model_name}_{version}.json'}")
     return MODEL_DIR / f"{model_name}_{version}.json"
 
+def get_play_path(model_name: str) -> Path:
+    # Trả về đường dẫn file lưu trữ các trận đấu đã chơi (Ví dụ: play/Fischer_played.pgn)
+    return PLAY_DIR / f"{model_name}_played.pgn"
+
 def get_chess_pieces(key: str) -> str:
     # Trả về ký hiệu Unicode của quân cờ dựa trên ký hiệu chữ
     chess_pieces = {
@@ -43,3 +49,14 @@ def get_chess_pieces(key: str) -> str:
         '.': '.'
     }
     return PUBLIC_DIR / chess_pieces.get(key, '.')
+
+def get_chess_piece_unicode(key: str) -> str:
+    # Trả về ký hiệu Unicode của quân cờ dựa trên ký hiệu chữ
+    chess_pieces_unicode = {
+         # Trắng (chữ hoa) - ông muốn là ♖ (nhìn đặc/đậm hơn)
+        'R': '♜', 'N': '♞', 'B': '♝', 'Q': '♛', 'K': '♚', 'P': '♟',
+        # Đen (chữ thường) - ông muốn là ♜ (nhìn rỗng/sáng hơn)
+        'r': '♖', 'n': '♘', 'b': '♗', 'q': '♕', 'k': '♔', 'p': '♙',
+        '.': '·'
+    }
+    return chess_pieces_unicode.get(key, '.')

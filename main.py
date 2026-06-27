@@ -8,8 +8,8 @@ from config.Setting import get_version_info
 from core.utils import game_over
 from play.gui import BoardWidget
 from play.terminal import play_term
-from training.data_pipeline import process_pgn
-from training.train_xgboost import train_xgboost_model
+from train.data_pipeline import process_pgn
+from train.train_xgboost import train_xgboost_model
 from PySide6.QtWidgets import QApplication
 
 app = typer.Typer(help="Khoai Chess AI - Engine danh co bang XGBoost", 

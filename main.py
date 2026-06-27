@@ -5,7 +5,7 @@ import typer
 from typing import Optional, Annotated
 
 from config.Setting import get_play_path
-from core.utils import check_game_over
+from core.utils import game_over
 from play.gui import BoardWidget
 from play.terminal import play_term
 from training.data_pipeline import process_pgn
@@ -47,13 +47,12 @@ def play(
         play_term(board, color, model_name)
     elif (ui == "gui"):
         app_gui = QApplication(sys.argv)
-        bw = BoardWidget(board, model_name)
+        bw = BoardWidget(board, model_name, color)
         bw.show()
-        sys.exit(app_gui.exec())
-    
-    print("Tran dau ket thuc!")
-    check_game_over(board)
-    get_play_path(model_name).write_text(boardpgn=board.board_fen() + "\n" + board.result())
+        # Chỉ gọi vòng lặp sự kiện, không dùng sys.exit() ép dừng chương trình
+        app_gui.exec()
         
+    game_over(board, color, model_name)
+
 if __name__ == "__main__":
     app()

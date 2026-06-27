@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import chess
+
 # Thư mục chứa file Setting.py (config/)
 CONFIG_DIR = Path(__file__).resolve().parent
 SIZE = 650
@@ -22,6 +24,11 @@ PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 PLAY_DIR.mkdir(parents=True, exist_ok=True)
+
+PIECE_VALUES = {
+    chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
+    chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0
+}
 
 # Các hàm sinh đường dẫn động phục vụ trực tiếp cho các tham số từ CLI
 def get_raw_pgn_path(player_name: str) -> Path:

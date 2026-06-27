@@ -1,32 +1,44 @@
 import chess
 import numpy as np
 import xgboost as xgb
-from training.data_pipeline import board_to_matrix
+
+# Đổi từ board_to_matrix sang extract_features
+from core.utils import extract_features 
 
 def get_ai_move(board: chess.Board, model: xgb.XGBRegressor) -> chess.Move:
-    # Không cần load model ở đây nữa
     legal_moves = list(board.legal_moves)
+    if not legal_moves:
+        return None
+        
+    batch_matrices = []
     
-    best_move = None
-    best_score = -float('inf') 
-    
-    # 3. Duyệt qua từng nước, "thử" đi và hỏi AI xem thế cờ đó mạnh hay yếu
+    # 1. Trích xuất đặc trưng cho TẤT CẢ các nước đi
     for move in legal_moves:
         board.push(move)
         
-        # Chụp X-quang thế cờ sau khi đã đi
-        matrix = board_to_matrix(board)
+        # Gọi hàm mới với 69 features
+        features = extract_features(board) 
+        batch_matrices.append(features)
         
-        # AI chấm điểm (score càng cao = thế cờ càng lợi cho quân mình)
-        score = model.predict(matrix.reshape(1, -1))[0]
+        board.pop() 
         
-        # Tìm nước có điểm cao nhất
+    # Chuyển đổi thành ma trận 2 chiều (Số_nước_đi, 69)
+    X_batch = np.array(batch_matrices)
+    
+    # 2. Gọi AI dự đoán toàn bộ cùng 1 lúc (Nhanh hơn rất nhiều so với gọi trong vòng lặp)
+    # Lưu ý: Nếu bạn đã chuyển sang XGBClassifier, hãy cân nhắc dùng model.predict_proba(X_batch)[:, 1]
+    ai_scores = model.predict(X_batch)
+    
+    # 3. Tìm nước đi có điểm số cao nhất
+    best_move = None
+    best_score = -float('inf') 
+    
+    for i, move in enumerate(legal_moves):
+        score = ai_scores[i]
         if score > best_score:
             best_score = score
             best_move = move
             
-        board.pop() # Hoàn tác (undo) để thử nước tiếp theo
-    
-    print(f"AI chon nuoc di: {board.san(best_move)}")
+    print(f"AI chon nuoc di: {board.san(best_move)} voi muc diem {best_score:.4f}")
         
     return best_move

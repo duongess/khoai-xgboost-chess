@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import chess
@@ -14,9 +15,11 @@ BASE_DIR = CONFIG_DIR.parent
 DATA_DIR = BASE_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
-PLAY_DIR = DATA_DIR / "play"
-MODEL_DIR = BASE_DIR / "models"
+PLAY_DIR = DATA_DIR / "played"
+MODEL_DIR = DATA_DIR / "models"
 PUBLIC_DIR = BASE_DIR / "public"
+
+METADATA_FILE = DATA_DIR / "metadata.json"
 
 # Tự động tạo thư mục nếu chưa tồn tại trong hệ thống để tránh lỗi FileNotFoundError
 RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -24,11 +27,35 @@ PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 PLAY_DIR.mkdir(parents=True, exist_ok=True)
+METADATA_FILE.touch(exist_ok=True)
 
 PIECE_VALUES = {
     chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
     chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0
 }
+
+def get_version_info(model_name: str) -> dict:
+    if not METADATA_FILE.exists():
+        return {"latest": "v1", "versions": []}
+    with open(METADATA_FILE, "r") as f:
+        data = json.load(f)
+    return data.get(model_name, {"latest": "v1", "versions": []})
+
+# Ghi nhận phiên bản mới vào metadata
+def save_new_version(model_name: str, new_version: str):
+    data = {}
+    if METADATA_FILE.exists():
+        with open(METADATA_FILE, "r") as f:
+            data = json.load(f)
+            
+    player_data = data.get(model_name, {"latest": "v1", "versions": []})
+    if new_version not in player_data["versions"]:
+        player_data["versions"].append(new_version)
+    player_data["latest"] = new_version
+    data[model_name] = player_data
+    
+    with open(METADATA_FILE, "w") as f:
+        json.dump(data, f, indent=4)
 
 # Các hàm sinh đường dẫn động phục vụ trực tiếp cho các tham số từ CLI
 def get_raw_pgn_path(player_name: str) -> Path:
@@ -39,13 +66,13 @@ def get_processed_csv_path(player_name: str) -> Path:
     # Trả về đường dẫn file CSV sau khi chạy vòng for bóc tách (Ví dụ: data/processed/Fischer.csv)
     return PROCESSED_DATA_DIR / f"{player_name}.csv"
 
-def get_model_path(model_name: str, version: str = "v1") -> Path:
+def get_model_path(model_name: str) -> Path:
     # Trả về đường dẫn file lưu mô hình XGBoost sau khi train (Ví dụ: models/Fischer_v1.json)
-    print(f"Model path: {MODEL_DIR / f'{model_name}_{version}.json'}")
-    return MODEL_DIR / f"{model_name}_{version}.json"
+    print(f"Model path: {MODEL_DIR / f'{model_name}.json'}")
+    return MODEL_DIR / f"{model_name}.json"
 
 def get_play_path(model_name: str) -> Path:
-    # Trả về đường dẫn file lưu trữ các trận đấu đã chơi (Ví dụ: play/Fischer_played.pgn)
+    # Trả về đường dẫn file lưu trữ các trận đấu đã chơi (Ví dụ: played/Fischer_played.pgn)
     return PLAY_DIR / f"{model_name}_played.pgn"
 
 def get_chess_pieces(key: str) -> str:

@@ -1,7 +1,7 @@
 import chess
 import numpy as np
 
-from config.Setting import PIECE_VALUES
+from config.Setting import PIECE_VALUES, get_play_path
 
 def board_to_matrix(board):
     # Chuyen 64 o co thanh mang 1 chieu
@@ -12,20 +12,27 @@ def board_to_matrix(board):
             matrix[i] = piece.piece_type * (1 if piece.color == chess.WHITE else -1)
     return matrix
 
-def check_game_over(board):
-    if board.is_game_over():
-        result = board.result()
-        # 1-0: Trắng thắng, 0-1: Đen thắng, 1/2-1/2: Hòa
-        if result == "1-0" and board.turn == chess.BLACK: # Người chơi cầm trắng
-            print("Chúc mừng! Bạn đã thắng.")
-        elif result == "0-1" and board.turn == chess.WHITE: # Người chơi cầm đen
-            print("Chúc mừng! Bạn đã thắng.")
-        elif result == "1/2-1/2":
-            print("Trận đấu hòa.")
-        else:
-            print("Bạn đã thua. Hãy cố gắng lần sau!")
-        return True
-    return False
+def game_over(board, color, model_name):
+    print("Tran dau ket thuc!")
+    result = board.result()
+    # 1-0: Trắng thắng, 0-1: Đen thắng, 1/2-1/2: Hòa
+    if result == "1-0" and board.turn == chess.BLACK: # Người chơi cầm trắng
+        print("Chúc mừng! Bạn đã thắng.")
+    elif result == "0-1" and board.turn == chess.WHITE: # Người chơi cầm đen
+        print("Chúc mừng! Bạn đã thắng.")
+    elif result == "1/2-1/2":
+        print("Trận đấu hòa.")
+    else:
+        print("Bạn đã thua. Hãy cố gắng lần sau!")
+        
+    game = chess.pgn.Game.from_board(board)
+    game.headers["Event"] = f"Thach dau AI {model_name}"
+    game.headers["White"] = "Human" if color == "white" else model_name
+    game.headers["Black"] = model_name if color == "white" else "Human"
+    game.headers["Result"] = board.result()
+    with open(get_play_path(model_name), "a", encoding="utf-8") as f:
+        f.write(str(game) + "\n\n")
+
 
 
 def extract_features(board: chess.Board):

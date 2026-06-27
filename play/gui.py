@@ -91,6 +91,9 @@ class BoardWidget(QWidget):
         # Chặn toàn bộ thao tác click nếu chưa đến lượt của người chơi
         if self.board.turn != self.human_color:
             return
+        
+        if event.button() != Qt.MouseButton.LeftButton:
+            return
             
         ui_x = int(event.position().x() // SIZE_SQUARE)
         ui_y = int(event.position().y() // SIZE_SQUARE)
@@ -139,7 +142,6 @@ class BoardWidget(QWidget):
         
         self.draw_board()
     
-    # Các hàm show_promotion_dialog, ai_move, check_game_over giữ nguyên không đổi
     def show_promotion_dialog(self, move):
         items = ["Queen", "Rook", "Bishop", "Knight"]
         item, ok = QInputDialog.getItem(self, "Phong cấp", "Chọn quân:", items, 0, False)

@@ -14,7 +14,7 @@ BASE_DIR = CONFIG_DIR.parent
 DATA_DIR = BASE_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
-PLAY_DIR = BASE_DIR / "play"
+PLAY_DIR = DATA_DIR / "play"
 MODEL_DIR = BASE_DIR / "models"
 PUBLIC_DIR = BASE_DIR / "public"
 

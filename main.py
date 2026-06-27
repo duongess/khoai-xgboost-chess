@@ -65,7 +65,7 @@ def play(
         bw.show()
         app_gui.exec()
         
-    game_over(board, color, model_name)
+    game_over(board, color, model_name, version)
 
 if __name__ == "__main__":
     app()

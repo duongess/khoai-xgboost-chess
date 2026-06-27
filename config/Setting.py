@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 from pathlib import Path
 
@@ -56,6 +57,49 @@ def save_new_version(model_name: str, new_version: str):
     
     with open(METADATA_FILE, "w") as f:
         json.dump(data, f, indent=4)
+
+def save_game_history(model_name: str, version: str, color: str, result: str):
+    # Xác định kết quả từ góc nhìn của người chơi (Human)
+    if result == "1-0":
+        outcome = "win" if color == "white" else "loss"
+    elif result == "0-1":
+        outcome = "win" if color == "black" else "loss"
+    elif result == "1/2-1/2":
+        outcome = "draw"
+    else:
+        outcome = "unfinished"
+        
+    if METADATA_FILE.exists():
+        with open(METADATA_FILE, "r") as f:
+            data = json.load(f)
+    else:
+        data = {}
+
+    # Khởi tạo cấu trúc nếu chưa tồn tại
+    player_data = data.get(model_name, {"latest": version, "versions": [version], "played": {}})
+    if "played" not in player_data:
+        player_data["played"] = {}
+    if version not in player_data["played"]:
+        player_data["played"][version] = []
+
+    # Tạo bản ghi mới
+    record = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "color": color,
+        "result": result,
+        "outcome": outcome
+    }
+
+    # Chèn vào đầu danh sách để ván mới nhất luôn ở trên cùng
+    player_data["played"][version].insert(0, record)
+    
+    # Giới hạn chỉ lưu 50 ván gần nhất để file không bị phình to
+    player_data["played"][version] = player_data["played"][version][:50]
+    
+    data[model_name] = player_data
+
+    with open(METADATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
 
 # Các hàm sinh đường dẫn động phục vụ trực tiếp cho các tham số từ CLI
 def get_raw_pgn_path(player_name: str) -> Path:

@@ -1,7 +1,9 @@
+from curses import version
+
 import chess
 import numpy as np
 
-from config.Setting import PIECE_VALUES, get_play_path
+from config.Setting import PIECE_VALUES, get_play_path, save_game_history
 
 def board_to_matrix(board):
     # Chuyen 64 o co thanh mang 1 chieu
@@ -12,7 +14,7 @@ def board_to_matrix(board):
             matrix[i] = piece.piece_type * (1 if piece.color == chess.WHITE else -1)
     return matrix
 
-def game_over(board, color, model_name):
+def game_over(board, color, model_name, version):
     print("Tran dau ket thuc!")
     result = board.result()
     # 1-0: Trắng thắng, 0-1: Đen thắng, 1/2-1/2: Hòa
@@ -32,6 +34,8 @@ def game_over(board, color, model_name):
     game.headers["Result"] = board.result()
     with open(get_play_path(model_name), "a", encoding="utf-8") as f:
         f.write(str(game) + "\n\n")
+    
+    save_game_history(model_name, version, color, result)
 
 
 

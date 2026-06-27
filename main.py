@@ -47,7 +47,7 @@ def play(
         play_term(board, color, model_name)
     elif (ui == "gui"):
         app_gui = QApplication(sys.argv)
-        bw = BoardWidget(board, model_name)
+        bw = BoardWidget(board, model_name, color)
         bw.show()
         sys.exit(app_gui.exec())
     

@@ -18,6 +18,7 @@ def get_ai_move(board: chess.Board, model: xgb.XGBRegressor) -> chess.Move:
         
         # Gọi hàm mới với 69 features
         features = extract_features(board) 
+        features = np.append(features, 1)
         batch_matrices.append(features)
         
         board.pop() 

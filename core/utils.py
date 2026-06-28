@@ -88,7 +88,7 @@ def evaluate_king_attack(board, turn):
 def extract_features(board: chess.Board):
     features = []
     
-    # 64 ô cờ tĩnh
+    # 1. Quet 64 o co tinh
     for i in range(64):
         piece = board.piece_at(i)
         if piece:
@@ -97,12 +97,15 @@ def extract_features(board: chess.Board):
         else:
             features.append(0)
 
+    # Luu y: turn hien tai la cua phe CHUAN BI DI
+    # (Neu AI vua push(move) xong, turn la cua doi thu)
     turn = board.turn
     
-    # Đặc trưng tĩnh cơ bản
+    # 2. Dac trung tinh co ban
     my_material = sum(len(board.pieces(pt, turn)) * val for pt, val in PIECE_VALUES.items())
     opp_material = sum(len(board.pieces(pt, not turn)) * val for pt, val in PIECE_VALUES.items())
     features.append(my_material - opp_material)
+    
     features.append(board.legal_moves.count())
     
     center_squares = [chess.D4, chess.E4, chess.D5, chess.E5]
@@ -121,7 +124,7 @@ def extract_features(board: chess.Board):
                 king_safety += 1
     features.append(king_safety)
     
-    # Đặc trưng động mới bổ sung
+    # 3. Dac trung dong (PST, Xe, Tan cong Vua)
     my_pst = calculate_pst_score(board, turn)
     opp_pst = calculate_pst_score(board, not turn)
     features.append(my_pst - opp_pst)
@@ -133,5 +136,22 @@ def extract_features(board: chess.Board):
     my_king_attack = evaluate_king_attack(board, turn)
     opp_king_attack = evaluate_king_attack(board, not turn)
     features.append(my_king_attack - opp_king_attack)
+    
+    # 4. Dac trung phong ngu (Quan dang bi de doa)
+    ai_color = not turn
+    opp_color = turn
+    
+    ai_hanging_val = 0
+    opp_hanging_val = 0
+    
+    for sq in chess.SQUARES:
+        p = board.piece_at(sq)
+        if p:
+            if p.color == ai_color and board.is_attacked_by(opp_color, sq):
+                ai_hanging_val += PIECE_VALUES.get(p.piece_type, 0)
+            elif p.color == opp_color and board.is_attacked_by(ai_color, sq):
+                opp_hanging_val += PIECE_VALUES.get(p.piece_type, 0)
+                
+    features.append(ai_hanging_val - opp_hanging_val)
     
     return np.array(features, dtype=np.float32)

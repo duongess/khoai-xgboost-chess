@@ -35,6 +35,72 @@ PIECE_VALUES = {
     chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0
 }
 
+PAWN_PST = [
+      0,   0,   0,   0,   0,   0,   0,   0,
+     50,  50,  50,  50,  50,  50,  50,  50,
+     10,  10,  20,  30,  30,  20,  10,  10,
+      5,   5,  10,  25,  25,  10,   5,   5,
+      0,   0,   0,  20,  20,   0,   0,   0,
+      5,  -5, -10,   0,   0, -10,  -5,   5,
+      5,  10,  10, -20, -20,  10,  10,   5,
+      0,   0,   0,   0,   0,   0,   0,   0
+]
+
+KNIGHT_PST = [
+    -50, -40, -30, -30, -30, -30, -40, -50,
+    -40, -20,   0,   0,   0,   0, -20, -40,
+    -30,   0,  10,  15,  15,  10,   0, -30,
+    -30,   5,  15,  20,  20,  15,   5, -30,
+    -30,   0,  15,  20,  20,  15,   0, -30,
+    -30,   5,  10,  15,  15,  10,   5, -30,
+    -40, -20,   0,   5,   5,   0, -20, -40,
+    -50, -40, -30, -30, -30, -30, -40, -50
+]
+
+BISHOP_PST = [
+    -20, -10, -10, -10, -10, -10, -10, -20,
+    -10,   0,   0,   0,   0,   0,   0, -10,
+    -10,   0,   5,  10,  10,   5,   0, -10,
+    -10,   5,   5,  10,  10,   5,   5, -10,
+    -10,   0,  10,  10,  10,  10,   0, -10,
+    -10,  10,  10,  10,  10,  10,  10, -10,
+    -10,   5,   0,   0,   0,   0,   5, -10,
+    -20, -10, -10, -10, -10, -10, -10, -20
+]
+
+ROOK_PST = [
+      0,   0,   0,   0,   0,   0,   0,   0,
+      5,  10,  10,  10,  10,  10,  10,   5,
+     -5,   0,   0,   0,   0,   0,   0,  -5,
+     -5,   0,   0,   0,   0,   0,   0,  -5,
+     -5,   0,   0,   0,   0,   0,   0,  -5,
+     -5,   0,   0,   0,   0,   0,   0,  -5,
+     -5,   0,   0,   0,   0,   0,   0,  -5,
+      0,   0,   0,   5,   5,   0,   0,   0
+]
+
+QUEEN_PST = [
+    -20, -10, -10,  -5,  -5, -10, -10, -20,
+    -10,   0,   0,   0,   0,   0,   0, -10,
+    -10,   0,   5,   5,   5,   5,   0, -10,
+     -5,   0,   5,   5,   5,   5,   0,  -5,
+      0,   0,   5,   5,   5,   5,   0,  -5,
+    -10,   5,   5,   5,   5,   5,   0, -10,
+    -10,   0,   5,   0,   0,   0,   0, -10,
+    -20, -10, -10,  -5,  -5, -10, -10, -20
+]
+
+KING_PST = [
+    -30, -40, -40, -50, -50, -40, -40, -30,
+    -30, -40, -40, -50, -50, -40, -40, -30,
+    -30, -40, -40, -50, -50, -40, -40, -30,
+    -30, -40, -40, -50, -50, -40, -40, -30,
+    -20, -30, -30, -40, -40, -30, -30, -20,
+    -10, -20, -20, -20, -20, -20, -20, -10,
+     20,  20,   0,   0,   0,   0,  20,  20,
+     20,  30,  10,   0,   0,  10,  30,  20
+]
+
 def get_version_info(model_name: str) -> dict:
     if not METADATA_FILE.exists():
         return {"latest": "v1", "versions": []}
@@ -76,11 +142,9 @@ def save_game_history(model_name: str, version: str, color: str, result: str):
         data = {}
 
     # Khởi tạo cấu trúc nếu chưa tồn tại
-    player_data = data.get(model_name, {"latest": version, "versions": [version], "played": {}})
+    player_data = data.get(model_name, {"latest": version, "versions": [version], "played": []})
     if "played" not in player_data:
-        player_data["played"] = {}
-    if version not in player_data["played"]:
-        player_data["played"][version] = []
+        player_data["played"] = []
 
     # Tạo bản ghi mới
     record = {
@@ -91,10 +155,7 @@ def save_game_history(model_name: str, version: str, color: str, result: str):
     }
 
     # Chèn vào đầu danh sách để ván mới nhất luôn ở trên cùng
-    player_data["played"][version].insert(0, record)
-    
-    # Giới hạn chỉ lưu 50 ván gần nhất để file không bị phình to
-    player_data["played"][version] = player_data["played"][version][:50]
+    player_data["played"].insert(0, record)
     
     data[model_name] = player_data
 

@@ -142,11 +142,9 @@ def save_game_history(model_name: str, version: str, color: str, result: str):
         data = {}
 
     # Khởi tạo cấu trúc nếu chưa tồn tại
-    player_data = data.get(model_name, {"latest": version, "versions": [version], "played": {}})
+    player_data = data.get(model_name, {"latest": version, "versions": [version], "played": []})
     if "played" not in player_data:
-        player_data["played"] = {}
-    if version not in player_data["played"]:
-        player_data["played"][version] = []
+        player_data["played"] = []
 
     # Tạo bản ghi mới
     record = {
@@ -157,10 +155,7 @@ def save_game_history(model_name: str, version: str, color: str, result: str):
     }
 
     # Chèn vào đầu danh sách để ván mới nhất luôn ở trên cùng
-    player_data["played"][version].insert(0, record)
-    
-    # Giới hạn chỉ lưu 50 ván gần nhất để file không bị phình to
-    player_data["played"][version] = player_data["played"][version][:50]
+    player_data["played"].insert(0, record)
     
     data[model_name] = player_data
 

@@ -3,7 +3,7 @@ from curses import version
 import chess
 import numpy as np
 
-from config.Setting import PIECE_VALUES, get_play_path, save_game_history
+from config.Setting import PAWN_PST, KNIGHT_PST, BISHOP_PST,  PIECE_VALUES, ROOK_PST, QUEEN_PST, KING_PST, get_play_path, save_game_history
 
 def board_to_matrix(board):
     # Chuyen 64 o co thanh mang 1 chieu
@@ -39,12 +39,56 @@ def game_over(board, color, model_name, version):
 
 
 
+def calculate_pst_score(board, turn):
+    # Tính điểm vị trí quân cờ (PST) cho phe chỉ định
+    score = 0
+    for square in chess.SQUARES:
+        piece = board.piece_at(square)
+        if piece and piece.color == turn:
+            pst_square = square if turn == chess.WHITE else chess.square_mirror(square)
+            
+            if piece.piece_type == chess.PAWN: score += PAWN_PST[pst_square]
+            elif piece.piece_type == chess.KNIGHT: score += KNIGHT_PST[pst_square]
+            elif piece.piece_type == chess.BISHOP: score += BISHOP_PST[pst_square]
+            elif piece.piece_type == chess.ROOK: score += ROOK_PST[pst_square]
+            elif piece.piece_type == chess.QUEEN: score += QUEEN_PST[pst_square]
+            elif piece.piece_type == chess.KING: score += KING_PST[pst_square]
+            
+    return score / 100.0
+
+def evaluate_rooks(board, turn):
+    # Đánh giá sức mạnh Xe trên cột mở hoặc nửa mở bằng Bitboard
+    score = 0
+    for square in board.pieces(chess.ROOK, turn):
+        file_idx = chess.square_file(square)
+        file_mask = chess.BB_FILES[file_idx]
+        
+        my_pawns = board.pieces(chess.PAWN, turn) & file_mask
+        opp_pawns = board.pieces(chess.PAWN, not turn) & file_mask
+        
+        if not my_pawns and not opp_pawns:
+            score += 1.5 
+        elif not my_pawns:
+            score += 0.5 
+    return score
+
+def evaluate_king_attack(board, turn):
+    # Đếm số tia ngắm tấn công vào khu vực xung quanh Vua đối phương
+    score = 0
+    opp_king_sq = board.king(not turn)
+    if opp_king_sq is None: 
+        return 0
+    
+    king_zone = board.attacks(opp_king_sq) | {opp_king_sq}
+    for sq in king_zone:
+        if board.is_attacked_by(turn, sq):
+            score += 1
+    return score
+
 def extract_features(board: chess.Board):
     features = []
     
-    # ==========================================
-    # PHẦN 1: 64 Ô CỜ (RAW DATA) - Giữ nguyên như cũ
-    # ==========================================
+    # 64 ô cờ tĩnh
     for i in range(64):
         piece = board.piece_at(i)
         if piece:
@@ -53,30 +97,21 @@ def extract_features(board: chess.Board):
         else:
             features.append(0)
 
-    # ==========================================
-    # PHẦN 2: FEATURE ENGINEERING (Dữ liệu trừu tượng)
-    # Lấy góc nhìn của người CẦM QUÂN (Trắng hoặc Đen)
-    # ==========================================
-    turn = board.turn # True = Trắng, False = Đen
+    turn = board.turn
     
-    # 1. Chênh lệch vật chất (Vật chất phe ta - phe địch)
+    # Đặc trưng tĩnh cơ bản
     my_material = sum(len(board.pieces(pt, turn)) * val for pt, val in PIECE_VALUES.items())
     opp_material = sum(len(board.pieces(pt, not turn)) * val for pt, val in PIECE_VALUES.items())
     features.append(my_material - opp_material)
-    
-    # 2. Độ linh hoạt (Mobility - Số nước có thể đi hợp lệ)
     features.append(board.legal_moves.count())
     
-    # 3. Kiểm soát trung tâm (Bao nhiêu tia ngắm vào d4, e4, d5, e5)
     center_squares = [chess.D4, chess.E4, chess.D5, chess.E5]
     my_center_control = sum(1 for sq in center_squares if board.is_attacked_by(turn, sq))
     opp_center_control = sum(1 for sq in center_squares if board.is_attacked_by(not turn, sq))
     features.append(my_center_control - opp_center_control)
     
-    # 4. Áp lực lên Vua (Có đang chiếu Vua đối phương không?)
     features.append(1 if board.is_check() else 0)
     
-    # 5. An toàn Vua (Có bao nhiêu quân phe ta đứng quanh Vua ta để bảo vệ?)
     my_king_sq = board.king(turn)
     king_safety = 0
     if my_king_sq:
@@ -86,5 +121,17 @@ def extract_features(board: chess.Board):
                 king_safety += 1
     features.append(king_safety)
     
-    # TỔNG CỘNG: 64 cột vị trí + 5 cột Đặc trưng = 69 cột dữ liệu
+    # Đặc trưng động mới bổ sung
+    my_pst = calculate_pst_score(board, turn)
+    opp_pst = calculate_pst_score(board, not turn)
+    features.append(my_pst - opp_pst)
+    
+    my_rook_score = evaluate_rooks(board, turn)
+    opp_rook_score = evaluate_rooks(board, not turn)
+    features.append(my_rook_score - opp_rook_score)
+    
+    my_king_attack = evaluate_king_attack(board, turn)
+    opp_king_attack = evaluate_king_attack(board, not turn)
+    features.append(my_king_attack - opp_king_attack)
+    
     return np.array(features, dtype=np.float32)

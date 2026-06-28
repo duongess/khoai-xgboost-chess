@@ -19,7 +19,7 @@ def train_xgboost_model(player: str, is_new: bool = False):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
     model = xgb.XGBRegressor(
-        n_estimators=100, max_depth=6, learning_rate=0.1,
+        n_estimators=100, max_depth=6, learning_rate=0.1, scale_pos_weight = 3,
         subsample=0.8, colsample_bytree=0.8, tree_method="hist", random_state=42
     )
     

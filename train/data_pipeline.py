@@ -97,10 +97,25 @@ def process_pgn(player_focus="Fischer", mode="style", force=False):
     mode = "style": Đọc 1 file .pgn của Kiện tướng cụ thể
     """
     # 1. Định nghĩa Header chuẩn hóa cho cả 2 trường hợp
+    # 93 features -- khop voi extract_features() moi
     cols = [f"sq_{i}" for i in range(64)]
-    cols.extend(["mat_diff", "mobility", "center_ctrl", "is_check", "king_safety"])
-    cols.extend(["pst_diff", "rook_open_file", "king_attack", "hanging_pieces_diff"])
-    cols.append("is_style_focus") 
+    cols.extend(["mat_diff", "mobility", "center_ctrl", "is_check", "king_safety_old"])
+    cols.extend(["pst_diff", "rook_open_file", "king_attack", "game_phase"])
+    # An toan quan cuc bo
+    cols.extend(["my_hung_val", "opp_hung_val",
+                 "my_mvh", "opp_mvh",
+                 "my_attacked_val", "opp_attacked_val"])
+    # Cau truc tot
+    cols.extend(["my_doubled", "opp_doubled",
+                 "my_isolated", "opp_isolated",
+                 "my_passed", "opp_passed"])
+    # Quan manh & khong gian
+    cols.extend(["my_knight_outpost", "opp_knight_outpost",
+                 "my_bishop_pair", "opp_bishop_pair",
+                 "my_space", "opp_space"])
+    # An toan vua chi tiet
+    cols.extend(["my_king_danger", "opp_king_danger"])
+    cols.append("is_style_focus")
     cols.append("target")
 
 

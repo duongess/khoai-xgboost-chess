@@ -110,7 +110,7 @@ def process_pgn(player_focus="Fischer", mode="style", force=False):
             sys.exit(1)
             
         input_file = get_raw_pgn_path(player_focus)
-        output_parquet = get_processed_parquet_path(f"{player_focus}_{mode}")
+        output_parquet = get_processed_parquet_path(player_focus)
         
         if output_parquet.exists() and not force:
             print(f"File Parquet {output_parquet} đã tồn tại. Dùng --force để ghi đè.")

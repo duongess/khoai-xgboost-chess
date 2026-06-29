@@ -377,3 +377,30 @@ def extract_features(board: chess.Board) -> np.ndarray:
     features.append(evaluate_king_safety_zone(board, not turn))     # [92]
 
     return np.array(features, dtype=np.float32)
+
+
+def quick_evaluate(board, turn):
+    # Tinh chenh lech vat chat
+    my_mat  = sum(len(board.pieces(pt, turn)) * v for pt, v in PIECE_VALUES.items())
+    opp_mat = sum(len(board.pieces(pt, not turn)) * v for pt, v in PIECE_VALUES.items())
+    score = (my_mat - opp_mat) * 10 
+
+    # Phat nang quan treo
+    my_hung  = evaluate_most_valuable_hanging(board, turn)
+    opp_hung = evaluate_most_valuable_hanging(board, not turn)
+    score -= my_hung * 8
+    score += opp_hung * 8
+
+    # Danh gia cau truc tot
+    my_d, my_i, my_p   = evaluate_pawn_structure(board, turn)
+    opp_d, opp_i, opp_p = evaluate_pawn_structure(board, not turn)
+    score -= (my_d + my_i) * 0.5
+    score += (opp_d + opp_i) * 0.5
+    score += (my_p - opp_p) * 1.5
+
+    # Kiem soat khong gian va an toan vua
+    score += evaluate_space_control(board, turn) * 0.1
+    score -= evaluate_king_safety_zone(board, turn) * 0.3
+    score += evaluate_king_safety_zone(board, not turn) * 0.3
+
+    return score

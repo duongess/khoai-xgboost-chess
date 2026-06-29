@@ -34,6 +34,8 @@ if not METADATA_FILE.exists() or METADATA_FILE.stat().st_size == 0:
     with open(METADATA_FILE, "w", encoding="utf-8") as f:
         json.dump({}, f)
 
+MAX_NODES = 1500 
+
 PIECE_VALUES = {
     chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
     chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0

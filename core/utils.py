@@ -5,20 +5,10 @@ import numpy as np
 
 from config.Setting import (
     PAWN_PST, KNIGHT_PST, BISHOP_PST, PIECE_VALUES,
-    ROOK_PST, QUEEN_PST, KING_PST,
+    ROOK_PST, QUEEN_PST, KING_PST, KING_ENDGAME_PST,
     get_play_path, save_game_history
 )
 
-KING_ENDGAME_PST = [
-    -50, -40, -30, -20, -20, -30, -40, -50,
-    -30, -20, -10,   0,   0, -10, -20, -30,
-    -30, -10,  20,  30,  30,  20, -10, -30,
-    -30, -10,  30,  40,  40,  30, -10, -30,
-    -30, -10,  30,  40,  40,  30, -10, -30,
-    -30, -10,  20,  30,  30,  20, -10, -30,
-    -30, -30,   0,   0,   0,   0, -30, -30,
-    -50, -30, -30, -30, -30, -30, -30, -50,
-]
 
 
 def board_to_matrix(board):

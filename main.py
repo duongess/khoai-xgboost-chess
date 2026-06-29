@@ -18,9 +18,11 @@ app = typer.Typer(help="Khoai Chess AI - Engine danh co bang XGBoost",
 
 @app.command()
 def train(
-    player: Annotated[str, typer.Argument(help="Ten nguoi choi (VD: Fischer de tim Fischer.pgn)")],
+    player: Annotated[str, typer.Argument(help="Ten nguoi choi (VD: Fischer de tim Fischer.pgn)")] = None,
+    mode: Annotated[str, typer.Option("--mode", "-m", help="Chon che do huan luyen: base hoac style")] = "style",
     force: Annotated[bool, typer.Option("--force", "-f", help="Ghi de model cu neu da ton tai")] = False,
-    new: Annotated[bool, typer.Option("--new", "-n", help="Tao phien ban model moi (v2, v3...)")] = False
+    new: Annotated[bool, typer.Option("--new", "-n", help="Tao phien ban model moi (v2, v3...)")] = False,
+    skip_data: Annotated[bool, typer.Option("--skip-data", "-s", help="Bo qua buoc xu ly PGN, chi chay huan luyen model")] = False
 ):
     """
     Huan luyen mo hinh AI tu file PGN cua mot kien tuong.
@@ -29,13 +31,22 @@ def train(
     if new:
         typer.secho(f"Ban dang tao phien ban moi cho mo hinh cua {player}.", fg=typer.colors.YELLOW)
         force = True  # Khi tạo phiên bản mới, luôn ghi đè mô hình cũ nếu có
+    
+    if mode == "base":
+        player = "Base_Grandmasters"
+        typer.secho(f"Ban dang huan luyen mo hinh Grandmasters.", fg=typer.colors.YELLOW)
+    else:
+        typer.secho(f"Dang doc du lieu cua {player}.pgn...", fg=typer.colors.CYAN)
+    
+    # Kiem tra co skip_data truoc khi chay tien xu ly
+    if not skip_data:
+        typer.secho(f"1. Sử lý dữ liệu từ PGN sang Parquet...", fg=typer.colors.CYAN)
+        process_pgn(player_focus=player, mode=mode, force=force)
+    else:
+        typer.secho(f"1. Bỏ qua bước xử lý dữ liệu PGN (Su dung Parquet cu).", fg=typer.colors.MAGENTA)
 
-    typer.secho(f"Dang doc du lieu cua {player}.pgn...", fg=typer.colors.CYAN)
-
-    typer.secho(f"1. Sử lý dữ liệu từ PGN sang CSV...", fg=typer.colors.CYAN)
-    process_pgn(player, force)
     typer.secho(f"2. Huấn luyen mo hinh...", fg=typer.colors.CYAN)
-    train_xgboost_model(player, is_new=new)
+    train_xgboost_model(player, mode, is_new=new)
 
 @app.command()
 def play(

@@ -10,15 +10,17 @@ SIZE = 650
 SIZE_SQUARE = SIZE // 8
 
 # Gốc của toàn bộ dự án (thư mục cha của config/)
-BASE_DIR = CONFIG_DIR.parent
+ROOT_DIR = CONFIG_DIR.parent
 
 # Định nghĩa các thư mục chức năng chính
-DATA_DIR = BASE_DIR / "data"
+DATA_DIR = ROOT_DIR / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 PLAY_DIR = DATA_DIR / "played"
 MODEL_DIR = DATA_DIR / "models"
-PUBLIC_DIR = BASE_DIR / "public"
+BASE_DIR = RAW_DATA_DIR / "train-base"
+PROCESSED_BASE_DIR = PROCESSED_DATA_DIR / "train-base.parquet"
+PUBLIC_DIR = ROOT_DIR / "public"
 
 METADATA_FILE = DATA_DIR / "metadata.json"
 
@@ -28,7 +30,9 @@ PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 PLAY_DIR.mkdir(parents=True, exist_ok=True)
-METADATA_FILE.touch(exist_ok=True)
+if not METADATA_FILE.exists() or METADATA_FILE.stat().st_size == 0:
+    with open(METADATA_FILE, "w", encoding="utf-8") as f:
+        json.dump({}, f)
 
 PIECE_VALUES = {
     chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
@@ -167,9 +171,9 @@ def get_raw_pgn_path(player_name: str) -> Path:
     # Trả về đường dẫn file PGN thô đầu vào (Ví dụ: data/raw/Fischer.pgn)
     return RAW_DATA_DIR / f"{player_name}.pgn"
 
-def get_processed_csv_path(player_name: str) -> Path:
-    # Trả về đường dẫn file CSV sau khi chạy vòng for bóc tách (Ví dụ: data/processed/Fischer.csv)
-    return PROCESSED_DATA_DIR / f"{player_name}.csv"
+def get_processed_parquet_path(player_name: str) -> Path:
+    # Trả về đường dẫn file Parquet sau khi chạy vòng for bóc tách (Ví dụ: data/processed/Fischer.parquet)
+    return PROCESSED_DATA_DIR / f"{player_name}.parquet"
 
 def get_model_path(model_name: str) -> Path:
     # Trả về đường dẫn file lưu mô hình XGBoost sau khi train (Ví dụ: models/Fischer_v1.json)

@@ -4,75 +4,45 @@ import numpy as np
 import pandas as pd
 import sys
 from config.Setting import get_processed_parquet_path, get_raw_pgn_path, BASE_DIR, PROCESSED_BASE_DIR
-from core.utils import extract_features, quick_evaluate
+from core.utils import extract_features     
 
-def get_quiescence_eval(board, turn_before):
-    # Đánh giá tĩnh lặng cơ bản: Giả lập nước ăn quân phản hồi của đối thủ
-    current_eval = quick_evaluate(board, turn_before)
-    best_enemy_eval = current_eval
-
-    for em in board.legal_moves:
-        if board.is_capture(em):
-            board.push(em)
-            em_eval = quick_evaluate(board, turn_before)
-            # Tìm nước làm phe ta thiệt hại nặng nhất để triệt tiêu điểm ảo
-            if em_eval < best_enemy_eval: 
-                best_enemy_eval = em_eval
-            board.pop()
-    
-    return best_enemy_eval
-
-def process_game_base(game):
+def process_game_base(game, white_score, black_score):
+    # Giữ nguyên logic xử lý base
     data = []
     board = game.board()
     moves = list(game.mainline_moves())
+    total_moves = len(moves)
     
     for ply, move in enumerate(moves):
-        turn_before = board.turn
-        eval_before = quick_evaluate(board, turn_before)
+        player_who_moved = board.turn
+        game_outcome = white_score if player_who_moved == chess.WHITE else black_score
+        progress = (ply + 1) / total_moves
         
-        # 1. Mẫu tốt (Nước cờ thực tế)
-        board.push(move)
-        if board.is_capture(move):
-            eval_after = get_quiescence_eval(board, turn_before)
+        if game_outcome > 0:
+            target_score = 0.5 + (0.5 * progress)
+        elif game_outcome < 0:
+            target_score = -1.0 * (progress ** 2)
         else:
-            eval_after = quick_evaluate(board, turn_before)
+            target_score = 0.0
             
-        raw_delta = eval_after - eval_before
-        target = max(-1.0, min(1.0, raw_delta / 10.0))
-        
+        board.push(move)
         features = extract_features(board).tolist()
-        features.extend([0, target])
+        features.append(0)
+        features.append(target_score)
         data.append(features)
         board.pop()
         
-        # 2. Mẫu xấu (Hard Negative Mining)
         legal_moves = list(board.legal_moves)
-        if move in legal_moves:
-            legal_moves.remove(move)
+        legal_moves.remove(move)
+        num_negatives = min(3, len(legal_moves))
         
-        if legal_moves:
-            neg_evals = []
-            for neg_move in legal_moves:
+        if num_negatives > 0:
+            negative_moves = random.sample(legal_moves, num_negatives)
+            for neg_move in negative_moves:
                 board.push(neg_move)
-                if board.is_capture(neg_move):
-                    eval_neg = get_quiescence_eval(board, turn_before)
-                else:
-                    eval_neg = quick_evaluate(board, turn_before)
-                neg_evals.append((neg_move, eval_neg))
-                board.pop()
-                
-            # Lọc ra 3 nước đi tệ nhất (điểm thấp nhất) thay vì random
-            neg_evals.sort(key=lambda x: x[1])
-            hard_negatives = neg_evals[:3]
-            
-            for neg_move, eval_neg in hard_negatives:
-                board.push(neg_move)
-                raw_neg_delta = eval_neg - eval_before
-                target_neg = max(-1.0, min(1.0, raw_neg_delta / 10.0))
-                
                 features_neg = extract_features(board).tolist()
-                features_neg.extend([0, target_neg])
+                features_neg.append(0)
+                features_neg.append(-1.0) 
                 data.append(features_neg)
                 board.pop()
                 
@@ -232,7 +202,7 @@ def process_pgn(player_focus="Fischer", mode="style", force=False):
                         print_progress(current_game_global, total_games_all_files, prefix="Tong tien trinh")
                         continue 
                         
-                    game_data = process_game_base(game)
+                    game_data = process_game_base(game, white_score, black_score)
                     buffer_data.extend(game_data)
                     current_game_global += 1
                     

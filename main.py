@@ -22,7 +22,8 @@ def train(
     mode: Annotated[str, typer.Option("--mode", "-m", help="Chon che do huan luyen: base hoac style")] = "style",
     force: Annotated[bool, typer.Option("--force", "-f", help="Ghi de model cu neu da ton tai")] = False,
     new: Annotated[bool, typer.Option("--new", "-n", help="Tao phien ban model moi (v2, v3...)")] = False,
-    skip_data: Annotated[bool, typer.Option("--skip-data", "-s", help="Bo qua buoc xu ly PGN, chi chay huan luyen model")] = False
+    skip_data: Annotated[bool, typer.Option("--skip-data", "-s", help="Bo qua buoc xu ly PGN, chi chay huan luyen model")] = False,
+    workers: Annotated[int, typer.Option("--workers", "-w", help="So luong tien trinh xu ly song song (0 = Auto)")] = 0
 ):
     """
     Huan luyen mo hinh AI tu file PGN cua mot kien tuong.
@@ -41,7 +42,7 @@ def train(
     # Kiem tra co skip_data truoc khi chay tien xu ly
     if not skip_data:
         typer.secho(f"1. Sử lý dữ liệu từ PGN sang Parquet...", fg=typer.colors.CYAN)
-        process_pgn(player_focus=player, mode=mode, force=force)
+        process_pgn(player_focus=player, mode=mode, force=force, workers=workers)
     else:
         typer.secho(f"1. Bỏ qua bước xử lý dữ liệu PGN (Su dung Parquet cu).", fg=typer.colors.MAGENTA)
 

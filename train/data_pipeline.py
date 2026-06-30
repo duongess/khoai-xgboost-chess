@@ -3,11 +3,13 @@ import chess.pgn
 import numpy as np
 import pandas as pd
 import sys
+import io
+import multiprocessing as mp
 from config.Setting import get_processed_parquet_path, get_raw_pgn_path, BASE_DIR, PROCESSED_BASE_DIR
 from core.utils import extract_features     
 
+# Giữ nguyên process_game_base và process_game_style
 def process_game_base(game, white_score, black_score):
-    # Giữ nguyên logic xử lý base
     data = []
     board = game.board()
     moves = list(game.mainline_moves())
@@ -47,11 +49,9 @@ def process_game_base(game, white_score, black_score):
                 board.pop()
                 
         board.push(move)
-        
     return data
 
 def process_game_style(game, player_name, white_score, black_score):
-    # Giữ nguyên logic xử lý style
     data = []
     white_player = game.headers.get("White", "")
     black_player = game.headers.get("Black", "")
@@ -84,7 +84,6 @@ def process_game_style(game, player_name, white_score, black_score):
     return data
 
 def count_games_in_pgn(file_path):
-    # Đếm nhanh tổng số ván cờ bằng cách đọc header để tránh tốn RAM
     count = 0
     with open(file_path, 'r', encoding='utf-8') as f:
         for line in f:
@@ -93,7 +92,6 @@ def count_games_in_pgn(file_path):
     return count
 
 def print_progress(current, total, prefix='Tien trinh', length=40):
-    # Cập nhật thanh tiến trình trên cùng một dòng console
     if total == 0:
         return
     percent = f"{100 * (current / float(total)):.1f}"
@@ -104,7 +102,51 @@ def print_progress(current, total, prefix='Tien trinh', length=40):
     if current == total:
         print()
 
-def process_pgn(player_focus="Fischer", mode="style", force=False):
+# =========================================================================
+# CAC HAM HO TRO CHO MULTIPROCESSING
+# Phai dat o root level de Pickle co the mang sang cac tien trinh con
+# =========================================================================
+
+def yield_raw_games(file_path):
+    """Doc va cat file PGN thanh cac chuoi text de tranh loi RAM"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        game_lines = []
+        for line in f:
+            if line.startswith("[Event ") and game_lines:
+                yield "".join(game_lines)
+                game_lines = []
+            game_lines.append(line)
+        if game_lines:
+            yield "".join(game_lines)
+
+def yield_all_raw_games(file_paths):
+    for fp in file_paths:
+        yield from yield_raw_games(fp)
+
+def worker_style(args):
+    raw_game, player_focus = args
+    game = chess.pgn.read_game(io.StringIO(raw_game))
+    if game is None: return []
+    result_str = game.headers.get("Result", "*")
+    if result_str == "1-0": white_score, black_score = 1.0, -1.0
+    elif result_str == "0-1": white_score, black_score = -1.0, 1.0
+    elif result_str == "1/2-1/2": white_score, black_score = 0.0, 0.0
+    else: return []
+    return process_game_style(game, player_focus, white_score, black_score)
+
+def worker_base(raw_game):
+    game = chess.pgn.read_game(io.StringIO(raw_game))
+    if game is None: return []
+    result_str = game.headers.get("Result", "*")
+    if result_str == "1-0": white_score, black_score = 1.0, -1.0
+    elif result_str == "0-1": white_score, black_score = -1.0, 1.0
+    elif result_str == "1/2-1/2": white_score, black_score = 0.0, 0.0
+    else: return []
+    return process_game_base(game, white_score, black_score)
+
+# =========================================================================
+
+def process_pgn(player_focus="Fischer", mode="style", force=False, workers=1):
     cols = [f"sq_{i}" for i in range(64)]
     cols.extend(["mat_diff", "mobility", "center_ctrl", "is_check", "king_safety_old"])
     cols.extend(["pst_diff", "rook_open_file", "king_attack", "game_phase"])
@@ -114,6 +156,12 @@ def process_pgn(player_focus="Fischer", mode="style", force=False):
     cols.extend(["my_king_danger", "opp_king_danger"])
     cols.append("is_style_focus")
     cols.append("target")
+
+    # Neu chon 0, tu dong lay so nhan CPU toi da tru di 1
+    if workers <= 0:
+        workers = max(1, mp.cpu_count() - 1)
+        
+    print(f"Khoi tao luong xu ly song song voi {workers} tien trinh (Workers)...")
 
     if mode == "style":
         if not player_focus:
@@ -129,30 +177,26 @@ def process_pgn(player_focus="Fischer", mode="style", force=False):
             
         print(f"Dang quet file {input_file.name} de dem tong so van co...")
         total_games = count_games_in_pgn(input_file)
-        
         print(f"Bat dau hoc phong cach cua {player_focus}. Tong cong: {total_games} van.")
+        
         all_data = []
         current_game = 0
         
-        with open(input_file, "r", encoding="utf-8") as pgn:
-            while True:
-                game = chess.pgn.read_game(pgn)
-                if game is None: break
-                    
-                result_str = game.headers.get("Result", "*")
-                if result_str == "1-0": white_score, black_score = 1.0, -1.0
-                elif result_str == "0-1": white_score, black_score = -1.0, 1.0
-                elif result_str == "1/2-1/2": white_score, black_score = 0.0, 0.0
-                else: 
-                    current_game += 1
-                    print_progress(current_game, total_games, prefix="Dang xu ly")
-                    continue 
-                    
-                game_data = process_game_style(game, player_focus, white_score, black_score)
-                all_data.extend(game_data)
-                
+        args_generator = ((raw_game, player_focus) for raw_game in yield_raw_games(input_file))
+        
+        if workers == 1:
+            for args in args_generator:
+                game_data = worker_style(args)
+                if game_data: all_data.extend(game_data)
                 current_game += 1
                 print_progress(current_game, total_games, prefix="Dang xu ly")
+        else:
+            with mp.Pool(workers) as pool:
+                # Dung imap_unordered va chunksize de tranh tran RAM Queue
+                for game_data in pool.imap_unordered(worker_style, args_generator, chunksize=50):
+                    if game_data: all_data.extend(game_data)
+                    current_game += 1
+                    print_progress(current_game, total_games, prefix="Dang xu ly")
 
         df = pd.DataFrame(all_data, columns=cols)
         df.to_parquet(output_parquet, index=False)
@@ -186,46 +230,36 @@ def process_pgn(player_focus="Fischer", mode="style", force=False):
         buffer_data = []
         current_game_global = 0
 
-        for pgn_file in pgn_files:
-            print(f"Dang doc file: {pgn_file.name}")
-            with open(pgn_file, "r", encoding="utf-8") as pgn:
-                while True:
-                    game = chess.pgn.read_game(pgn)
-                    if game is None: break
-                        
-                    result_str = game.headers.get("Result", "*")
-                    if result_str == "1-0": white_score, black_score = 1.0, -1.0
-                    elif result_str == "0-1": white_score, black_score = -1.0, 1.0
-                    elif result_str == "1/2-1/2": white_score, black_score = 0.0, 0.0
-                    else:
-                        current_game_global += 1
-                        print_progress(current_game_global, total_games_all_files, prefix="Tong tien trinh")
-                        continue 
-                        
-                    game_data = process_game_base(game, white_score, black_score)
-                    buffer_data.extend(game_data)
+        game_generator = yield_all_raw_games(pgn_files)
+
+        if workers == 1:
+            for raw_game in game_generator:
+                game_data = worker_base(raw_game)
+                if game_data: buffer_data.extend(game_data)
+                current_game_global += 1
+                print_progress(current_game_global, total_games_all_files, prefix="Tong tien trinh")
+                
+                if current_game_global % CHUNK_SIZE == 0:
+                    df_chunk = pd.DataFrame(buffer_data, columns=cols)
+                    df_chunk.to_parquet(output_parquet, engine='fastparquet', append=output_parquet.exists(), index=False)
+                    buffer_data = []
+        else:
+            with mp.Pool(workers) as pool:
+                for game_data in pool.imap_unordered(worker_base, game_generator, chunksize=100):
+                    if game_data: buffer_data.extend(game_data)
                     current_game_global += 1
-                    
                     print_progress(current_game_global, total_games_all_files, prefix="Tong tien trinh")
 
                     if current_game_global % CHUNK_SIZE == 0:
                         df_chunk = pd.DataFrame(buffer_data, columns=cols)
-                        
-                        if not output_parquet.exists():
-                            df_chunk.to_parquet(output_parquet, engine='fastparquet', index=False)
-                        else:
-                            df_chunk.to_parquet(output_parquet, engine='fastparquet', append=True, index=False)
-                            
+                        df_chunk.to_parquet(output_parquet, engine='fastparquet', append=output_parquet.exists(), index=False)
                         buffer_data = []
 
         if buffer_data:
             df_chunk = pd.DataFrame(buffer_data, columns=cols)
-            if not output_parquet.exists():
-                df_chunk.to_parquet(output_parquet, engine='fastparquet', index=False)
-            else:
-                df_chunk.to_parquet(output_parquet, engine='fastparquet', append=True, index=False)
+            df_chunk.to_parquet(output_parquet, engine='fastparquet', append=output_parquet.exists(), index=False)
 
-        print(f"Hoan tat Base! Da luu {current_game_global} van co vao: {output_parquet}")
+        print(f"\nHoan tat Base! Da luu {current_game_global} van co vao: {output_parquet}")
 
     else:
         print("Che do huan luyen khong hop le. Chi chap nhan 'base' hoac 'style'.")

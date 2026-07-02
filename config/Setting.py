@@ -45,11 +45,15 @@ OPENING_MOVE_LIMIT = 10  # tu dieu chinh: so nuoc di (fullmove) duoc coi la khai
 # Tong gia tri quan (tru Vua, Tot) cua CA HAI BEN cong lai, duoi nguong nay thi coi la tan cuoc. 
 ENDGAME_MATERIAL_THRESHOLD = PIECE_VALUES[chess.ROOK] * 2 + PIECE_VALUES[chess.BISHOP] * 2
 
-SMART_N_PLY = 5
-MIDDLEGAME_BEAM_WIDTH = 5 
+SMART_N_PLY = 7
+MIDDLEGAME_BEAM_WIDTH = 7
 
-HANG_PENALTY_SCALE = 300.0
+HANG_PENALTY_SCALE = 200.0
 HANG_PENALTY_WEIGHT = 1.0
+
+HANG_THRESHOLD = PIECE_VALUES[chess.PAWN]
+TACTICAL_BONUS_WEIGHT = 0.01
+
 
 
 PAWN_PST = [

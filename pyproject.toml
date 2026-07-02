@@ -20,6 +20,8 @@ scikit-learn = "1.5.2"
 pyside6 = { version = "6.7.2", markers = "python_version < '3.14'" }
 fastparquet = "^2026.5.0"
 pyarrow = "^24.0.0"
+cython = "^3.2.8"
+setuptools = "^82.0.1"
 
 [tool.poetry.scripts]
 khoai = "main:app"

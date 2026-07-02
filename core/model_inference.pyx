@@ -9,26 +9,40 @@ import chess
 import xgboost as xgb
 
 from core.utils import extract_features
-from config.Setting import PIECE_VALUES, MAX_NODES, OPENING_MOVE_LIMIT, ENDGAME_MATERIAL_THRESHOLD, SMART_N_PLY, MIDDLEGAME_BEAM_WIDTH, HANG_PENALTY_WEIGHT, HANG_PENALTY_SCALE, HANG_THRESHOLD, TACTICAL_BONUS_WEIGHT
+from config.Setting import PIECE_VALUES, MAX_NODES, OPENING_MOVE_LIMIT, ENDGAME_MATERIAL_THRESHOLD, SMART_N_PLY, MIDDLEGAME_BEAM_WIDTH, TACTICAL_BONUS_WEIGHT
 
 # Dinh nghia cac bien toan cuc kieu C
 cdef dict eval_cache = {}
 cdef int node_count = 0
 
 cdef bint is_opening_phase(object board):
-    # Kiem tra giai doan khai cuoc
     return board.fullmove_number <= OPENING_MOVE_LIMIT
 
 cdef bint is_endgame_phase(object board):
-    # Kiem tra giai doan tan cuoc dua tren vat chat
+    # Kiem tra giai doan tan cuoc. 
+    # Canh bao: Neu ban tang PIECE_VALUES x100, phai tang ENDGAME_MATERIAL_THRESHOLD len tuong ung!
     cdef int total_material = 0
     for p in board.piece_map().values():
         if p.piece_type not in (chess.KING, chess.PAWN):
             total_material += PIECE_VALUES.get(p.piece_type, 0)
     return total_material <= ENDGAME_MATERIAL_THRESHOLD
 
+cpdef int material_balance(object board):
+    # Dem vat chat cuc nhanh bang bitboard theo thang Centipawn
+    cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))
+    cdef int bp = len(board.pieces(chess.PAWN, chess.BLACK))
+    cdef int wn = len(board.pieces(chess.KNIGHT, chess.WHITE))
+    cdef int bn = len(board.pieces(chess.KNIGHT, chess.BLACK))
+    cdef int wb = len(board.pieces(chess.BISHOP, chess.WHITE))
+    cdef int bb = len(board.pieces(chess.BISHOP, chess.BLACK))
+    cdef int wr = len(board.pieces(chess.ROOK, chess.WHITE))
+    cdef int br = len(board.pieces(chess.ROOK, chess.BLACK))
+    cdef int wq = len(board.pieces(chess.QUEEN, chess.WHITE))
+    cdef int bq = len(board.pieces(chess.QUEEN, chess.BLACK))
+
+    return ((wp - bp) * 100 + (wn - bn) * 300 + (wb - bb) * 300 + (wr - br) * 500 + (wq - bq) * 900)
+
 cdef list _sorted_attackers(object board, int square, bint color, set removed):
-    # Tim va sap xep cac quan tan cong theo gia tri tang dan
     cdef list out = []
     cdef int sq
     cdef int val
@@ -43,7 +57,6 @@ cdef list _sorted_attackers(object board, int square, bint color, set removed):
     return out
 
 cpdef int static_exchange_eval(object board, object move):
-    # Danh gia chuoi an quan tinh (SEE)
     if not board.is_capture(move): 
         return 0
         
@@ -84,60 +97,7 @@ cpdef int static_exchange_eval(object board, object move):
 
     return gains[0]
 
-cpdef int see_on_square(object board, int square, bint attacker_color):
-    # Danh gia trao doi tren mot o cu the
-    target = board.piece_at(square)
-    if target is None: 
-        return 0
-    cdef int target_value = PIECE_VALUES.get(target.piece_type, 0)
-
-    cdef set removed = set()
-    attackers = _sorted_attackers(board, square, attacker_color, removed)
-    if not attackers: 
-        return 0
-
-    cdef list gains = [target_value]
-    cdef int val = attackers[0][0]
-    cdef int sq = attackers[0][1]
-    removed.add(sq)
-    
-    cdef int last_attacker_value = val
-    cdef bint side = not attacker_color
-    cdef int i
-    cdef int last_idx
-
-    while True:
-        next_attackers = _sorted_attackers(board, square, side, removed)
-        if not next_attackers: 
-            break
-        val, sq = next_attackers[0]
-        last_idx = len(gains) - 1
-        gains.append(last_attacker_value - gains[last_idx])
-        removed.add(sq)
-        last_attacker_value = val
-        side = not side
-
-    for i in range(len(gains) - 1, 0, -1):
-        gains[i - 1] = -max(-gains[i - 1], gains[i])
-
-    return gains[0]
-
-cpdef int find_worst_hang(object board, bint color):
-    # Tim loi treo quan nang nhat
-    cdef int worst = 0
-    cdef int sq
-    cdef int loss
-    for sq, piece in board.piece_map().items():
-        if piece.color != color: 
-            continue
-        if board.is_attacked_by(not color, sq):
-            loss = see_on_square(board, sq, not color)
-            if loss > worst: 
-                worst = loss
-    return worst
-
 cpdef tuple find_tactical_moves(object board, list legal_moves):
-    # Tim cac nuoc di chien thuat (chieu bi, an quan loi)
     cdef list mate_moves = []
     cdef dict winning_captures = {}
     cdef int see_val
@@ -156,7 +116,6 @@ cpdef tuple find_tactical_moves(object board, list legal_moves):
     return mate_moves, winning_captures
 
 cdef float get_xgb_eval(object board, object model):
-    # Tinh diem tu mo hinh XGBoost co dung cache
     global node_count
     node_count += 1
     cdef str fen = board.fen()
@@ -170,15 +129,12 @@ cdef float get_xgb_eval(object board, object model):
     return score
 
 cdef float leaf_eval(object board, object model):
-    # Danh gia node la
-    cdef float score = get_xgb_eval(board, model)
-    cdef int white_hang = find_worst_hang(board, chess.WHITE)
-    cdef int black_hang = find_worst_hang(board, chess.BLACK)
-    cdef float penalty = HANG_PENALTY_WEIGHT * (black_hang - white_hang) / HANG_PENALTY_SCALE
-    return score + penalty
+    # Diem tong hop chuan muc: Vat chat tinh + Diem vi tri XGBoost
+    cdef float positional_score = get_xgb_eval(board, model)
+    cdef int material_score = material_balance(board)
+    return material_score + positional_score
 
 cdef float quiescence_search(object board, object model, float alpha, float beta, bint is_maximizing):
-    # QS trien khai tuong thich Minimax
     global node_count
     if node_count >= MAX_NODES:
         return leaf_eval(board, model)
@@ -189,41 +145,36 @@ cdef float quiescence_search(object board, object model, float alpha, float beta
     cdef float score
 
     if is_maximizing:
-        if stand_pat >= beta: 
-            return beta
-        if stand_pat > alpha: 
-            alpha = stand_pat
+        if stand_pat >= beta: return beta
+        if stand_pat > alpha: alpha = stand_pat
 
         for move in ordered_captures:
             board.push(move)
             score = quiescence_search(board, model, alpha, beta, False)
             board.pop()
-            if score > alpha: 
-                alpha = score
-            if alpha >= beta: 
-                break
+            if score > alpha: alpha = score
+            if alpha >= beta: break
         return alpha
     else:
-        if stand_pat <= alpha: 
-            return alpha
-        if stand_pat < beta: 
-            beta = stand_pat
+        if stand_pat <= alpha: return alpha
+        if stand_pat < beta: beta = stand_pat
 
         for move in ordered_captures:
             board.push(move)
             score = quiescence_search(board, model, alpha, beta, True)
             board.pop()
-            if score < beta: 
-                beta = score
-            if alpha >= beta: 
-                break
+            if score < beta: beta = score
+            if alpha >= beta: break
         return beta
 
 cdef float alpha_beta_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, int max_budget):
-    # Thuat toan minimax cat tia alpha-beta
     global node_count
-    if depth == 0 or board.is_game_over() or node_count >= max_budget:
+    if board.is_game_over() or node_count >= max_budget:
         return leaf_eval(board, model)
+
+    # ĐIỂM CHỐT: Tàn cuộc cũng gọi QS thay vì dừng ở node lá tĩnh
+    if depth == 0:
+        return quiescence_search(board, model, alpha, beta, is_maximizing)
 
     cdef list ordered_moves = order_moves(board, list(board.legal_moves))
     cdef float max_eval, min_eval, eval_score
@@ -250,7 +201,6 @@ cdef float alpha_beta_search(object board, object model, int depth, float alpha,
         return min_eval
 
 cdef int score_move(object board, object move):
-    # Tinh diem heuristic de sap xep nuoc di
     cdef int move_score = 0
     if move.promotion is not None:
         move_score += 900 if move.promotion == chess.QUEEN else 300
@@ -263,13 +213,11 @@ cdef int score_move(object board, object move):
     return move_score
 
 cdef list order_moves(object board, list legal_moves):
-    # Sap xep nuoc di theo score_move
     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]
     scored_moves.sort(key=lambda x: x[1], reverse=True)
     return [move for move, score in scored_moves]
 
 cpdef object minimax_root(object board, object model, list legal_moves):
-    # Ham goc cua Minimax cho Tan cuoc
     global node_count
     node_count = 0
     eval_cache.clear()
@@ -324,24 +272,27 @@ cpdef object minimax_root(object board, object model, list legal_moves):
     return best_move
 
 cpdef object batch_predict_1ply(object board, object model, list legal_moves):
-    # Du doan 1-ply theo lo bang XGBoost
+    # Tinh luon ca vat chat o 1-ply de rank chuan xac ngay tu dau
     cdef list batch = []
+    cdef list materials = []
     for move in legal_moves:
         board.push(move)
         features = extract_features(board)
         features = np.append(features, 1)
         batch.append(features)
+        materials.append(material_balance(board))
         board.pop()
-    return model.predict(np.array(batch))
+    
+    pos_scores = model.predict(np.array(batch))
+    return pos_scores + np.array(materials)
 
 cdef float smart_nply_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, bint ai_color):
-    # Tim kiem tiep can Smart N-ply cho Trung cuoc
     global node_count
     
     if board.is_game_over() or node_count >= MAX_NODES:
-        return get_xgb_eval(board, model)
+        return leaf_eval(board, model)
 
-    # ĐIỂM CHỐT: Gọi Quiescence Search ở Node Lá
+    # ĐIỂM CHỐT: Trung cuộc chạm đáy cũng gọi QS
     if depth == 0:
         return quiescence_search(board, model, alpha, beta, is_maximizing)
 
@@ -372,7 +323,6 @@ cdef float smart_nply_search(object board, object model, int depth, float alpha,
         return min_eval
 
 def get_smart_nply_move(board, model, list legal_moves, object ai_scores):
-    # Ham goc xu ly va goi Smart N-ply da duoc lam sach
     global node_count
     node_count = 0
     
@@ -390,14 +340,12 @@ def get_smart_nply_move(board, model, list legal_moves, object ai_scores):
         print(f"[Smart {SMART_N_PLY}-ply Tactic] Chiếu hết -> {board.san(move)}")
         return move
 
-    # Xep hang tat ca cac nuoc di bang XGBoost va Heuristic
     cdef list ranked = sorted(
         legal_moves,
         key=lambda m: (sign * move_to_score[m]) + (TACTICAL_BONUS_WEIGHT * winning_captures.get(m, 0)),
         reverse=True,
     )
 
-    # Cat tia tai goc theo Beam Width (khong loc rui ro nua)
     cdef list beam_candidates = ranked[:MIDDLEGAME_BEAM_WIDTH]
 
     if SMART_N_PLY <= 1:
@@ -437,7 +385,6 @@ def get_smart_nply_move(board, model, list legal_moves, object ai_scores):
     return best_move
 
 def get_ai_move(object board, object model):
-    # Entry point chinh phia Python calling
     cdef list legal_moves = list(board.legal_moves)
     if not legal_moves: 
         return None

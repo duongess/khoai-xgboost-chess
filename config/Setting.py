@@ -35,8 +35,8 @@ if not METADATA_FILE.exists() or METADATA_FILE.stat().st_size == 0:
         json.dump({}, f)
 
 PIECE_VALUES = {
-    chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
-    chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0
+    chess.PAWN: 100, chess.KNIGHT: 300, chess.BISHOP: 300,
+    chess.ROOK: 500, chess.QUEEN: 900, chess.KING: 0
 }
 
 MAX_NODES = 5000
@@ -48,12 +48,19 @@ ENDGAME_MATERIAL_THRESHOLD = PIECE_VALUES[chess.ROOK] * 2 + PIECE_VALUES[chess.B
 SMART_N_PLY = 7
 MIDDLEGAME_BEAM_WIDTH = 7
 
-HANG_PENALTY_SCALE = 200.0
-HANG_PENALTY_WEIGHT = 1.0
-
 HANG_THRESHOLD = PIECE_VALUES[chess.PAWN]
 TACTICAL_BONUS_WEIGHT = 0.01
 
+
+MOBILITY_WEIGHT = 4
+BISHOP_PAIR_BONUS = 30
+ROOK_OPEN_FILE_BONUS = 20
+ROOK_SEMI_OPEN_FILE_BONUS = 10
+DOUBLED_PAWN_PENALTY = 12
+ISOLATED_PAWN_PENALTY = 15
+PASSED_PAWN_BASE_BONUS = 15
+PASSED_PAWN_ADVANCE_STEP = 5
+KING_SHIELD_BONUS = 8  
 
 
 PAWN_PST = [
@@ -133,6 +140,15 @@ KING_PST = [
      20,  20,   0,   0,   0,   0,  20,  20,
      20,  30,  10,   0,   0,  10,  30,  20
 ]
+
+PST_TABLES = {
+    chess.PAWN: PAWN_PST,
+    chess.KNIGHT: KNIGHT_PST,
+    chess.BISHOP: BISHOP_PST,
+    chess.ROOK: ROOK_PST,
+    chess.QUEEN: QUEEN_PST,
+    chess.KING: KING_PST
+}
 
 def get_version_info(model_name: str) -> dict:
     if not METADATA_FILE.exists():

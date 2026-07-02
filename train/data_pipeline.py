@@ -6,86 +6,103 @@ import sys
 import io
 import multiprocessing as mp
 from config.Setting import get_processed_parquet_path, get_raw_pgn_path, BASE_DIR, PROCESSED_BASE_DIR
-from core.utils import extract_features     
+from core.utils import extract_features, positional_eval
 
-# Giữ nguyên process_game_base và process_game_style
-def process_game_base(game, white_score, black_score):
+
+# ===========================================================================
+# Target moi: positional_eval(board) - diem vi tri THUAN TUY (centipawn,
+# goc nhin Trang, KHONG gom vat chat). Vat chat duoc cong rieng luc
+# inference bang material_balance() (xem model_inference.pyx), nen
+# KHONG dua vao ket qua thang/thua/tien do van dau nhu truoc nua.
+#
+# LUU Y: doi target lam thay doi hoan toan phan bo/thang diem cua cot
+# "target" (truoc: [-1, 1], gio: co the vai tram centipawn) - script
+# train (khong nam trong file nay) can duoc kiem tra lai cho phu hop
+# (vd early-stopping metric, learning rate, v.v.).
+# ===========================================================================
+
+def process_game_base(game):
     data = []
     board = game.board()
     moves = list(game.mainline_moves())
-    total_moves = len(moves)
-    
-    for ply, move in enumerate(moves):
-        player_who_moved = board.turn
-        game_outcome = white_score if player_who_moved == chess.WHITE else black_score
-        progress = (ply + 1) / total_moves
-        
-        if game_outcome > 0:
-            target_score = 0.5 + (0.5 * progress)
-        elif game_outcome < 0:
-            target_score = -1.0 * (progress ** 2)
-        else:
-            target_score = 0.0
-            
+
+    for move in moves:
+        # Mau duong: nuoc di thuc te trong ván
         board.push(move)
         features = extract_features(board).tolist()
-        features.append(0)
-        features.append(target_score)
+        features.append(0)                       # is_style_focus
+        features.append(positional_eval(board))   # target
         data.append(features)
         board.pop()
-        
+
+        # Mau am: cac nuoc thay the ngau nhien, giup model phan biet
         legal_moves = list(board.legal_moves)
         legal_moves.remove(move)
         num_negatives = min(3, len(legal_moves))
-        
+
         if num_negatives > 0:
             negative_moves = random.sample(legal_moves, num_negatives)
             for neg_move in negative_moves:
                 board.push(neg_move)
                 features_neg = extract_features(board).tolist()
                 features_neg.append(0)
-                features_neg.append(-1.0) 
+                features_neg.append(positional_eval(board))
                 data.append(features_neg)
                 board.pop()
-                
+
         board.push(move)
     return data
 
-def process_game_style(game, player_name, white_score, black_score):
+
+def process_game_style(game, player_name):
     data = []
     white_player = game.headers.get("White", "")
     black_player = game.headers.get("Black", "")
     is_player_white = player_name.lower() in white_player.lower()
     is_player_black = player_name.lower() in black_player.lower()
-    
+
     if not is_player_white and not is_player_black:
         return data
-        
+
     board = game.board()
     moves = list(game.mainline_moves())
-    total_moves = len(moves)
-    
-    for ply, move in enumerate(moves):
+
+    for move in moves:
         is_player_turn = (board.turn == chess.WHITE and is_player_white) or \
                          (board.turn == chess.BLACK and is_player_black)
-                         
-        board.push(move)
-        
+
         if is_player_turn:
-            game_outcome = white_score if is_player_white else black_score
-            decay = (ply + 1) / total_moves
-            target_score = game_outcome * decay
-            
+            # Mau duong: nuoc di thuc te cua Ky thu muc tieu
+            board.push(move)
             features = extract_features(board).tolist()
-            features.append(1) 
-            features.append(target_score)
+            features.append(1)                        # is_style_focus
+            features.append(positional_eval(board))    # target
             data.append(features)
-            
+            board.pop()
+
+            # Mau am: cac nuoc thay the ma Ky thu KHONG chon - truoc day
+            # style mode khong co negative sampling, gio them vao de tao
+            # tin hieu tuong phan giong mode "base" (nen luu y day la
+            # phan THEM MOI so voi ban goc, khong phai giu nguyen).
+            legal_moves = list(board.legal_moves)
+            legal_moves.remove(move)
+            num_negatives = min(3, len(legal_moves))
+            if num_negatives > 0:
+                negative_moves = random.sample(legal_moves, num_negatives)
+                for neg_move in negative_moves:
+                    board.push(neg_move)
+                    features_neg = extract_features(board).tolist()
+                    features_neg.append(1)
+                    features_neg.append(positional_eval(board))
+                    data.append(features_neg)
+                    board.pop()
+
+        board.push(move)
     return data
 
 def count_games_in_pgn(file_path):
     count = 0
-    with open(file_path, 'r', encoding='utf-8') as f:
+    with open(file_path, 'r', encoding='utf-8', errors='replace') as f:
         for line in f:
             if line.startswith("[Event "):
                 count += 1
@@ -109,7 +126,7 @@ def print_progress(current, total, prefix='Tien trinh', length=40):
 
 def yield_raw_games(file_path):
     """Doc va cat file PGN thanh cac chuoi text de tranh loi RAM"""
-    with open(file_path, 'r', encoding='utf-8') as f:
+    with open(file_path, 'r', encoding='utf-8', errors='replace') as f:
         game_lines = []
         for line in f:
             if line.startswith("[Event ") and game_lines:
@@ -126,23 +143,23 @@ def yield_all_raw_games(file_paths):
 def worker_style(args):
     raw_game, player_focus = args
     game = chess.pgn.read_game(io.StringIO(raw_game))
-    if game is None: return []
-    result_str = game.headers.get("Result", "*")
-    if result_str == "1-0": white_score, black_score = 1.0, -1.0
-    elif result_str == "0-1": white_score, black_score = -1.0, 1.0
-    elif result_str == "1/2-1/2": white_score, black_score = 0.0, 0.0
-    else: return []
-    return process_game_style(game, player_focus, white_score, black_score)
+    if game is None:
+        return []
+    # Van khong co ket qua ro rang (vd van dang do, PGN bi cat) thuong la
+    # du lieu loi/khong day du - van loai bo du target khong con phu thuoc
+    # ket qua thang/thua nua.
+    if game.headers.get("Result", "*") not in ("1-0", "0-1", "1/2-1/2"):
+        return []
+    return process_game_style(game, player_focus)
+
 
 def worker_base(raw_game):
     game = chess.pgn.read_game(io.StringIO(raw_game))
-    if game is None: return []
-    result_str = game.headers.get("Result", "*")
-    if result_str == "1-0": white_score, black_score = 1.0, -1.0
-    elif result_str == "0-1": white_score, black_score = -1.0, 1.0
-    elif result_str == "1/2-1/2": white_score, black_score = 0.0, 0.0
-    else: return []
-    return process_game_base(game, white_score, black_score)
+    if game is None:
+        return []
+    if game.headers.get("Result", "*") not in ("1-0", "0-1", "1/2-1/2"):
+        return []
+    return process_game_base(game)
 
 # =========================================================================
 
@@ -225,7 +242,7 @@ def process_pgn(player_focus="Fischer", mode="style", force=False, workers=1):
             total_games_all_files += count_games_in_pgn(f)
             
         print(f"Tim thay {len(pgn_files)} file PGN. Tong cong: {total_games_all_files} van co.")
-
+        sys.exit(1)
         CHUNK_SIZE = 2000
         buffer_data = []
         current_game_global = 0

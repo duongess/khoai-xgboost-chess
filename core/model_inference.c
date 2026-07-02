@@ -1799,12 +1799,12 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
 */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "core/model_inference.pyx":374
+/* "core/model_inference.pyx":325
  *         return min_eval
  * 
  * def get_smart_nply_move(board, model, list legal_moves, object ai_scores):             # <<<<<<<<<<<<<<
- *     # Ham goc xu ly va goi Smart N-ply da duoc lam sach
  *     global node_count
+ *     node_count = 0
 */
 struct __pyx_obj_4core_15model_inference___pyx_scope_struct__get_smart_nply_move {
   PyObject_HEAD
@@ -3041,11 +3041,11 @@ static void __Pyx_AddTraceback(const char *funcname, int c_line,
     #endif
 #endif
 
-/* CIntFromPy.proto */
-static CYTHON_INLINE int __Pyx_PyLong_As_int(PyObject *);
-
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyLong_From_int(int value);
+
+/* CIntFromPy.proto */
+static CYTHON_INLINE int __Pyx_PyLong_As_int(PyObject *);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyLong_From_long(long value);
@@ -3189,10 +3189,9 @@ static PyObject *__pyx_v_4core_15model_inference_eval_cache = 0;
 static int __pyx_v_4core_15model_inference_node_count;
 static int __pyx_f_4core_15model_inference_is_opening_phase(PyObject *); /*proto*/
 static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *); /*proto*/
+static int __pyx_f_4core_15model_inference_material_balance(PyObject *, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *, int, int, PyObject *); /*proto*/
 static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *, PyObject *, int __pyx_skip_dispatch); /*proto*/
-static int __pyx_f_4core_15model_inference_see_on_square(PyObject *, int, int, int __pyx_skip_dispatch); /*proto*/
-static int __pyx_f_4core_15model_inference_find_worst_hang(PyObject *, int, int __pyx_skip_dispatch); /*proto*/
 static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *, PyObject *, int __pyx_skip_dispatch); /*proto*/
 static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *, PyObject *); /*proto*/
 static float __pyx_f_4core_15model_inference_leaf_eval(PyObject *, PyObject *); /*proto*/
@@ -3216,17 +3215,16 @@ static PyObject *__pyx_builtin_sorted;
 static PyObject *__pyx_builtin_zip;
 /* #### Code section: string_decls ### */
 /* #### Code section: decls ### */
+static PyObject *__pyx_pf_4core_15model_inference_material_balance(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board); /* proto */
 static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_static_exchange_eval(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_move); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_2see_on_square(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, int __pyx_v_square, int __pyx_v_attacker_color); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_4find_worst_hang(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, int __pyx_v_color); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_6find_tactical_moves(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_legal_moves); /* proto */
+static PyObject *__pyx_pf_4core_15model_inference_2static_exchange_eval(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_move); /* proto */
+static PyObject *__pyx_pf_4core_15model_inference_4find_tactical_moves(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_legal_moves); /* proto */
 static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_8minimax_root(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_10batch_predict_1ply(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves); /* proto */
+static PyObject *__pyx_pf_4core_15model_inference_6minimax_root(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves); /* proto */
+static PyObject *__pyx_pf_4core_15model_inference_8batch_predict_1ply(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves); /* proto */
 static PyObject *__pyx_lambda_funcdef_lambda2(PyObject *__pyx_self, PyObject *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves, PyObject *__pyx_v_ai_scores); /* proto */
-static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model); /* proto */
+static PyObject *__pyx_pf_4core_15model_inference_10get_smart_nply_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves, PyObject *__pyx_v_ai_scores); /* proto */
+static PyObject *__pyx_pf_4core_15model_inference_12get_ai_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model); /* proto */
 static PyObject *__pyx_tp_new_4core_15model_inference___pyx_scope_struct__get_smart_nply_move(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -3271,8 +3269,8 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   __Pyx_CachedCFunction __pyx_umethod_PyList_Type_pop;
-  PyObject *__pyx_codeobj_tab[11];
-  PyObject *__pyx_string_tab[149];
+  PyObject *__pyx_codeobj_tab[10];
+  PyObject *__pyx_string_tab[144];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -3348,19 +3346,19 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_ply_Cht_h __pyx_string_tab[26]
 #define __pyx_kp_u_ply_Tactic_Chiu_ht __pyx_string_tab[27]
 #define __pyx_kp_u_score __pyx_string_tab[28]
-#define __pyx_n_u_BLACK __pyx_string_tab[29]
-#define __pyx_n_u_ENDGAME_MATERIAL_THRESHOLD __pyx_string_tab[30]
-#define __pyx_n_u_HANG_PENALTY_SCALE __pyx_string_tab[31]
-#define __pyx_n_u_HANG_PENALTY_WEIGHT __pyx_string_tab[32]
-#define __pyx_n_u_HANG_THRESHOLD __pyx_string_tab[33]
-#define __pyx_n_u_KING __pyx_string_tab[34]
-#define __pyx_n_u_MAX_NODES __pyx_string_tab[35]
-#define __pyx_n_u_MIDDLEGAME_BEAM_WIDTH __pyx_string_tab[36]
-#define __pyx_n_u_OPENING_MOVE_LIMIT __pyx_string_tab[37]
-#define __pyx_n_u_PAWN __pyx_string_tab[38]
-#define __pyx_n_u_PIECE_VALUES __pyx_string_tab[39]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[40]
-#define __pyx_n_u_QUEEN __pyx_string_tab[41]
+#define __pyx_n_u_BISHOP __pyx_string_tab[29]
+#define __pyx_n_u_BLACK __pyx_string_tab[30]
+#define __pyx_n_u_ENDGAME_MATERIAL_THRESHOLD __pyx_string_tab[31]
+#define __pyx_n_u_KING __pyx_string_tab[32]
+#define __pyx_n_u_KNIGHT __pyx_string_tab[33]
+#define __pyx_n_u_MAX_NODES __pyx_string_tab[34]
+#define __pyx_n_u_MIDDLEGAME_BEAM_WIDTH __pyx_string_tab[35]
+#define __pyx_n_u_OPENING_MOVE_LIMIT __pyx_string_tab[36]
+#define __pyx_n_u_PAWN __pyx_string_tab[37]
+#define __pyx_n_u_PIECE_VALUES __pyx_string_tab[38]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[39]
+#define __pyx_n_u_QUEEN __pyx_string_tab[40]
+#define __pyx_n_u_ROOK __pyx_string_tab[41]
 #define __pyx_n_u_SMART_N_PLY __pyx_string_tab[42]
 #define __pyx_n_u_TACTICAL_BONUS_WEIGHT __pyx_string_tab[43]
 #define __pyx_n_u_WHITE __pyx_string_tab[44]
@@ -3373,101 +3371,96 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_argmin __pyx_string_tab[51]
 #define __pyx_n_u_array __pyx_string_tab[52]
 #define __pyx_n_u_asyncio_coroutines __pyx_string_tab[53]
-#define __pyx_n_u_attacker_color __pyx_string_tab[54]
-#define __pyx_n_u_attackers __pyx_string_tab[55]
-#define __pyx_n_u_batch_predict_1ply __pyx_string_tab[56]
-#define __pyx_n_u_beam_candidates __pyx_string_tab[57]
-#define __pyx_n_u_best_idx __pyx_string_tab[58]
-#define __pyx_n_u_best_move __pyx_string_tab[59]
-#define __pyx_n_u_best_score __pyx_string_tab[60]
-#define __pyx_n_u_beta __pyx_string_tab[61]
-#define __pyx_n_u_board __pyx_string_tab[62]
-#define __pyx_n_u_chess __pyx_string_tab[63]
-#define __pyx_n_u_chosen_move __pyx_string_tab[64]
-#define __pyx_n_u_class_getitem __pyx_string_tab[65]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[66]
-#define __pyx_n_u_color __pyx_string_tab[67]
-#define __pyx_n_u_config_Setting __pyx_string_tab[68]
-#define __pyx_n_u_core_model_inference __pyx_string_tab[69]
-#define __pyx_n_u_core_utils __pyx_string_tab[70]
-#define __pyx_n_u_extract_features __pyx_string_tab[71]
-#define __pyx_n_u_fen __pyx_string_tab[72]
-#define __pyx_n_u_find_tactical_moves __pyx_string_tab[73]
-#define __pyx_n_u_find_worst_hang __pyx_string_tab[74]
-#define __pyx_n_u_from_square __pyx_string_tab[75]
-#define __pyx_n_u_fullmove_number __pyx_string_tab[76]
-#define __pyx_n_u_func __pyx_string_tab[77]
-#define __pyx_n_u_get __pyx_string_tab[78]
-#define __pyx_n_u_get_ai_move __pyx_string_tab[79]
-#define __pyx_n_u_get_smart_nply_move __pyx_string_tab[80]
-#define __pyx_n_u_get_smart_nply_move_locals_lambd __pyx_string_tab[81]
-#define __pyx_n_u_inf __pyx_string_tab[82]
-#define __pyx_n_u_is_ai_white __pyx_string_tab[83]
-#define __pyx_n_u_is_attacked_by __pyx_string_tab[84]
-#define __pyx_n_u_is_capture __pyx_string_tab[85]
-#define __pyx_n_u_is_checkmate __pyx_string_tab[86]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[87]
-#define __pyx_n_u_is_en_passant __pyx_string_tab[88]
-#define __pyx_n_u_is_game_over __pyx_string_tab[89]
-#define __pyx_n_u_items __pyx_string_tab[90]
-#define __pyx_n_u_key __pyx_string_tab[91]
-#define __pyx_n_u_lambda __pyx_string_tab[92]
-#define __pyx_n_u_legal_moves __pyx_string_tab[93]
-#define __pyx_n_u_m __pyx_string_tab[94]
-#define __pyx_n_u_main __pyx_string_tab[95]
-#define __pyx_n_u_mate_moves __pyx_string_tab[96]
-#define __pyx_n_u_minimax_root __pyx_string_tab[97]
-#define __pyx_n_u_model __pyx_string_tab[98]
-#define __pyx_n_u_module __pyx_string_tab[99]
-#define __pyx_n_u_move __pyx_string_tab[100]
-#define __pyx_n_u_move_to_score __pyx_string_tab[101]
-#define __pyx_n_u_name __pyx_string_tab[102]
-#define __pyx_n_u_np __pyx_string_tab[103]
-#define __pyx_n_u_numpy __pyx_string_tab[104]
-#define __pyx_n_u_order_moves_locals_lambda __pyx_string_tab[105]
-#define __pyx_n_u_piece_at __pyx_string_tab[106]
-#define __pyx_n_u_piece_map __pyx_string_tab[107]
-#define __pyx_n_u_piece_type __pyx_string_tab[108]
-#define __pyx_n_u_pop __pyx_string_tab[109]
-#define __pyx_n_u_predict __pyx_string_tab[110]
-#define __pyx_n_u_print __pyx_string_tab[111]
-#define __pyx_n_u_promotion __pyx_string_tab[112]
-#define __pyx_n_u_push __pyx_string_tab[113]
-#define __pyx_n_u_qualname __pyx_string_tab[114]
-#define __pyx_n_u_ranked __pyx_string_tab[115]
-#define __pyx_n_u_reverse __pyx_string_tab[116]
-#define __pyx_n_u_s __pyx_string_tab[117]
-#define __pyx_n_u_san __pyx_string_tab[118]
-#define __pyx_n_u_score_2 __pyx_string_tab[119]
-#define __pyx_n_u_see_on_square __pyx_string_tab[120]
-#define __pyx_n_u_set_name __pyx_string_tab[121]
-#define __pyx_n_u_setdefault __pyx_string_tab[122]
-#define __pyx_n_u_sign __pyx_string_tab[123]
-#define __pyx_n_u_sort __pyx_string_tab[124]
-#define __pyx_n_u_sorted __pyx_string_tab[125]
-#define __pyx_n_u_sorted_attackers_locals_lambda __pyx_string_tab[126]
-#define __pyx_n_u_square __pyx_string_tab[127]
-#define __pyx_n_u_static_exchange_eval __pyx_string_tab[128]
-#define __pyx_n_u_test __pyx_string_tab[129]
-#define __pyx_n_u_to_square __pyx_string_tab[130]
-#define __pyx_n_u_turn __pyx_string_tab[131]
-#define __pyx_n_u_values __pyx_string_tab[132]
-#define __pyx_n_u_winning_captures __pyx_string_tab[133]
-#define __pyx_n_u_x __pyx_string_tab[134]
-#define __pyx_n_u_xgb __pyx_string_tab[135]
-#define __pyx_n_u_xgboost __pyx_string_tab[136]
-#define __pyx_n_u_zip __pyx_string_tab[137]
-#define __pyx_kp_b_iso88591_1AQ __pyx_string_tab[138]
-#define __pyx_kp_b_iso88591_1_U_1_5_Q_gQa_T_5_1A_7_xr_q __pyx_string_tab[139]
-#define __pyx_kp_b_iso88591_AQa __pyx_string_tab[140]
-#define __pyx_kp_b_iso88591_D_a_t1_q_7_E_s_q_q_1_s_2WAQ_s_2 __pyx_string_tab[141]
-#define __pyx_kp_b_iso88591_KuBm1D_3I_K____ccd __pyx_string_tab[142]
-#define __pyx_kp_b_iso88591_Q_IU_BfA_5_s_5_q_G1_D_uBa_1 __pyx_string_tab[143]
-#define __pyx_kp_b_iso88591_a_U_1_1A_2WAZq_WAQ_T_5_6 __pyx_string_tab[144]
-#define __pyx_kp_b_iso88591_a_t5_1A_q_T_U_1A_a_q_T_Q_nAQ_Qe __pyx_string_tab[145]
-#define __pyx_kp_b_iso88591_as_D_5_1M_E_s_q_j_9_a_E_1_6awa __pyx_string_tab[146]
-#define __pyx_kp_b_iso88591_fA_q_q_q_z_Q_q_T_q_E_s_q_1A_Q_R __pyx_string_tab[147]
-#define __pyx_kp_b_iso88591_q_U_1A_wc_q_L_AV_1A_t1_q_aq_9AR __pyx_string_tab[148]
+#define __pyx_n_u_attackers __pyx_string_tab[54]
+#define __pyx_n_u_batch_predict_1ply __pyx_string_tab[55]
+#define __pyx_n_u_beam_candidates __pyx_string_tab[56]
+#define __pyx_n_u_best_idx __pyx_string_tab[57]
+#define __pyx_n_u_best_move __pyx_string_tab[58]
+#define __pyx_n_u_best_score __pyx_string_tab[59]
+#define __pyx_n_u_beta __pyx_string_tab[60]
+#define __pyx_n_u_board __pyx_string_tab[61]
+#define __pyx_n_u_chess __pyx_string_tab[62]
+#define __pyx_n_u_chosen_move __pyx_string_tab[63]
+#define __pyx_n_u_class_getitem __pyx_string_tab[64]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[65]
+#define __pyx_n_u_config_Setting __pyx_string_tab[66]
+#define __pyx_n_u_core_model_inference __pyx_string_tab[67]
+#define __pyx_n_u_core_utils __pyx_string_tab[68]
+#define __pyx_n_u_extract_features __pyx_string_tab[69]
+#define __pyx_n_u_fen __pyx_string_tab[70]
+#define __pyx_n_u_find_tactical_moves __pyx_string_tab[71]
+#define __pyx_n_u_from_square __pyx_string_tab[72]
+#define __pyx_n_u_fullmove_number __pyx_string_tab[73]
+#define __pyx_n_u_func __pyx_string_tab[74]
+#define __pyx_n_u_get __pyx_string_tab[75]
+#define __pyx_n_u_get_ai_move __pyx_string_tab[76]
+#define __pyx_n_u_get_smart_nply_move __pyx_string_tab[77]
+#define __pyx_n_u_get_smart_nply_move_locals_lambd __pyx_string_tab[78]
+#define __pyx_n_u_inf __pyx_string_tab[79]
+#define __pyx_n_u_is_ai_white __pyx_string_tab[80]
+#define __pyx_n_u_is_capture __pyx_string_tab[81]
+#define __pyx_n_u_is_checkmate __pyx_string_tab[82]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[83]
+#define __pyx_n_u_is_en_passant __pyx_string_tab[84]
+#define __pyx_n_u_is_game_over __pyx_string_tab[85]
+#define __pyx_n_u_items __pyx_string_tab[86]
+#define __pyx_n_u_key __pyx_string_tab[87]
+#define __pyx_n_u_lambda __pyx_string_tab[88]
+#define __pyx_n_u_legal_moves __pyx_string_tab[89]
+#define __pyx_n_u_m __pyx_string_tab[90]
+#define __pyx_n_u_main __pyx_string_tab[91]
+#define __pyx_n_u_mate_moves __pyx_string_tab[92]
+#define __pyx_n_u_material_balance __pyx_string_tab[93]
+#define __pyx_n_u_minimax_root __pyx_string_tab[94]
+#define __pyx_n_u_model __pyx_string_tab[95]
+#define __pyx_n_u_module __pyx_string_tab[96]
+#define __pyx_n_u_move __pyx_string_tab[97]
+#define __pyx_n_u_move_to_score __pyx_string_tab[98]
+#define __pyx_n_u_name __pyx_string_tab[99]
+#define __pyx_n_u_np __pyx_string_tab[100]
+#define __pyx_n_u_numpy __pyx_string_tab[101]
+#define __pyx_n_u_order_moves_locals_lambda __pyx_string_tab[102]
+#define __pyx_n_u_piece_at __pyx_string_tab[103]
+#define __pyx_n_u_piece_map __pyx_string_tab[104]
+#define __pyx_n_u_piece_type __pyx_string_tab[105]
+#define __pyx_n_u_pieces __pyx_string_tab[106]
+#define __pyx_n_u_pop __pyx_string_tab[107]
+#define __pyx_n_u_predict __pyx_string_tab[108]
+#define __pyx_n_u_print __pyx_string_tab[109]
+#define __pyx_n_u_promotion __pyx_string_tab[110]
+#define __pyx_n_u_push __pyx_string_tab[111]
+#define __pyx_n_u_qualname __pyx_string_tab[112]
+#define __pyx_n_u_ranked __pyx_string_tab[113]
+#define __pyx_n_u_reverse __pyx_string_tab[114]
+#define __pyx_n_u_s __pyx_string_tab[115]
+#define __pyx_n_u_san __pyx_string_tab[116]
+#define __pyx_n_u_score_2 __pyx_string_tab[117]
+#define __pyx_n_u_set_name __pyx_string_tab[118]
+#define __pyx_n_u_setdefault __pyx_string_tab[119]
+#define __pyx_n_u_sign __pyx_string_tab[120]
+#define __pyx_n_u_sort __pyx_string_tab[121]
+#define __pyx_n_u_sorted __pyx_string_tab[122]
+#define __pyx_n_u_sorted_attackers_locals_lambda __pyx_string_tab[123]
+#define __pyx_n_u_static_exchange_eval __pyx_string_tab[124]
+#define __pyx_n_u_test __pyx_string_tab[125]
+#define __pyx_n_u_to_square __pyx_string_tab[126]
+#define __pyx_n_u_turn __pyx_string_tab[127]
+#define __pyx_n_u_values __pyx_string_tab[128]
+#define __pyx_n_u_winning_captures __pyx_string_tab[129]
+#define __pyx_n_u_x __pyx_string_tab[130]
+#define __pyx_n_u_xgb __pyx_string_tab[131]
+#define __pyx_n_u_xgboost __pyx_string_tab[132]
+#define __pyx_n_u_zip __pyx_string_tab[133]
+#define __pyx_kp_b_iso88591_1AQ __pyx_string_tab[134]
+#define __pyx_kp_b_iso88591_1_U_1_5_Q_gQa_T_5_1A_7_xr_q __pyx_string_tab[135]
+#define __pyx_kp_b_iso88591_AQa __pyx_string_tab[136]
+#define __pyx_kp_b_iso88591_D_a_t1_q_7_E_s_q_q_1_s_2WAQ_s_2 __pyx_string_tab[137]
+#define __pyx_kp_b_iso88591_KuBm1D_3I_K____ccd __pyx_string_tab[138]
+#define __pyx_kp_b_iso88591_Qe7_5_uA_Qe7_5_uA_Qe7_5_a_Qe7_5 __pyx_string_tab[139]
+#define __pyx_kp_b_iso88591_a_U_1_1A_2WAZq_WAQ_T_har_q_b __pyx_string_tab[140]
+#define __pyx_kp_b_iso88591_a_t5_1A_q_T_U_1A_a_q_T_Q_nAQ_Qe __pyx_string_tab[141]
+#define __pyx_kp_b_iso88591_as_D_5_1M_E_s_q_j_9_a_E_1_6awa __pyx_string_tab[142]
+#define __pyx_kp_b_iso88591_fA_q_q_q_z_Q_q_T_q_E_s_q_1A_Q_R __pyx_string_tab[143]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_1 __pyx_number_tab[1]
 #define __pyx_int_10 __pyx_number_tab[2]
@@ -3504,8 +3497,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_5numpy_ufunc);
   Py_CLEAR(clear_module_state->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move);
   Py_CLEAR(clear_module_state->__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move);
-  for (int i=0; i<11; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<149; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<10; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<144; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -3547,8 +3540,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_5numpy_ufunc);
   Py_VISIT(traverse_module_state->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move);
   Py_VISIT(traverse_module_state->__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move);
-  for (int i=0; i<11; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<149; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<10; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<144; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -4859,8 +4852,8 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
  * cdef int node_count = 0
  * 
  * cdef bint is_opening_phase(object board):             # <<<<<<<<<<<<<<
- *     # Kiem tra giai doan khai cuoc
  *     return board.fullmove_number <= OPENING_MOVE_LIMIT
+ * 
 */
 
 static int __pyx_f_4core_15model_inference_is_opening_phase(PyObject *__pyx_v_board) {
@@ -4875,21 +4868,21 @@ static int __pyx_f_4core_15model_inference_is_opening_phase(PyObject *__pyx_v_bo
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("is_opening_phase", 0);
 
-  /* "core/model_inference.pyx":20
+  /* "core/model_inference.pyx":19
+ * 
  * cdef bint is_opening_phase(object board):
- *     # Kiem tra giai doan khai cuoc
  *     return board.fullmove_number <= OPENING_MOVE_LIMIT             # <<<<<<<<<<<<<<
  * 
  * cdef bint is_endgame_phase(object board):
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_fullmove_number); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_fullmove_number); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_OPENING_MOVE_LIMIT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_OPENING_MOVE_LIMIT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
@@ -4898,8 +4891,8 @@ static int __pyx_f_4core_15model_inference_is_opening_phase(PyObject *__pyx_v_bo
  * cdef int node_count = 0
  * 
  * cdef bint is_opening_phase(object board):             # <<<<<<<<<<<<<<
- *     # Kiem tra giai doan khai cuoc
  *     return board.fullmove_number <= OPENING_MOVE_LIMIT
+ * 
 */
 
   /* function exit code */
@@ -4914,12 +4907,12 @@ static int __pyx_f_4core_15model_inference_is_opening_phase(PyObject *__pyx_v_bo
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":22
+/* "core/model_inference.pyx":21
  *     return board.fullmove_number <= OPENING_MOVE_LIMIT
  * 
  * cdef bint is_endgame_phase(object board):             # <<<<<<<<<<<<<<
- *     # Kiem tra giai doan tan cuoc dua tren vat chat
- *     cdef int total_material = 0
+ *     # Kiem tra giai doan tan cuoc.
+ *     # Canh bao: Neu ban tang PIECE_VALUES x100, phai tang ENDGAME_MATERIAL_THRESHOLD len tuong ung!
 */
 
 static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *__pyx_v_board) {
@@ -4946,8 +4939,8 @@ static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *__pyx_v_bo
   __Pyx_RefNannySetupContext("is_endgame_phase", 0);
 
   /* "core/model_inference.pyx":24
- * cdef bint is_endgame_phase(object board):
- *     # Kiem tra giai doan tan cuoc dua tren vat chat
+ *     # Kiem tra giai doan tan cuoc.
+ *     # Canh bao: Neu ban tang PIECE_VALUES x100, phai tang ENDGAME_MATERIAL_THRESHOLD len tuong ung!
  *     cdef int total_material = 0             # <<<<<<<<<<<<<<
  *     for p in board.piece_map().values():
  *         if p.piece_type not in (chess.KING, chess.PAWN):
@@ -4955,7 +4948,7 @@ static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *__pyx_v_bo
   __pyx_v_total_material = 0;
 
   /* "core/model_inference.pyx":25
- *     # Kiem tra giai doan tan cuoc dua tren vat chat
+ *     # Canh bao: Neu ban tang PIECE_VALUES x100, phai tang ENDGAME_MATERIAL_THRESHOLD len tuong ung!
  *     cdef int total_material = 0
  *     for p in board.piece_map().values():             # <<<<<<<<<<<<<<
  *         if p.piece_type not in (chess.KING, chess.PAWN):
@@ -5090,7 +5083,7 @@ static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *__pyx_v_bo
  *             total_material += PIECE_VALUES.get(p.piece_type, 0)
  *     return total_material <= ENDGAME_MATERIAL_THRESHOLD             # <<<<<<<<<<<<<<
  * 
- * cdef list _sorted_attackers(object board, int square, bint color, set removed):
+ * cpdef int material_balance(object board):
 */
   __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_total_material); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5104,12 +5097,12 @@ static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *__pyx_v_bo
   __pyx_r = __pyx_t_11;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":22
+  /* "core/model_inference.pyx":21
  *     return board.fullmove_number <= OPENING_MOVE_LIMIT
  * 
  * cdef bint is_endgame_phase(object board):             # <<<<<<<<<<<<<<
- *     # Kiem tra giai doan tan cuoc dua tren vat chat
- *     cdef int total_material = 0
+ *     # Kiem tra giai doan tan cuoc.
+ *     # Canh bao: Neu ban tang PIECE_VALUES x100, phai tang ENDGAME_MATERIAL_THRESHOLD len tuong ung!
 */
 
   /* function exit code */
@@ -5128,7 +5121,522 @@ static int __pyx_f_4core_15model_inference_is_endgame_phase(PyObject *__pyx_v_bo
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":42
+/* "core/model_inference.pyx":30
+ *     return total_material <= ENDGAME_MATERIAL_THRESHOLD
+ * 
+ * cpdef int material_balance(object board):             # <<<<<<<<<<<<<<
+ *     # Dem vat chat cuc nhanh bang bitboard theo thang Centipawn
+ *     cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))
+*/
+
+static PyObject *__pyx_pw_4core_15model_inference_1material_balance(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static int __pyx_f_4core_15model_inference_material_balance(PyObject *__pyx_v_board, CYTHON_UNUSED int __pyx_skip_dispatch) {
+  int __pyx_v_wp;
+  int __pyx_v_bp;
+  int __pyx_v_wn;
+  int __pyx_v_bn;
+  int __pyx_v_wb;
+  int __pyx_v_bb;
+  int __pyx_v_wr;
+  int __pyx_v_br;
+  int __pyx_v_wq;
+  int __pyx_v_bq;
+  int __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  Py_ssize_t __pyx_t_7;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("material_balance", 0);
+
+  /* "core/model_inference.pyx":32
+ * cpdef int material_balance(object board):
+ *     # Dem vat chat cuc nhanh bang bitboard theo thang Centipawn
+ *     cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))             # <<<<<<<<<<<<<<
+ *     cdef int bp = len(board.pieces(chess.PAWN, chess.BLACK))
+ *     cdef int wn = len(board.pieces(chess.KNIGHT, chess.WHITE))
+*/
+  __pyx_t_2 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_2);
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_PAWN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_4, __pyx_t_5};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_wp = __pyx_t_7;
+
+  /* "core/model_inference.pyx":33
+ *     # Dem vat chat cuc nhanh bang bitboard theo thang Centipawn
+ *     cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))
+ *     cdef int bp = len(board.pieces(chess.PAWN, chess.BLACK))             # <<<<<<<<<<<<<<
+ *     cdef int wn = len(board.pieces(chess.KNIGHT, chess.WHITE))
+ *     cdef int bn = len(board.pieces(chess.KNIGHT, chess.BLACK))
+*/
+  __pyx_t_5 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_PAWN); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_t_2, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 33, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_bp = __pyx_t_7;
+
+  /* "core/model_inference.pyx":34
+ *     cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))
+ *     cdef int bp = len(board.pieces(chess.PAWN, chess.BLACK))
+ *     cdef int wn = len(board.pieces(chess.KNIGHT, chess.WHITE))             # <<<<<<<<<<<<<<
+ *     cdef int bn = len(board.pieces(chess.KNIGHT, chess.BLACK))
+ *     cdef int wb = len(board.pieces(chess.BISHOP, chess.WHITE))
+*/
+  __pyx_t_3 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_KNIGHT); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_5, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_wn = __pyx_t_7;
+
+  /* "core/model_inference.pyx":35
+ *     cdef int bp = len(board.pieces(chess.PAWN, chess.BLACK))
+ *     cdef int wn = len(board.pieces(chess.KNIGHT, chess.WHITE))
+ *     cdef int bn = len(board.pieces(chess.KNIGHT, chess.BLACK))             # <<<<<<<<<<<<<<
+ *     cdef int wb = len(board.pieces(chess.BISHOP, chess.WHITE))
+ *     cdef int bb = len(board.pieces(chess.BISHOP, chess.BLACK))
+*/
+  __pyx_t_4 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_4);
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_KNIGHT); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_t_3, __pyx_t_2};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_bn = __pyx_t_7;
+
+  /* "core/model_inference.pyx":36
+ *     cdef int wn = len(board.pieces(chess.KNIGHT, chess.WHITE))
+ *     cdef int bn = len(board.pieces(chess.KNIGHT, chess.BLACK))
+ *     cdef int wb = len(board.pieces(chess.BISHOP, chess.WHITE))             # <<<<<<<<<<<<<<
+ *     cdef int bb = len(board.pieces(chess.BISHOP, chess.BLACK))
+ *     cdef int wr = len(board.pieces(chess.ROOK, chess.WHITE))
+*/
+  __pyx_t_2 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_2);
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_BISHOP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_4, __pyx_t_5};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 36, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_wb = __pyx_t_7;
+
+  /* "core/model_inference.pyx":37
+ *     cdef int bn = len(board.pieces(chess.KNIGHT, chess.BLACK))
+ *     cdef int wb = len(board.pieces(chess.BISHOP, chess.WHITE))
+ *     cdef int bb = len(board.pieces(chess.BISHOP, chess.BLACK))             # <<<<<<<<<<<<<<
+ *     cdef int wr = len(board.pieces(chess.ROOK, chess.WHITE))
+ *     cdef int br = len(board.pieces(chess.ROOK, chess.BLACK))
+*/
+  __pyx_t_5 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_BISHOP); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_t_2, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 37, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_bb = __pyx_t_7;
+
+  /* "core/model_inference.pyx":38
+ *     cdef int wb = len(board.pieces(chess.BISHOP, chess.WHITE))
+ *     cdef int bb = len(board.pieces(chess.BISHOP, chess.BLACK))
+ *     cdef int wr = len(board.pieces(chess.ROOK, chess.WHITE))             # <<<<<<<<<<<<<<
+ *     cdef int br = len(board.pieces(chess.ROOK, chess.BLACK))
+ *     cdef int wq = len(board.pieces(chess.QUEEN, chess.WHITE))
+*/
+  __pyx_t_3 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_3);
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_ROOK); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_5, __pyx_t_4};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_wr = __pyx_t_7;
+
+  /* "core/model_inference.pyx":39
+ *     cdef int bb = len(board.pieces(chess.BISHOP, chess.BLACK))
+ *     cdef int wr = len(board.pieces(chess.ROOK, chess.WHITE))
+ *     cdef int br = len(board.pieces(chess.ROOK, chess.BLACK))             # <<<<<<<<<<<<<<
+ *     cdef int wq = len(board.pieces(chess.QUEEN, chess.WHITE))
+ *     cdef int bq = len(board.pieces(chess.QUEEN, chess.BLACK))
+*/
+  __pyx_t_4 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_4);
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_ROOK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_t_3, __pyx_t_2};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 39, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_br = __pyx_t_7;
+
+  /* "core/model_inference.pyx":40
+ *     cdef int wr = len(board.pieces(chess.ROOK, chess.WHITE))
+ *     cdef int br = len(board.pieces(chess.ROOK, chess.BLACK))
+ *     cdef int wq = len(board.pieces(chess.QUEEN, chess.WHITE))             # <<<<<<<<<<<<<<
+ *     cdef int bq = len(board.pieces(chess.QUEEN, chess.BLACK))
+ * 
+*/
+  __pyx_t_2 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_2);
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_QUEEN); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_4, __pyx_t_5};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 40, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_wq = __pyx_t_7;
+
+  /* "core/model_inference.pyx":41
+ *     cdef int br = len(board.pieces(chess.ROOK, chess.BLACK))
+ *     cdef int wq = len(board.pieces(chess.QUEEN, chess.WHITE))
+ *     cdef int bq = len(board.pieces(chess.QUEEN, chess.BLACK))             # <<<<<<<<<<<<<<
+ * 
+ *     return ((wp - bp) * 100 + (wn - bn) * 300 + (wb - bb) * 300 + (wr - br) * 500 + (wq - bq) * 900)
+*/
+  __pyx_t_5 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_5);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_QUEEN); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_6 = 0;
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_5, __pyx_t_2, __pyx_t_3};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_pieces, __pyx_callargs+__pyx_t_6, (3-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_7 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 41, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_bq = __pyx_t_7;
+
+  /* "core/model_inference.pyx":43
+ *     cdef int bq = len(board.pieces(chess.QUEEN, chess.BLACK))
+ * 
+ *     return ((wp - bp) * 100 + (wn - bn) * 300 + (wb - bb) * 300 + (wr - br) * 500 + (wq - bq) * 900)             # <<<<<<<<<<<<<<
+ * 
+ * cdef list _sorted_attackers(object board, int square, bint color, set removed):
+*/
+  __pyx_r = ((((((__pyx_v_wp - __pyx_v_bp) * 0x64) + ((__pyx_v_wn - __pyx_v_bn) * 0x12C)) + ((__pyx_v_wb - __pyx_v_bb) * 0x12C)) + ((__pyx_v_wr - __pyx_v_br) * 0x1F4)) + ((__pyx_v_wq - __pyx_v_bq) * 0x384));
+  goto __pyx_L0;
+
+  /* "core/model_inference.pyx":30
+ *     return total_material <= ENDGAME_MATERIAL_THRESHOLD
+ * 
+ * cpdef int material_balance(object board):             # <<<<<<<<<<<<<<
+ *     # Dem vat chat cuc nhanh bang bitboard theo thang Centipawn
+ *     cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("core.model_inference.material_balance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4core_15model_inference_1material_balance(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_4core_15model_inference_1material_balance = {"material_balance", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_1material_balance, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_1material_balance(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_board = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("material_balance (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 30, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 30, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "material_balance", 0) < (0)) __PYX_ERR(0, 30, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("material_balance", 1, 1, 1, i); __PYX_ERR(0, 30, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 30, __pyx_L3_error)
+    }
+    __pyx_v_board = values[0];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("material_balance", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 30, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("core.model_inference.material_balance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_4core_15model_inference_material_balance(__pyx_self, __pyx_v_board);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4core_15model_inference_material_balance(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("material_balance", 0);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_4core_15model_inference_material_balance(__pyx_v_board, 1); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("core.model_inference.material_balance", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "core/model_inference.pyx":56
  *             val = PIECE_VALUES.get(piece.piece_type, 0)
  *             out.append((val, sq))
  *     out.sort(key=lambda x: x[0])             # <<<<<<<<<<<<<<
@@ -5175,32 +5683,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_x,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 42, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 56, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 42, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 56, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "lambda", 0) < (0)) __PYX_ERR(0, 42, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "lambda", 0) < (0)) __PYX_ERR(0, 56, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("lambda", 1, 1, 1, i); __PYX_ERR(0, 42, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("lambda", 1, 1, 1, i); __PYX_ERR(0, 56, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 42, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 56, __pyx_L3_error)
     }
     __pyx_v_x = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 42, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 56, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5230,7 +5738,7 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_x, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_x, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5247,12 +5755,12 @@ static PyObject *__pyx_lambda_funcdef_lambda(CYTHON_UNUSED PyObject *__pyx_self,
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":30
- *     return total_material <= ENDGAME_MATERIAL_THRESHOLD
+/* "core/model_inference.pyx":45
+ *     return ((wp - bp) * 100 + (wn - bn) * 300 + (wb - bb) * 300 + (wr - br) * 500 + (wq - bq) * 900)
  * 
  * cdef list _sorted_attackers(object board, int square, bint color, set removed):             # <<<<<<<<<<<<<<
- *     # Tim va sap xep cac quan tan cong theo gia tri tang dan
  *     cdef list out = []
+ *     cdef int sq
 */
 
 static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__pyx_v_board, int __pyx_v_square, int __pyx_v_color, PyObject *__pyx_v_removed) {
@@ -5278,19 +5786,19 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_sorted_attackers", 0);
 
-  /* "core/model_inference.pyx":32
+  /* "core/model_inference.pyx":46
+ * 
  * cdef list _sorted_attackers(object board, int square, bint color, set removed):
- *     # Tim va sap xep cac quan tan cong theo gia tri tang dan
  *     cdef list out = []             # <<<<<<<<<<<<<<
  *     cdef int sq
  *     cdef int val
 */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_out = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":35
+  /* "core/model_inference.pyx":49
  *     cdef int sq
  *     cdef int val
  *     for sq in board.attackers(color, square):             # <<<<<<<<<<<<<<
@@ -5299,9 +5807,9 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
 */
   __pyx_t_2 = __pyx_v_board;
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_color); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_color); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_square); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_square); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = 0;
   {
@@ -5310,7 +5818,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
@@ -5318,9 +5826,9 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
     __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_4 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_4); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 49, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   for (;;) {
@@ -5329,7 +5837,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_4);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 35, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 49, __pyx_L1_error)
           #endif
           if (__pyx_t_6 >= __pyx_temp) break;
         }
@@ -5339,7 +5847,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_4);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 35, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 49, __pyx_L1_error)
           #endif
           if (__pyx_t_6 >= __pyx_temp) break;
         }
@@ -5350,41 +5858,41 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
         #endif
         ++__pyx_t_6;
       }
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 35, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
     } else {
       __pyx_t_1 = __pyx_t_7(__pyx_t_4);
       if (unlikely(!__pyx_t_1)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 35, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 49, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
       }
     }
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 35, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 49, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_sq = __pyx_t_8;
 
-    /* "core/model_inference.pyx":36
+    /* "core/model_inference.pyx":50
  *     cdef int val
  *     for sq in board.attackers(color, square):
  *         if sq in removed:             # <<<<<<<<<<<<<<
  *             continue
  *         piece = board.piece_at(sq)
 */
-    __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (unlikely(__pyx_v_removed == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 36, __pyx_L1_error)
+      __PYX_ERR(0, 50, __pyx_L1_error)
     }
-    __pyx_t_9 = (__Pyx_PySet_ContainsTF(__pyx_t_1, __pyx_v_removed, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_9 = (__Pyx_PySet_ContainsTF(__pyx_t_1, __pyx_v_removed, Py_EQ)); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 50, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_9) {
 
-      /* "core/model_inference.pyx":37
+      /* "core/model_inference.pyx":51
  *     for sq in board.attackers(color, square):
  *         if sq in removed:
  *             continue             # <<<<<<<<<<<<<<
@@ -5393,7 +5901,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
 */
       goto __pyx_L3_continue;
 
-      /* "core/model_inference.pyx":36
+      /* "core/model_inference.pyx":50
  *     cdef int val
  *     for sq in board.attackers(color, square):
  *         if sq in removed:             # <<<<<<<<<<<<<<
@@ -5402,7 +5910,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
 */
     }
 
-    /* "core/model_inference.pyx":38
+    /* "core/model_inference.pyx":52
  *         if sq in removed:
  *             continue
  *         piece = board.piece_at(sq)             # <<<<<<<<<<<<<<
@@ -5411,7 +5919,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
 */
     __pyx_t_3 = __pyx_v_board;
     __Pyx_INCREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_5 = 0;
     {
@@ -5419,23 +5927,23 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_at, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_XDECREF_SET(__pyx_v_piece, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "core/model_inference.pyx":39
+    /* "core/model_inference.pyx":53
  *             continue
  *         piece = board.piece_at(sq)
  *         if piece:             # <<<<<<<<<<<<<<
  *             val = PIECE_VALUES.get(piece.piece_type, 0)
  *             out.append((val, sq))
 */
-    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_piece); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 39, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_v_piece); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 53, __pyx_L1_error)
     if (__pyx_t_9) {
 
-      /* "core/model_inference.pyx":40
+      /* "core/model_inference.pyx":54
  *         piece = board.piece_at(sq)
  *         if piece:
  *             val = PIECE_VALUES.get(piece.piece_type, 0)             # <<<<<<<<<<<<<<
@@ -5443,12 +5951,12 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
  *     out.sort(key=lambda x: x[0])
 */
       __pyx_t_2 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 40, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __pyx_t_5 = 1;
       #if CYTHON_UNPACK_METHODS
@@ -5468,36 +5976,36 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
-      __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 40, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 54, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_v_val = __pyx_t_8;
 
-      /* "core/model_inference.pyx":41
+      /* "core/model_inference.pyx":55
  *         if piece:
  *             val = PIECE_VALUES.get(piece.piece_type, 0)
  *             out.append((val, sq))             # <<<<<<<<<<<<<<
  *     out.sort(key=lambda x: x[0])
  *     return out
 */
-      __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 41, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_val); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_10 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 41, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 41, __pyx_L1_error)
+      __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_GIVEREF(__pyx_t_1);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 41, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 55, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_10);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_10) != (0)) __PYX_ERR(0, 41, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_10) != (0)) __PYX_ERR(0, 55, __pyx_L1_error);
       __pyx_t_1 = 0;
       __pyx_t_10 = 0;
-      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_out, __pyx_t_3); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 41, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyList_Append(__pyx_v_out, __pyx_t_3); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 55, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":39
+      /* "core/model_inference.pyx":53
  *             continue
  *         piece = board.piece_at(sq)
  *         if piece:             # <<<<<<<<<<<<<<
@@ -5506,7 +6014,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
 */
     }
 
-    /* "core/model_inference.pyx":35
+    /* "core/model_inference.pyx":49
  *     cdef int sq
  *     cdef int val
  *     for sq in board.attackers(color, square):             # <<<<<<<<<<<<<<
@@ -5517,7 +6025,7 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "core/model_inference.pyx":42
+  /* "core/model_inference.pyx":56
  *             val = PIECE_VALUES.get(piece.piece_type, 0)
  *             out.append((val, sq))
  *     out.sort(key=lambda x: x[0])             # <<<<<<<<<<<<<<
@@ -5526,24 +6034,24 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
 */
   __pyx_t_3 = __pyx_v_out;
   __Pyx_INCREF(__pyx_t_3);
-  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_17_sorted_attackers_lambda, 0, __pyx_mstate_global->__pyx_n_u_sorted_attackers_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_17_sorted_attackers_lambda, 0, __pyx_mstate_global->__pyx_n_u_sorted_attackers_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __pyx_t_5 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_3, NULL};
-    __pyx_t_1 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 42, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_key, __pyx_t_10, __pyx_t_1, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 42, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_key, __pyx_t_10, __pyx_t_1, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 56, __pyx_L1_error)
     __pyx_t_4 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_sort, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_1);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "core/model_inference.pyx":43
+  /* "core/model_inference.pyx":57
  *             out.append((val, sq))
  *     out.sort(key=lambda x: x[0])
  *     return out             # <<<<<<<<<<<<<<
@@ -5555,12 +6063,12 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":30
- *     return total_material <= ENDGAME_MATERIAL_THRESHOLD
+  /* "core/model_inference.pyx":45
+ *     return ((wp - bp) * 100 + (wn - bn) * 300 + (wb - bb) * 300 + (wr - br) * 500 + (wq - bq) * 900)
  * 
  * cdef list _sorted_attackers(object board, int square, bint color, set removed):             # <<<<<<<<<<<<<<
- *     # Tim va sap xep cac quan tan cong theo gia tri tang dan
  *     cdef list out = []
+ *     cdef int sq
 */
 
   /* function exit code */
@@ -5580,15 +6088,15 @@ static PyObject *__pyx_f_4core_15model_inference__sorted_attackers(PyObject *__p
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":45
+/* "core/model_inference.pyx":59
  *     return out
  * 
  * cpdef int static_exchange_eval(object board, object move):             # <<<<<<<<<<<<<<
- *     # Danh gia chuoi an quan tinh (SEE)
  *     if not board.is_capture(move):
+ *         return 0
 */
 
-static PyObject *__pyx_pw_4core_15model_inference_1static_exchange_eval(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_3static_exchange_eval(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5630,9 +6138,9 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("static_exchange_eval", 0);
 
-  /* "core/model_inference.pyx":47
+  /* "core/model_inference.pyx":60
+ * 
  * cpdef int static_exchange_eval(object board, object move):
- *     # Danh gia chuoi an quan tinh (SEE)
  *     if not board.is_capture(move):             # <<<<<<<<<<<<<<
  *         return 0
  * 
@@ -5644,16 +6152,16 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_move};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_capture, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_5 = (!__pyx_t_4);
   if (__pyx_t_5) {
 
-    /* "core/model_inference.pyx":48
- *     # Danh gia chuoi an quan tinh (SEE)
+    /* "core/model_inference.pyx":61
+ * cpdef int static_exchange_eval(object board, object move):
  *     if not board.is_capture(move):
  *         return 0             # <<<<<<<<<<<<<<
  * 
@@ -5662,29 +6170,29 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     __pyx_r = 0;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":47
+    /* "core/model_inference.pyx":60
+ * 
  * cpdef int static_exchange_eval(object board, object move):
- *     # Danh gia chuoi an quan tinh (SEE)
  *     if not board.is_capture(move):             # <<<<<<<<<<<<<<
  *         return 0
  * 
 */
   }
 
-  /* "core/model_inference.pyx":50
+  /* "core/model_inference.pyx":63
  *         return 0
  * 
  *     cdef int to_sq = move.to_square             # <<<<<<<<<<<<<<
  *     victim = board.piece_at(to_sq)
  *     cdef int captured_value = 0
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_to_square); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_to_square); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_to_sq = __pyx_t_6;
 
-  /* "core/model_inference.pyx":51
+  /* "core/model_inference.pyx":64
  * 
  *     cdef int to_sq = move.to_square
  *     victim = board.piece_at(to_sq)             # <<<<<<<<<<<<<<
@@ -5693,7 +6201,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
   __pyx_t_2 = __pyx_v_board;
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyLong_From_int(__pyx_v_to_sq); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyLong_From_int(__pyx_v_to_sq); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_3 = 0;
   {
@@ -5701,13 +6209,13 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_at, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 51, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 64, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_victim = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":52
+  /* "core/model_inference.pyx":65
  *     cdef int to_sq = move.to_square
  *     victim = board.piece_at(to_sq)
  *     cdef int captured_value = 0             # <<<<<<<<<<<<<<
@@ -5716,17 +6224,17 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
   __pyx_v_captured_value = 0;
 
-  /* "core/model_inference.pyx":54
+  /* "core/model_inference.pyx":67
  *     cdef int captured_value = 0
  * 
  *     if victim:             # <<<<<<<<<<<<<<
  *         captured_value = PIECE_VALUES.get(victim.piece_type, 0)
  *     elif board.is_en_passant(move):
 */
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_victim); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_victim); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 67, __pyx_L1_error)
   if (__pyx_t_5) {
 
-    /* "core/model_inference.pyx":55
+    /* "core/model_inference.pyx":68
  * 
  *     if victim:
  *         captured_value = PIECE_VALUES.get(victim.piece_type, 0)             # <<<<<<<<<<<<<<
@@ -5734,12 +6242,12 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
  *         captured_value = PIECE_VALUES[chess.PAWN]
 */
     __pyx_t_7 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_victim, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_victim, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -5759,14 +6267,14 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_v_captured_value = __pyx_t_6;
 
-    /* "core/model_inference.pyx":54
+    /* "core/model_inference.pyx":67
  *     cdef int captured_value = 0
  * 
  *     if victim:             # <<<<<<<<<<<<<<
@@ -5776,7 +6284,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     goto __pyx_L4;
   }
 
-  /* "core/model_inference.pyx":56
+  /* "core/model_inference.pyx":69
  *     if victim:
  *         captured_value = PIECE_VALUES.get(victim.piece_type, 0)
  *     elif board.is_en_passant(move):             # <<<<<<<<<<<<<<
@@ -5790,36 +6298,36 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_move};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_en_passant, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 69, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_5) {
 
-    /* "core/model_inference.pyx":57
+    /* "core/model_inference.pyx":70
  *         captured_value = PIECE_VALUES.get(victim.piece_type, 0)
  *     elif board.is_en_passant(move):
  *         captured_value = PIECE_VALUES[chess.PAWN]             # <<<<<<<<<<<<<<
  * 
  *     attacker_piece = board.piece_at(move.from_square)
 */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_PAWN); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_PAWN); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 57, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 57, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 70, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v_captured_value = __pyx_t_6;
 
-    /* "core/model_inference.pyx":56
+    /* "core/model_inference.pyx":69
  *     if victim:
  *         captured_value = PIECE_VALUES.get(victim.piece_type, 0)
  *     elif board.is_en_passant(move):             # <<<<<<<<<<<<<<
@@ -5829,7 +6337,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
   }
   __pyx_L4:;
 
-  /* "core/model_inference.pyx":59
+  /* "core/model_inference.pyx":72
  *         captured_value = PIECE_VALUES[chess.PAWN]
  * 
  *     attacker_piece = board.piece_at(move.from_square)             # <<<<<<<<<<<<<<
@@ -5838,7 +6346,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
   __pyx_t_2 = __pyx_v_board;
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_from_square); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_from_square); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_3 = 0;
   {
@@ -5846,28 +6354,28 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     __pyx_t_8 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_at, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 59, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 72, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
   }
   __pyx_v_attacker_piece = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "core/model_inference.pyx":60
+  /* "core/model_inference.pyx":73
  * 
  *     attacker_piece = board.piece_at(move.from_square)
  *     cdef int attacker_value = PIECE_VALUES.get(attacker_piece.piece_type, 0) if attacker_piece else 0             # <<<<<<<<<<<<<<
  * 
  *     cdef list gains = [captured_value]
 */
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_attacker_piece); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_attacker_piece); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 73, __pyx_L1_error)
   if (__pyx_t_5) {
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_attacker_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_attacker_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_3 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -5887,10 +6395,10 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 60, __pyx_L1_error)
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 73, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
     }
-    __pyx_t_9 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_9 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_t_6 = __pyx_t_9;
   } else {
@@ -5898,40 +6406,40 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
   }
   __pyx_v_attacker_value = __pyx_t_6;
 
-  /* "core/model_inference.pyx":62
+  /* "core/model_inference.pyx":75
  *     cdef int attacker_value = PIECE_VALUES.get(attacker_piece.piece_type, 0) if attacker_piece else 0
  * 
  *     cdef list gains = [captured_value]             # <<<<<<<<<<<<<<
  *     cdef set removed = {move.from_square}
  *     cdef int last_attacker_value = attacker_value
 */
-  __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_captured_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_captured_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_7 = PyList_New(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_GIVEREF(__pyx_t_8);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_t_8) != (0)) __PYX_ERR(0, 62, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_7, 0, __pyx_t_8) != (0)) __PYX_ERR(0, 75, __pyx_L1_error);
   __pyx_t_8 = 0;
   __pyx_v_gains = ((PyObject*)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "core/model_inference.pyx":63
+  /* "core/model_inference.pyx":76
  * 
  *     cdef list gains = [captured_value]
  *     cdef set removed = {move.from_square}             # <<<<<<<<<<<<<<
  *     cdef int last_attacker_value = attacker_value
  *     cdef bint side = not board.turn
 */
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_from_square); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_from_square); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PySet_New(0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_8 = PySet_New(0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  if (PySet_Add(__pyx_t_8, __pyx_t_7) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_8, __pyx_t_7) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_removed = ((PyObject*)__pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "core/model_inference.pyx":64
+  /* "core/model_inference.pyx":77
  *     cdef list gains = [captured_value]
  *     cdef set removed = {move.from_square}
  *     cdef int last_attacker_value = attacker_value             # <<<<<<<<<<<<<<
@@ -5940,20 +6448,20 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
   __pyx_v_last_attacker_value = __pyx_v_attacker_value;
 
-  /* "core/model_inference.pyx":65
+  /* "core/model_inference.pyx":78
  *     cdef set removed = {move.from_square}
  *     cdef int last_attacker_value = attacker_value
  *     cdef bint side = not board.turn             # <<<<<<<<<<<<<<
  *     cdef int i
  *     cdef int last_idx
 */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_side = (!__pyx_t_5);
 
-  /* "core/model_inference.pyx":69
+  /* "core/model_inference.pyx":82
  *     cdef int last_idx
  * 
  *     while True:             # <<<<<<<<<<<<<<
@@ -5962,19 +6470,19 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
   while (1) {
 
-    /* "core/model_inference.pyx":70
+    /* "core/model_inference.pyx":83
  * 
  *     while True:
  *         attackers = _sorted_attackers(board, to_sq, side, removed)             # <<<<<<<<<<<<<<
  *         if not attackers:
  *             break
 */
-    __pyx_t_8 = __pyx_f_4core_15model_inference__sorted_attackers(__pyx_v_board, __pyx_v_to_sq, __pyx_v_side, __pyx_v_removed); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 70, __pyx_L1_error)
+    __pyx_t_8 = __pyx_f_4core_15model_inference__sorted_attackers(__pyx_v_board, __pyx_v_to_sq, __pyx_v_side, __pyx_v_removed); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_XDECREF_SET(__pyx_v_attackers, ((PyObject*)__pyx_t_8));
     __pyx_t_8 = 0;
 
-    /* "core/model_inference.pyx":71
+    /* "core/model_inference.pyx":84
  *     while True:
  *         attackers = _sorted_attackers(board, to_sq, side, removed)
  *         if not attackers:             # <<<<<<<<<<<<<<
@@ -5985,14 +6493,14 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     else
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_v_attackers);
-      if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 71, __pyx_L1_error)
+      if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 84, __pyx_L1_error)
       __pyx_t_5 = (__pyx_temp != 0);
     }
 
     __pyx_t_4 = (!__pyx_t_5);
     if (__pyx_t_4) {
 
-      /* "core/model_inference.pyx":72
+      /* "core/model_inference.pyx":85
  *         attackers = _sorted_attackers(board, to_sq, side, removed)
  *         if not attackers:
  *             break             # <<<<<<<<<<<<<<
@@ -6001,7 +6509,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
       goto __pyx_L6_break;
 
-      /* "core/model_inference.pyx":71
+      /* "core/model_inference.pyx":84
  *     while True:
  *         attackers = _sorted_attackers(board, to_sq, side, removed)
  *         if not attackers:             # <<<<<<<<<<<<<<
@@ -6010,7 +6518,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
     }
 
-    /* "core/model_inference.pyx":73
+    /* "core/model_inference.pyx":86
  *         if not attackers:
  *             break
  *         val, sq = attackers[0]             # <<<<<<<<<<<<<<
@@ -6019,7 +6527,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 */
     if (unlikely(__pyx_v_attackers == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 73, __pyx_L1_error)
+      __PYX_ERR(0, 86, __pyx_L1_error)
     }
     __pyx_t_8 = __Pyx_PyList_GET_ITEM(__pyx_v_attackers, 0);
     __Pyx_INCREF(__pyx_t_8);
@@ -6029,7 +6537,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
       if (unlikely(size != 2)) {
         if (size > 2) __Pyx_RaiseTooManyValuesError(2);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 73, __pyx_L1_error)
+        __PYX_ERR(0, 86, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -6039,22 +6547,22 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
         __Pyx_INCREF(__pyx_t_2);
       } else {
         __pyx_t_7 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 73, __pyx_L1_error)
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_XGOTREF(__pyx_t_7);
         __pyx_t_2 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
         __Pyx_XGOTREF(__pyx_t_2);
       }
       #else
-      __pyx_t_7 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 86, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
+      __pyx_t_1 = PyObject_GetIter(__pyx_t_8); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_10 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1);
@@ -6062,7 +6570,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
       __Pyx_GOTREF(__pyx_t_7);
       index = 1; __pyx_t_2 = __pyx_t_10(__pyx_t_1); if (unlikely(!__pyx_t_2)) goto __pyx_L8_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_1), 2) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_1), 2) < (0)) __PYX_ERR(0, 86, __pyx_L1_error)
       __pyx_t_10 = NULL;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       goto __pyx_L9_unpacking_done;
@@ -6070,7 +6578,7 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __pyx_t_10 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 73, __pyx_L1_error)
+      __PYX_ERR(0, 86, __pyx_L1_error)
       __pyx_L9_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_val, __pyx_t_7);
@@ -6078,51 +6586,51 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     __Pyx_XDECREF_SET(__pyx_v_sq, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":75
+    /* "core/model_inference.pyx":88
  *         val, sq = attackers[0]
  * 
  *         last_idx = len(gains) - 1             # <<<<<<<<<<<<<<
  *         gains.append(last_attacker_value - gains[last_idx])
  * 
 */
-    __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_gains); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 75, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_gains); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 88, __pyx_L1_error)
     __pyx_v_last_idx = (__pyx_t_11 - 1);
 
-    /* "core/model_inference.pyx":76
+    /* "core/model_inference.pyx":89
  * 
  *         last_idx = len(gains) - 1
  *         gains.append(last_attacker_value - gains[last_idx])             # <<<<<<<<<<<<<<
  * 
  *         removed.add(sq)
 */
-    __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_last_attacker_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 76, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyLong_From_int(__pyx_v_last_attacker_value); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 89, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_t_8, __Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_last_idx)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Subtract(__pyx_t_8, __Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_last_idx)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_12 = __Pyx_PyList_Append(__pyx_v_gains, __pyx_t_2); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 76, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyList_Append(__pyx_v_gains, __pyx_t_2); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 89, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":78
+    /* "core/model_inference.pyx":91
  *         gains.append(last_attacker_value - gains[last_idx])
  * 
  *         removed.add(sq)             # <<<<<<<<<<<<<<
  *         last_attacker_value = val
  *         side = not side
 */
-    __pyx_t_12 = PySet_Add(__pyx_v_removed, __pyx_v_sq); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 78, __pyx_L1_error)
+    __pyx_t_12 = PySet_Add(__pyx_v_removed, __pyx_v_sq); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 91, __pyx_L1_error)
 
-    /* "core/model_inference.pyx":79
+    /* "core/model_inference.pyx":92
  * 
  *         removed.add(sq)
  *         last_attacker_value = val             # <<<<<<<<<<<<<<
  *         side = not side
  * 
 */
-    __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_v_val); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyLong_As_int(__pyx_v_val); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
     __pyx_v_last_attacker_value = __pyx_t_6;
 
-    /* "core/model_inference.pyx":80
+    /* "core/model_inference.pyx":93
  *         removed.add(sq)
  *         last_attacker_value = val
  *         side = not side             # <<<<<<<<<<<<<<
@@ -6133,18 +6641,18 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
   }
   __pyx_L6_break:;
 
-  /* "core/model_inference.pyx":82
+  /* "core/model_inference.pyx":95
  *         side = not side
  * 
  *     for i in range(len(gains) - 1, 0, -1):             # <<<<<<<<<<<<<<
  *         gains[i - 1] = -max(-gains[i - 1], gains[i])
  * 
 */
-  __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_gains); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyList_GET_SIZE(__pyx_v_gains); if (unlikely(__pyx_t_11 == ((Py_ssize_t)-1))) __PYX_ERR(0, 95, __pyx_L1_error)
   for (__pyx_t_6 = (__pyx_t_11 - 1); __pyx_t_6 > 0; __pyx_t_6-=1) {
     __pyx_v_i = __pyx_t_6;
 
-    /* "core/model_inference.pyx":83
+    /* "core/model_inference.pyx":96
  * 
  *     for i in range(len(gains) - 1, 0, -1):
  *         gains[i - 1] = -max(-gains[i - 1], gains[i])             # <<<<<<<<<<<<<<
@@ -6154,10 +6662,10 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     __Pyx_INCREF(__Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_i));
     __pyx_t_2 = __Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_i);
     __pyx_t_13 = (__pyx_v_i - 1);
-    __pyx_t_8 = PyNumber_Negative(__Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_t_13)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 83, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_Negative(__Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_t_13)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_8, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
-    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 83, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_8, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_4) {
       __Pyx_INCREF(__pyx_t_2);
@@ -6168,31 +6676,31 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
     }
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Negative(__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Negative(__pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_13 = (__pyx_v_i - 1);
-    if (unlikely((__Pyx_SetItemInt(__pyx_v_gains, __pyx_t_13, __pyx_t_2, long, 1, __Pyx_PyLong_From_long, 1, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference) < 0))) __PYX_ERR(0, 83, __pyx_L1_error)
+    if (unlikely((__Pyx_SetItemInt(__pyx_v_gains, __pyx_t_13, __pyx_t_2, long, 1, __Pyx_PyLong_From_long, 1, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference) < 0))) __PYX_ERR(0, 96, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
 
-  /* "core/model_inference.pyx":85
+  /* "core/model_inference.pyx":98
  *         gains[i - 1] = -max(-gains[i - 1], gains[i])
  * 
  *     return gains[0]             # <<<<<<<<<<<<<<
  * 
- * cpdef int see_on_square(object board, int square, bint attacker_color):
+ * cpdef tuple find_tactical_moves(object board, list legal_moves):
 */
-  __pyx_t_6 = __Pyx_PyLong_As_int(__Pyx_PyList_GET_ITEM(__pyx_v_gains, 0)); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyLong_As_int(__Pyx_PyList_GET_ITEM(__pyx_v_gains, 0)); if (unlikely((__pyx_t_6 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L1_error)
   __pyx_r = __pyx_t_6;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":45
+  /* "core/model_inference.pyx":59
  *     return out
  * 
  * cpdef int static_exchange_eval(object board, object move):             # <<<<<<<<<<<<<<
- *     # Danh gia chuoi an quan tinh (SEE)
  *     if not board.is_capture(move):
+ *         return 0
 */
 
   /* function exit code */
@@ -6216,15 +6724,15 @@ static int __pyx_f_4core_15model_inference_static_exchange_eval(PyObject *__pyx_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_1static_exchange_eval(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_3static_exchange_eval(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_1static_exchange_eval = {"static_exchange_eval", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_1static_exchange_eval, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_1static_exchange_eval(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_4core_15model_inference_3static_exchange_eval = {"static_exchange_eval", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_3static_exchange_eval, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_3static_exchange_eval(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6255,39 +6763,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_move,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 45, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 59, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 45, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 59, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 45, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 59, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "static_exchange_eval", 0) < (0)) __PYX_ERR(0, 45, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "static_exchange_eval", 0) < (0)) __PYX_ERR(0, 59, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("static_exchange_eval", 1, 2, 2, i); __PYX_ERR(0, 45, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("static_exchange_eval", 1, 2, 2, i); __PYX_ERR(0, 59, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 45, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 59, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 45, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 59, __pyx_L3_error)
     }
     __pyx_v_board = values[0];
     __pyx_v_move = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("static_exchange_eval", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 45, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("static_exchange_eval", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 59, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6298,7 +6806,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4core_15model_inference_static_exchange_eval(__pyx_self, __pyx_v_board, __pyx_v_move);
+  __pyx_r = __pyx_pf_4core_15model_inference_2static_exchange_eval(__pyx_self, __pyx_v_board, __pyx_v_move);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -6308,7 +6816,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4core_15model_inference_static_exchange_eval(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_move) {
+static PyObject *__pyx_pf_4core_15model_inference_2static_exchange_eval(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_move) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -6318,8 +6826,8 @@ static PyObject *__pyx_pf_4core_15model_inference_static_exchange_eval(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("static_exchange_eval", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4core_15model_inference_static_exchange_eval(__pyx_v_board, __pyx_v_move, 1); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 45, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4core_15model_inference_static_exchange_eval(__pyx_v_board, __pyx_v_move, 1); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 59, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -6336,1044 +6844,15 @@ static PyObject *__pyx_pf_4core_15model_inference_static_exchange_eval(CYTHON_UN
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":87
+/* "core/model_inference.pyx":100
  *     return gains[0]
- * 
- * cpdef int see_on_square(object board, int square, bint attacker_color):             # <<<<<<<<<<<<<<
- *     # Danh gia trao doi tren mot o cu the
- *     target = board.piece_at(square)
-*/
-
-static PyObject *__pyx_pw_4core_15model_inference_3see_on_square(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static int __pyx_f_4core_15model_inference_see_on_square(PyObject *__pyx_v_board, int __pyx_v_square, int __pyx_v_attacker_color, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  PyObject *__pyx_v_target = NULL;
-  int __pyx_v_target_value;
-  PyObject *__pyx_v_removed = 0;
-  PyObject *__pyx_v_attackers = NULL;
-  PyObject *__pyx_v_gains = 0;
-  int __pyx_v_val;
-  int __pyx_v_sq;
-  int __pyx_v_last_attacker_value;
-  int __pyx_v_side;
-  int __pyx_v_i;
-  int __pyx_v_last_idx;
-  PyObject *__pyx_v_next_attackers = NULL;
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  size_t __pyx_t_4;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  int __pyx_t_7;
-  int __pyx_t_8;
-  int __pyx_t_9;
-  PyObject *(*__pyx_t_10)(PyObject *);
-  int __pyx_t_11;
-  Py_ssize_t __pyx_t_12;
-  long __pyx_t_13;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("see_on_square", 0);
-
-  /* "core/model_inference.pyx":89
- * cpdef int see_on_square(object board, int square, bint attacker_color):
- *     # Danh gia trao doi tren mot o cu the
- *     target = board.piece_at(square)             # <<<<<<<<<<<<<<
- *     if target is None:
- *         return 0
-*/
-  __pyx_t_2 = __pyx_v_board;
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_square); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = 0;
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_3};
-    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_at, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __pyx_v_target = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "core/model_inference.pyx":90
- *     # Danh gia trao doi tren mot o cu the
- *     target = board.piece_at(square)
- *     if target is None:             # <<<<<<<<<<<<<<
- *         return 0
- *     cdef int target_value = PIECE_VALUES.get(target.piece_type, 0)
-*/
-  __pyx_t_5 = (__pyx_v_target == Py_None);
-  if (__pyx_t_5) {
-
-    /* "core/model_inference.pyx":91
- *     target = board.piece_at(square)
- *     if target is None:
- *         return 0             # <<<<<<<<<<<<<<
- *     cdef int target_value = PIECE_VALUES.get(target.piece_type, 0)
- * 
-*/
-    __pyx_r = 0;
-    goto __pyx_L0;
-
-    /* "core/model_inference.pyx":90
- *     # Danh gia trao doi tren mot o cu the
- *     target = board.piece_at(square)
- *     if target is None:             # <<<<<<<<<<<<<<
- *         return 0
- *     cdef int target_value = PIECE_VALUES.get(target.piece_type, 0)
-*/
-  }
-
-  /* "core/model_inference.pyx":92
- *     if target is None:
- *         return 0
- *     cdef int target_value = PIECE_VALUES.get(target.piece_type, 0)             # <<<<<<<<<<<<<<
- * 
- *     cdef set removed = set()
-*/
-  __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_target, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = 1;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_6))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_6);
-    assert(__pyx_t_3);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_6);
-    __Pyx_INCREF(__pyx_t_3);
-    __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_6, __pyx__function);
-    __pyx_t_4 = 0;
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_2, __pyx_mstate_global->__pyx_int_0};
-    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 92, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __pyx_t_7 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_target_value = __pyx_t_7;
-
-  /* "core/model_inference.pyx":94
- *     cdef int target_value = PIECE_VALUES.get(target.piece_type, 0)
- * 
- *     cdef set removed = set()             # <<<<<<<<<<<<<<
- *     attackers = _sorted_attackers(board, square, attacker_color, removed)
- *     if not attackers:
-*/
-  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_removed = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "core/model_inference.pyx":95
- * 
- *     cdef set removed = set()
- *     attackers = _sorted_attackers(board, square, attacker_color, removed)             # <<<<<<<<<<<<<<
- *     if not attackers:
- *         return 0
-*/
-  __pyx_t_1 = __pyx_f_4core_15model_inference__sorted_attackers(__pyx_v_board, __pyx_v_square, __pyx_v_attacker_color, __pyx_v_removed); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_attackers = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "core/model_inference.pyx":96
- *     cdef set removed = set()
- *     attackers = _sorted_attackers(board, square, attacker_color, removed)
- *     if not attackers:             # <<<<<<<<<<<<<<
- *         return 0
- * 
-*/
-  if (__pyx_v_attackers == Py_None) __pyx_t_5 = 0;
-  else
-  {
-    Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_v_attackers);
-    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 96, __pyx_L1_error)
-    __pyx_t_5 = (__pyx_temp != 0);
-  }
-
-  __pyx_t_8 = (!__pyx_t_5);
-  if (__pyx_t_8) {
-
-    /* "core/model_inference.pyx":97
- *     attackers = _sorted_attackers(board, square, attacker_color, removed)
- *     if not attackers:
- *         return 0             # <<<<<<<<<<<<<<
- * 
- *     cdef list gains = [target_value]
-*/
-    __pyx_r = 0;
-    goto __pyx_L0;
-
-    /* "core/model_inference.pyx":96
- *     cdef set removed = set()
- *     attackers = _sorted_attackers(board, square, attacker_color, removed)
- *     if not attackers:             # <<<<<<<<<<<<<<
- *         return 0
- * 
-*/
-  }
-
-  /* "core/model_inference.pyx":99
- *         return 0
- * 
- *     cdef list gains = [target_value]             # <<<<<<<<<<<<<<
- *     cdef int val = attackers[0][0]
- *     cdef int sq = attackers[0][1]
-*/
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_target_value); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_6 = PyList_New(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 99, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_6, 0, __pyx_t_1) != (0)) __PYX_ERR(0, 99, __pyx_L1_error);
-  __pyx_t_1 = 0;
-  __pyx_v_gains = ((PyObject*)__pyx_t_6);
-  __pyx_t_6 = 0;
-
-  /* "core/model_inference.pyx":100
- * 
- *     cdef list gains = [target_value]
- *     cdef int val = attackers[0][0]             # <<<<<<<<<<<<<<
- *     cdef int sq = attackers[0][1]
- *     removed.add(sq)
-*/
-  if (unlikely(__pyx_v_attackers == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 100, __pyx_L1_error)
-  }
-  __pyx_t_6 = __Pyx_GetItemInt(__Pyx_PyList_GET_ITEM(__pyx_v_attackers, 0), 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_SharedReference); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_v_val = __pyx_t_7;
-
-  /* "core/model_inference.pyx":101
- *     cdef list gains = [target_value]
- *     cdef int val = attackers[0][0]
- *     cdef int sq = attackers[0][1]             # <<<<<<<<<<<<<<
- *     removed.add(sq)
- * 
-*/
-  if (unlikely(__pyx_v_attackers == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 101, __pyx_L1_error)
-  }
-  __pyx_t_6 = __Pyx_GetItemInt(__Pyx_PyList_GET_ITEM(__pyx_v_attackers, 0), 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_SharedReference); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 101, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 101, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_v_sq = __pyx_t_7;
-
-  /* "core/model_inference.pyx":102
- *     cdef int val = attackers[0][0]
- *     cdef int sq = attackers[0][1]
- *     removed.add(sq)             # <<<<<<<<<<<<<<
- * 
- *     cdef int last_attacker_value = val
-*/
-  __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_9 = PySet_Add(__pyx_v_removed, __pyx_t_6); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-  /* "core/model_inference.pyx":104
- *     removed.add(sq)
- * 
- *     cdef int last_attacker_value = val             # <<<<<<<<<<<<<<
- *     cdef bint side = not attacker_color
- *     cdef int i
-*/
-  __pyx_v_last_attacker_value = __pyx_v_val;
-
-  /* "core/model_inference.pyx":105
- * 
- *     cdef int last_attacker_value = val
- *     cdef bint side = not attacker_color             # <<<<<<<<<<<<<<
- *     cdef int i
- *     cdef int last_idx
-*/
-  __pyx_v_side = (!__pyx_v_attacker_color);
-
-  /* "core/model_inference.pyx":109
- *     cdef int last_idx
- * 
- *     while True:             # <<<<<<<<<<<<<<
- *         next_attackers = _sorted_attackers(board, square, side, removed)
- *         if not next_attackers:
-*/
-  while (1) {
-
-    /* "core/model_inference.pyx":110
- * 
- *     while True:
- *         next_attackers = _sorted_attackers(board, square, side, removed)             # <<<<<<<<<<<<<<
- *         if not next_attackers:
- *             break
-*/
-    __pyx_t_6 = __pyx_f_4core_15model_inference__sorted_attackers(__pyx_v_board, __pyx_v_square, __pyx_v_side, __pyx_v_removed); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 110, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_XDECREF_SET(__pyx_v_next_attackers, ((PyObject*)__pyx_t_6));
-    __pyx_t_6 = 0;
-
-    /* "core/model_inference.pyx":111
- *     while True:
- *         next_attackers = _sorted_attackers(board, square, side, removed)
- *         if not next_attackers:             # <<<<<<<<<<<<<<
- *             break
- *         val, sq = next_attackers[0]
-*/
-    if (__pyx_v_next_attackers == Py_None) __pyx_t_8 = 0;
-    else
-    {
-      Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_v_next_attackers);
-      if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 111, __pyx_L1_error)
-      __pyx_t_8 = (__pyx_temp != 0);
-    }
-
-    __pyx_t_5 = (!__pyx_t_8);
-    if (__pyx_t_5) {
-
-      /* "core/model_inference.pyx":112
- *         next_attackers = _sorted_attackers(board, square, side, removed)
- *         if not next_attackers:
- *             break             # <<<<<<<<<<<<<<
- *         val, sq = next_attackers[0]
- *         last_idx = len(gains) - 1
-*/
-      goto __pyx_L6_break;
-
-      /* "core/model_inference.pyx":111
- *     while True:
- *         next_attackers = _sorted_attackers(board, square, side, removed)
- *         if not next_attackers:             # <<<<<<<<<<<<<<
- *             break
- *         val, sq = next_attackers[0]
-*/
-    }
-
-    /* "core/model_inference.pyx":113
- *         if not next_attackers:
- *             break
- *         val, sq = next_attackers[0]             # <<<<<<<<<<<<<<
- *         last_idx = len(gains) - 1
- *         gains.append(last_attacker_value - gains[last_idx])
-*/
-    if (unlikely(__pyx_v_next_attackers == Py_None)) {
-      PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 113, __pyx_L1_error)
-    }
-    __pyx_t_6 = __Pyx_PyList_GET_ITEM(__pyx_v_next_attackers, 0);
-    __Pyx_INCREF(__pyx_t_6);
-    if ((likely(PyTuple_CheckExact(__pyx_t_6))) || (PyList_CheckExact(__pyx_t_6))) {
-      PyObject* sequence = __pyx_t_6;
-      Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-      if (unlikely(size != 2)) {
-        if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-        else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 113, __pyx_L1_error)
-      }
-      #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      if (likely(PyTuple_CheckExact(sequence))) {
-        __pyx_t_1 = PyTuple_GET_ITEM(sequence, 0);
-        __Pyx_INCREF(__pyx_t_1);
-        __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1);
-        __Pyx_INCREF(__pyx_t_2);
-      } else {
-        __pyx_t_1 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
-        __Pyx_XGOTREF(__pyx_t_1);
-        __pyx_t_2 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
-        __Pyx_XGOTREF(__pyx_t_2);
-      }
-      #else
-      __pyx_t_1 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      #endif
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    } else {
-      Py_ssize_t index = -1;
-      __pyx_t_3 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 113, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_10 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_3);
-      index = 0; __pyx_t_1 = __pyx_t_10(__pyx_t_3); if (unlikely(!__pyx_t_1)) goto __pyx_L8_unpacking_failed;
-      __Pyx_GOTREF(__pyx_t_1);
-      index = 1; __pyx_t_2 = __pyx_t_10(__pyx_t_3); if (unlikely(!__pyx_t_2)) goto __pyx_L8_unpacking_failed;
-      __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_3), 2) < (0)) __PYX_ERR(0, 113, __pyx_L1_error)
-      __pyx_t_10 = NULL;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      goto __pyx_L9_unpacking_done;
-      __pyx_L8_unpacking_failed:;
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_10 = NULL;
-      if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 113, __pyx_L1_error)
-      __pyx_L9_unpacking_done:;
-    }
-    __pyx_t_7 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 113, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_11 = __Pyx_PyLong_As_int(__pyx_t_2); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 113, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_v_val = __pyx_t_7;
-    __pyx_v_sq = __pyx_t_11;
-
-    /* "core/model_inference.pyx":114
- *             break
- *         val, sq = next_attackers[0]
- *         last_idx = len(gains) - 1             # <<<<<<<<<<<<<<
- *         gains.append(last_attacker_value - gains[last_idx])
- *         removed.add(sq)
-*/
-    __pyx_t_12 = __Pyx_PyList_GET_SIZE(__pyx_v_gains); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 114, __pyx_L1_error)
-    __pyx_v_last_idx = (__pyx_t_12 - 1);
-
-    /* "core/model_inference.pyx":115
- *         val, sq = next_attackers[0]
- *         last_idx = len(gains) - 1
- *         gains.append(last_attacker_value - gains[last_idx])             # <<<<<<<<<<<<<<
- *         removed.add(sq)
- *         last_attacker_value = val
-*/
-    __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_last_attacker_value); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 115, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = PyNumber_Subtract(__pyx_t_6, __Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_last_idx)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_gains, __pyx_t_2); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 115, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "core/model_inference.pyx":116
- *         last_idx = len(gains) - 1
- *         gains.append(last_attacker_value - gains[last_idx])
- *         removed.add(sq)             # <<<<<<<<<<<<<<
- *         last_attacker_value = val
- *         side = not side
-*/
-    __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_9 = PySet_Add(__pyx_v_removed, __pyx_t_2); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 116, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "core/model_inference.pyx":117
- *         gains.append(last_attacker_value - gains[last_idx])
- *         removed.add(sq)
- *         last_attacker_value = val             # <<<<<<<<<<<<<<
- *         side = not side
- * 
-*/
-    __pyx_v_last_attacker_value = __pyx_v_val;
-
-    /* "core/model_inference.pyx":118
- *         removed.add(sq)
- *         last_attacker_value = val
- *         side = not side             # <<<<<<<<<<<<<<
- * 
- *     for i in range(len(gains) - 1, 0, -1):
-*/
-    __pyx_v_side = (!__pyx_v_side);
-  }
-  __pyx_L6_break:;
-
-  /* "core/model_inference.pyx":120
- *         side = not side
- * 
- *     for i in range(len(gains) - 1, 0, -1):             # <<<<<<<<<<<<<<
- *         gains[i - 1] = -max(-gains[i - 1], gains[i])
- * 
-*/
-  __pyx_t_12 = __Pyx_PyList_GET_SIZE(__pyx_v_gains); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 120, __pyx_L1_error)
-  for (__pyx_t_11 = (__pyx_t_12 - 1); __pyx_t_11 > 0; __pyx_t_11-=1) {
-    __pyx_v_i = __pyx_t_11;
-
-    /* "core/model_inference.pyx":121
- * 
- *     for i in range(len(gains) - 1, 0, -1):
- *         gains[i - 1] = -max(-gains[i - 1], gains[i])             # <<<<<<<<<<<<<<
- * 
- *     return gains[0]
-*/
-    __Pyx_INCREF(__Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_i));
-    __pyx_t_2 = __Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_v_i);
-    __pyx_t_13 = (__pyx_v_i - 1);
-    __pyx_t_6 = PyNumber_Negative(__Pyx_PyList_GET_ITEM(__pyx_v_gains, __pyx_t_13)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_6, Py_GT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (__pyx_t_5) {
-      __Pyx_INCREF(__pyx_t_2);
-      __pyx_t_1 = __pyx_t_2;
-    } else {
-      __Pyx_INCREF(__pyx_t_6);
-      __pyx_t_1 = __pyx_t_6;
-    }
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Negative(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_13 = (__pyx_v_i - 1);
-    if (unlikely((__Pyx_SetItemInt(__pyx_v_gains, __pyx_t_13, __pyx_t_2, long, 1, __Pyx_PyLong_From_long, 1, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference) < 0))) __PYX_ERR(0, 121, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  }
-
-  /* "core/model_inference.pyx":123
- *         gains[i - 1] = -max(-gains[i - 1], gains[i])
- * 
- *     return gains[0]             # <<<<<<<<<<<<<<
- * 
- * cpdef int find_worst_hang(object board, bint color):
-*/
-  __pyx_t_11 = __Pyx_PyLong_As_int(__Pyx_PyList_GET_ITEM(__pyx_v_gains, 0)); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 123, __pyx_L1_error)
-  __pyx_r = __pyx_t_11;
-  goto __pyx_L0;
-
-  /* "core/model_inference.pyx":87
- *     return gains[0]
- * 
- * cpdef int see_on_square(object board, int square, bint attacker_color):             # <<<<<<<<<<<<<<
- *     # Danh gia trao doi tren mot o cu the
- *     target = board.piece_at(square)
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("core.model_inference.see_on_square", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_target);
-  __Pyx_XDECREF(__pyx_v_removed);
-  __Pyx_XDECREF(__pyx_v_attackers);
-  __Pyx_XDECREF(__pyx_v_gains);
-  __Pyx_XDECREF(__pyx_v_next_attackers);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_3see_on_square(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_3see_on_square = {"see_on_square", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_3see_on_square, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_3see_on_square(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyObject *__pyx_v_board = 0;
-  int __pyx_v_square;
-  int __pyx_v_attacker_color;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("see_on_square (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_square,&__pyx_mstate_global->__pyx_n_u_attacker_color,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 87, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  3:
-        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 87, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  2:
-        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 87, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 87, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "see_on_square", 0) < (0)) __PYX_ERR(0, 87, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("see_on_square", 1, 3, 3, i); __PYX_ERR(0, 87, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 3)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 87, __pyx_L3_error)
-      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 87, __pyx_L3_error)
-      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 87, __pyx_L3_error)
-    }
-    __pyx_v_board = values[0];
-    __pyx_v_square = __Pyx_PyLong_As_int(values[1]); if (unlikely((__pyx_v_square == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L3_error)
-    __pyx_v_attacker_color = __Pyx_PyObject_IsTrue(values[2]); if (unlikely((__pyx_v_attacker_color == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("see_on_square", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 87, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("core.model_inference.see_on_square", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4core_15model_inference_2see_on_square(__pyx_self, __pyx_v_board, __pyx_v_square, __pyx_v_attacker_color);
-
-  /* function exit code */
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_4core_15model_inference_2see_on_square(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, int __pyx_v_square, int __pyx_v_attacker_color) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("see_on_square", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4core_15model_inference_see_on_square(__pyx_v_board, __pyx_v_square, __pyx_v_attacker_color, 1); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 87, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("core.model_inference.see_on_square", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "core/model_inference.pyx":125
- *     return gains[0]
- * 
- * cpdef int find_worst_hang(object board, bint color):             # <<<<<<<<<<<<<<
- *     # Tim loi treo quan nang nhat
- *     cdef int worst = 0
-*/
-
-static PyObject *__pyx_pw_4core_15model_inference_5find_worst_hang(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static int __pyx_f_4core_15model_inference_find_worst_hang(PyObject *__pyx_v_board, int __pyx_v_color, CYTHON_UNUSED int __pyx_skip_dispatch) {
-  int __pyx_v_worst;
-  int __pyx_v_sq;
-  int __pyx_v_loss;
-  PyObject *__pyx_v_piece = NULL;
-  int __pyx_r;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  Py_ssize_t __pyx_t_2;
-  Py_ssize_t __pyx_t_3;
-  int __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  PyObject *__pyx_t_6 = NULL;
-  size_t __pyx_t_7;
-  int __pyx_t_8;
-  PyObject *__pyx_t_9 = NULL;
-  int __pyx_t_10;
-  PyObject *__pyx_t_11 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("find_worst_hang", 0);
-
-  /* "core/model_inference.pyx":127
- * cpdef int find_worst_hang(object board, bint color):
- *     # Tim loi treo quan nang nhat
- *     cdef int worst = 0             # <<<<<<<<<<<<<<
- *     cdef int sq
- *     cdef int loss
-*/
-  __pyx_v_worst = 0;
-
-  /* "core/model_inference.pyx":130
- *     cdef int sq
- *     cdef int loss
- *     for sq, piece in board.piece_map().items():             # <<<<<<<<<<<<<<
- *         if piece.color != color:
- *             continue
-*/
-  __pyx_t_2 = 0;
-  __pyx_t_6 = __pyx_v_board;
-  __Pyx_INCREF(__pyx_t_6);
-  __pyx_t_7 = 0;
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
-    __pyx_t_5 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_map, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 130, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-  }
-  if (unlikely(__pyx_t_5 == Py_None)) {
-    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "items");
-    __PYX_ERR(0, 130, __pyx_L1_error)
-  }
-  __pyx_t_6 = __Pyx_dict_iterator(__pyx_t_5, 0, __pyx_mstate_global->__pyx_n_u_items, (&__pyx_t_3), (&__pyx_t_4)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_XDECREF(__pyx_t_1);
-  __pyx_t_1 = __pyx_t_6;
-  __pyx_t_6 = 0;
-  while (1) {
-    __pyx_t_8 = __Pyx_dict_iter_next(__pyx_t_1, __pyx_t_3, &__pyx_t_2, &__pyx_t_6, &__pyx_t_5, NULL, __pyx_t_4);
-    if (unlikely(__pyx_t_8 == 0)) break;
-    if (unlikely(__pyx_t_8 == -1)) __PYX_ERR(0, 130, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 130, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_v_sq = __pyx_t_8;
-    __Pyx_XDECREF_SET(__pyx_v_piece, __pyx_t_5);
-    __pyx_t_5 = 0;
-
-    /* "core/model_inference.pyx":131
- *     cdef int loss
- *     for sq, piece in board.piece_map().items():
- *         if piece.color != color:             # <<<<<<<<<<<<<<
- *             continue
- *         if board.is_attacked_by(not color, sq):
-*/
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_piece, __pyx_mstate_global->__pyx_n_u_color); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyBool_FromLong(__pyx_v_color); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 131, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_9 = PyObject_RichCompare(__pyx_t_5, __pyx_t_6, Py_NE); __Pyx_XGOTREF(__pyx_t_9); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 131, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 131, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (__pyx_t_10) {
-
-      /* "core/model_inference.pyx":132
- *     for sq, piece in board.piece_map().items():
- *         if piece.color != color:
- *             continue             # <<<<<<<<<<<<<<
- *         if board.is_attacked_by(not color, sq):
- *             loss = see_on_square(board, sq, not color)
-*/
-      goto __pyx_L3_continue;
-
-      /* "core/model_inference.pyx":131
- *     cdef int loss
- *     for sq, piece in board.piece_map().items():
- *         if piece.color != color:             # <<<<<<<<<<<<<<
- *             continue
- *         if board.is_attacked_by(not color, sq):
-*/
-    }
-
-    /* "core/model_inference.pyx":133
- *         if piece.color != color:
- *             continue
- *         if board.is_attacked_by(not color, sq):             # <<<<<<<<<<<<<<
- *             loss = see_on_square(board, sq, not color)
- *             if loss > worst:
-*/
-    __pyx_t_6 = __pyx_v_board;
-    __Pyx_INCREF(__pyx_t_6);
-    __pyx_t_5 = __Pyx_PyBool_FromLong((!__pyx_v_color)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 133, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_11 = __Pyx_PyLong_From_int(__pyx_v_sq); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 133, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_7 = 0;
-    {
-      PyObject *__pyx_callargs[3] = {__pyx_t_6, __pyx_t_5, __pyx_t_11};
-      __pyx_t_9 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_attacked_by, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 133, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-    }
-    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_9); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 133, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (__pyx_t_10) {
-
-      /* "core/model_inference.pyx":134
- *             continue
- *         if board.is_attacked_by(not color, sq):
- *             loss = see_on_square(board, sq, not color)             # <<<<<<<<<<<<<<
- *             if loss > worst:
- *                 worst = loss
-*/
-      __pyx_t_8 = __pyx_f_4core_15model_inference_see_on_square(__pyx_v_board, __pyx_v_sq, (!__pyx_v_color), 0); if (unlikely(__pyx_t_8 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 134, __pyx_L1_error)
-      __pyx_v_loss = __pyx_t_8;
-
-      /* "core/model_inference.pyx":135
- *         if board.is_attacked_by(not color, sq):
- *             loss = see_on_square(board, sq, not color)
- *             if loss > worst:             # <<<<<<<<<<<<<<
- *                 worst = loss
- *     return worst
-*/
-      __pyx_t_10 = (__pyx_v_loss > __pyx_v_worst);
-      if (__pyx_t_10) {
-
-        /* "core/model_inference.pyx":136
- *             loss = see_on_square(board, sq, not color)
- *             if loss > worst:
- *                 worst = loss             # <<<<<<<<<<<<<<
- *     return worst
- * 
-*/
-        __pyx_v_worst = __pyx_v_loss;
-
-        /* "core/model_inference.pyx":135
- *         if board.is_attacked_by(not color, sq):
- *             loss = see_on_square(board, sq, not color)
- *             if loss > worst:             # <<<<<<<<<<<<<<
- *                 worst = loss
- *     return worst
-*/
-      }
-
-      /* "core/model_inference.pyx":133
- *         if piece.color != color:
- *             continue
- *         if board.is_attacked_by(not color, sq):             # <<<<<<<<<<<<<<
- *             loss = see_on_square(board, sq, not color)
- *             if loss > worst:
-*/
-    }
-    __pyx_L3_continue:;
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "core/model_inference.pyx":137
- *             if loss > worst:
- *                 worst = loss
- *     return worst             # <<<<<<<<<<<<<<
- * 
- * cpdef tuple find_tactical_moves(object board, list legal_moves):
-*/
-  __pyx_r = __pyx_v_worst;
-  goto __pyx_L0;
-
-  /* "core/model_inference.pyx":125
- *     return gains[0]
- * 
- * cpdef int find_worst_hang(object board, bint color):             # <<<<<<<<<<<<<<
- *     # Tim loi treo quan nang nhat
- *     cdef int worst = 0
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_XDECREF(__pyx_t_11);
-  __Pyx_AddTraceback("core.model_inference.find_worst_hang", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_piece);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_5find_worst_hang(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_5find_worst_hang = {"find_worst_hang", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_5find_worst_hang, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_5find_worst_hang(PyObject *__pyx_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyObject *__pyx_v_board = 0;
-  int __pyx_v_color;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[2] = {0,0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("find_worst_hang (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_color,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 125, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  2:
-        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 125, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 125, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "find_worst_hang", 0) < (0)) __PYX_ERR(0, 125, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("find_worst_hang", 1, 2, 2, i); __PYX_ERR(0, 125, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 2)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 125, __pyx_L3_error)
-      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 125, __pyx_L3_error)
-    }
-    __pyx_v_board = values[0];
-    __pyx_v_color = __Pyx_PyObject_IsTrue(values[1]); if (unlikely((__pyx_v_color == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 125, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("find_worst_hang", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 125, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("core.model_inference.find_worst_hang", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4core_15model_inference_4find_worst_hang(__pyx_self, __pyx_v_board, __pyx_v_color);
-
-  /* function exit code */
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_4core_15model_inference_4find_worst_hang(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, int __pyx_v_color) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("find_worst_hang", 0);
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4core_15model_inference_find_worst_hang(__pyx_v_board, __pyx_v_color, 1); if (unlikely(__pyx_t_1 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 125, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("core.model_inference.find_worst_hang", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "core/model_inference.pyx":139
- *     return worst
  * 
  * cpdef tuple find_tactical_moves(object board, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Tim cac nuoc di chien thuat (chieu bi, an quan loi)
  *     cdef list mate_moves = []
+ *     cdef dict winning_captures = {}
 */
 
-static PyObject *__pyx_pw_4core_15model_inference_7find_tactical_moves(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_5find_tactical_moves(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7400,31 +6879,31 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_tactical_moves", 0);
 
-  /* "core/model_inference.pyx":141
+  /* "core/model_inference.pyx":101
+ * 
  * cpdef tuple find_tactical_moves(object board, list legal_moves):
- *     # Tim cac nuoc di chien thuat (chieu bi, an quan loi)
  *     cdef list mate_moves = []             # <<<<<<<<<<<<<<
  *     cdef dict winning_captures = {}
  *     cdef int see_val
 */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_mate_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":142
- *     # Tim cac nuoc di chien thuat (chieu bi, an quan loi)
+  /* "core/model_inference.pyx":102
+ * cpdef tuple find_tactical_moves(object board, list legal_moves):
  *     cdef list mate_moves = []
  *     cdef dict winning_captures = {}             # <<<<<<<<<<<<<<
  *     cdef int see_val
  * 
 */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_winning_captures = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":145
+  /* "core/model_inference.pyx":105
  *     cdef int see_val
  * 
  *     for move in legal_moves:             # <<<<<<<<<<<<<<
@@ -7433,7 +6912,7 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
 */
   if (unlikely(__pyx_v_legal_moves == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 145, __pyx_L1_error)
+    __PYX_ERR(0, 105, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_legal_moves; __Pyx_INCREF(__pyx_t_1);
   __pyx_t_2 = 0;
@@ -7441,18 +6920,18 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_SIZE
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 145, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 105, __pyx_L1_error)
       #endif
       if (__pyx_t_2 >= __pyx_temp) break;
     }
     __pyx_t_3 = __Pyx_PyList_GetItemRefFast(__pyx_t_1, __pyx_t_2, __Pyx_ReferenceSharing_OwnStrongReference);
     ++__pyx_t_2;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":146
+    /* "core/model_inference.pyx":106
  * 
  *     for move in legal_moves:
  *         board.push(move)             # <<<<<<<<<<<<<<
@@ -7466,12 +6945,12 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_move};
       __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":147
+    /* "core/model_inference.pyx":107
  *     for move in legal_moves:
  *         board.push(move)
  *         if board.is_checkmate():             # <<<<<<<<<<<<<<
@@ -7485,23 +6964,23 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_checkmate, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 147, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 107, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_6) {
 
-      /* "core/model_inference.pyx":148
+      /* "core/model_inference.pyx":108
  *         board.push(move)
  *         if board.is_checkmate():
  *             mate_moves.append(move)             # <<<<<<<<<<<<<<
  *         board.pop()
  * 
 */
-      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_mate_moves, __pyx_v_move); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 148, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_mate_moves, __pyx_v_move); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 108, __pyx_L1_error)
 
-      /* "core/model_inference.pyx":147
+      /* "core/model_inference.pyx":107
  *     for move in legal_moves:
  *         board.push(move)
  *         if board.is_checkmate():             # <<<<<<<<<<<<<<
@@ -7510,18 +6989,18 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
 */
     }
 
-    /* "core/model_inference.pyx":149
+    /* "core/model_inference.pyx":109
  *         if board.is_checkmate():
  *             mate_moves.append(move)
  *         board.pop()             # <<<<<<<<<<<<<<
  * 
  *         if board.is_capture(move):
 */
-    __pyx_t_3 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 149, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":151
+    /* "core/model_inference.pyx":111
  *         board.pop()
  * 
  *         if board.is_capture(move):             # <<<<<<<<<<<<<<
@@ -7535,24 +7014,24 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_move};
       __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_capture, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
-    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 151, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(0, 111, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_6) {
 
-      /* "core/model_inference.pyx":152
+      /* "core/model_inference.pyx":112
  * 
  *         if board.is_capture(move):
  *             see_val = static_exchange_eval(board, move)             # <<<<<<<<<<<<<<
  *             if see_val > 0:
  *                 winning_captures[move] = see_val
 */
-      __pyx_t_8 = __pyx_f_4core_15model_inference_static_exchange_eval(__pyx_v_board, __pyx_v_move, 0); if (unlikely(__pyx_t_8 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 152, __pyx_L1_error)
+      __pyx_t_8 = __pyx_f_4core_15model_inference_static_exchange_eval(__pyx_v_board, __pyx_v_move, 0); if (unlikely(__pyx_t_8 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 112, __pyx_L1_error)
       __pyx_v_see_val = __pyx_t_8;
 
-      /* "core/model_inference.pyx":153
+      /* "core/model_inference.pyx":113
  *         if board.is_capture(move):
  *             see_val = static_exchange_eval(board, move)
  *             if see_val > 0:             # <<<<<<<<<<<<<<
@@ -7562,19 +7041,19 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
       __pyx_t_6 = (__pyx_v_see_val > 0);
       if (__pyx_t_6) {
 
-        /* "core/model_inference.pyx":154
+        /* "core/model_inference.pyx":114
  *             see_val = static_exchange_eval(board, move)
  *             if see_val > 0:
  *                 winning_captures[move] = see_val             # <<<<<<<<<<<<<<
  * 
  *     return mate_moves, winning_captures
 */
-        __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_see_val); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_see_val); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (unlikely((PyDict_SetItem(__pyx_v_winning_captures, __pyx_v_move, __pyx_t_3) < 0))) __PYX_ERR(0, 154, __pyx_L1_error)
+        if (unlikely((PyDict_SetItem(__pyx_v_winning_captures, __pyx_v_move, __pyx_t_3) < 0))) __PYX_ERR(0, 114, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-        /* "core/model_inference.pyx":153
+        /* "core/model_inference.pyx":113
  *         if board.is_capture(move):
  *             see_val = static_exchange_eval(board, move)
  *             if see_val > 0:             # <<<<<<<<<<<<<<
@@ -7583,7 +7062,7 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
 */
       }
 
-      /* "core/model_inference.pyx":151
+      /* "core/model_inference.pyx":111
  *         board.pop()
  * 
  *         if board.is_capture(move):             # <<<<<<<<<<<<<<
@@ -7592,7 +7071,7 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
 */
     }
 
-    /* "core/model_inference.pyx":145
+    /* "core/model_inference.pyx":105
  *     cdef int see_val
  * 
  *     for move in legal_moves:             # <<<<<<<<<<<<<<
@@ -7602,7 +7081,7 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":156
+  /* "core/model_inference.pyx":116
  *                 winning_captures[move] = see_val
  * 
  *     return mate_moves, winning_captures             # <<<<<<<<<<<<<<
@@ -7610,24 +7089,24 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
  * cdef float get_xgb_eval(object board, object model):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_mate_moves);
   __Pyx_GIVEREF(__pyx_v_mate_moves);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_mate_moves) != (0)) __PYX_ERR(0, 156, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_mate_moves) != (0)) __PYX_ERR(0, 116, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_winning_captures);
   __Pyx_GIVEREF(__pyx_v_winning_captures);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_winning_captures) != (0)) __PYX_ERR(0, 156, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_winning_captures) != (0)) __PYX_ERR(0, 116, __pyx_L1_error);
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":139
- *     return worst
+  /* "core/model_inference.pyx":100
+ *     return gains[0]
  * 
  * cpdef tuple find_tactical_moves(object board, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Tim cac nuoc di chien thuat (chieu bi, an quan loi)
  *     cdef list mate_moves = []
+ *     cdef dict winning_captures = {}
 */
 
   /* function exit code */
@@ -7647,15 +7126,15 @@ static PyObject *__pyx_f_4core_15model_inference_find_tactical_moves(PyObject *_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_7find_tactical_moves(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_5find_tactical_moves(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_7find_tactical_moves = {"find_tactical_moves", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_7find_tactical_moves, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_7find_tactical_moves(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_4core_15model_inference_5find_tactical_moves = {"find_tactical_moves", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_5find_tactical_moves, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_5find_tactical_moves(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7686,39 +7165,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_legal_moves,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 139, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 100, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 139, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 100, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 139, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "find_tactical_moves", 0) < (0)) __PYX_ERR(0, 139, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "find_tactical_moves", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("find_tactical_moves", 1, 2, 2, i); __PYX_ERR(0, 139, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("find_tactical_moves", 1, 2, 2, i); __PYX_ERR(0, 100, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 139, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 139, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 100, __pyx_L3_error)
     }
     __pyx_v_board = values[0];
     __pyx_v_legal_moves = ((PyObject*)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("find_tactical_moves", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 139, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("find_tactical_moves", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7729,8 +7208,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 139, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4core_15model_inference_6find_tactical_moves(__pyx_self, __pyx_v_board, __pyx_v_legal_moves);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_r = __pyx_pf_4core_15model_inference_4find_tactical_moves(__pyx_self, __pyx_v_board, __pyx_v_legal_moves);
 
   /* function exit code */
   goto __pyx_L0;
@@ -7749,7 +7228,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4core_15model_inference_6find_tactical_moves(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_legal_moves) {
+static PyObject *__pyx_pf_4core_15model_inference_4find_tactical_moves(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_legal_moves) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7758,7 +7237,7 @@ static PyObject *__pyx_pf_4core_15model_inference_6find_tactical_moves(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_tactical_moves", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4core_15model_inference_find_tactical_moves(__pyx_v_board, __pyx_v_legal_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4core_15model_inference_find_tactical_moves(__pyx_v_board, __pyx_v_legal_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7775,12 +7254,12 @@ static PyObject *__pyx_pf_4core_15model_inference_6find_tactical_moves(CYTHON_UN
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":158
+/* "core/model_inference.pyx":118
  *     return mate_moves, winning_captures
  * 
  * cdef float get_xgb_eval(object board, object model):             # <<<<<<<<<<<<<<
- *     # Tinh diem tu mo hinh XGBoost co dung cache
  *     global node_count
+ *     node_count += 1
 */
 
 static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_board, PyObject *__pyx_v_model) {
@@ -7803,8 +7282,8 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_xgb_eval", 0);
 
-  /* "core/model_inference.pyx":161
- *     # Tinh diem tu mo hinh XGBoost co dung cache
+  /* "core/model_inference.pyx":120
+ * cdef float get_xgb_eval(object board, object model):
  *     global node_count
  *     node_count += 1             # <<<<<<<<<<<<<<
  *     cdef str fen = board.fen()
@@ -7812,7 +7291,7 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
 */
   __pyx_v_4core_15model_inference_node_count = (__pyx_v_4core_15model_inference_node_count + 1);
 
-  /* "core/model_inference.pyx":162
+  /* "core/model_inference.pyx":121
  *     global node_count
  *     node_count += 1
  *     cdef str fen = board.fen()             # <<<<<<<<<<<<<<
@@ -7826,14 +7305,14 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_fen, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(0, 121, __pyx_L1_error)
   __pyx_v_fen = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":163
+  /* "core/model_inference.pyx":122
  *     node_count += 1
  *     cdef str fen = board.fen()
  *     if fen in eval_cache:             # <<<<<<<<<<<<<<
@@ -7842,12 +7321,12 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
 */
   if (unlikely(__pyx_v_4core_15model_inference_eval_cache == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 163, __pyx_L1_error)
+    __PYX_ERR(0, 122, __pyx_L1_error)
   }
-  __pyx_t_4 = (__Pyx_PyDict_ContainsTF(__pyx_v_fen, __pyx_v_4core_15model_inference_eval_cache, Py_EQ)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyDict_ContainsTF(__pyx_v_fen, __pyx_v_4core_15model_inference_eval_cache, Py_EQ)); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 122, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "core/model_inference.pyx":164
+    /* "core/model_inference.pyx":123
  *     cdef str fen = board.fen()
  *     if fen in eval_cache:
  *         return eval_cache[fen]             # <<<<<<<<<<<<<<
@@ -7856,16 +7335,16 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
 */
     if (unlikely(__pyx_v_4core_15model_inference_eval_cache == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 164, __pyx_L1_error)
+      __PYX_ERR(0, 123, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_4core_15model_inference_eval_cache, __pyx_v_fen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItem(__pyx_v_4core_15model_inference_eval_cache, __pyx_v_fen); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 164, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 123, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_r = __pyx_t_5;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":163
+    /* "core/model_inference.pyx":122
  *     node_count += 1
  *     cdef str fen = board.fen()
  *     if fen in eval_cache:             # <<<<<<<<<<<<<<
@@ -7874,7 +7353,7 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
 */
   }
 
-  /* "core/model_inference.pyx":166
+  /* "core/model_inference.pyx":125
  *         return eval_cache[fen]
  * 
  *     features = extract_features(board)             # <<<<<<<<<<<<<<
@@ -7882,7 +7361,7 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
  *     cdef float score = model.predict(np.array([features]))[0]
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_extract_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_extract_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_3 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -7901,13 +7380,13 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_features = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":167
+  /* "core/model_inference.pyx":126
  * 
  *     features = extract_features(board)
  *     features = np.append(features, 1)             # <<<<<<<<<<<<<<
@@ -7915,9 +7394,9 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
  *     eval_cache[fen] = score
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_append); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_append); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_3 = 1;
@@ -7937,13 +7416,13 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_3, (3-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 126, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF_SET(__pyx_v_features, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":168
+  /* "core/model_inference.pyx":127
  *     features = extract_features(board)
  *     features = np.append(features, 1)
  *     cdef float score = model.predict(np.array([features]))[0]             # <<<<<<<<<<<<<<
@@ -7953,16 +7432,16 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
   __pyx_t_7 = __pyx_v_model;
   __Pyx_INCREF(__pyx_t_7);
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyList_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_8 = PyList_New(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_v_features);
   __Pyx_GIVEREF(__pyx_v_features);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_8, 0, __pyx_v_features) != (0)) __PYX_ERR(0, 168, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_8, 0, __pyx_v_features) != (0)) __PYX_ERR(0, 127, __pyx_L1_error);
   __pyx_t_3 = 1;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_9))) {
@@ -7981,7 +7460,7 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
   }
   __pyx_t_3 = 0;
@@ -7990,33 +7469,33 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_predict, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyFloat_AsFloat(__pyx_t_6); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyFloat_AsFloat(__pyx_t_6); if (unlikely((__pyx_t_5 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_score = __pyx_t_5;
 
-  /* "core/model_inference.pyx":169
+  /* "core/model_inference.pyx":128
  *     features = np.append(features, 1)
  *     cdef float score = model.predict(np.array([features]))[0]
  *     eval_cache[fen] = score             # <<<<<<<<<<<<<<
  *     return score
  * 
 */
-  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_score); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_t_6 = PyFloat_FromDouble(__pyx_v_score); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   if (unlikely(__pyx_v_4core_15model_inference_eval_cache == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 169, __pyx_L1_error)
+    __PYX_ERR(0, 128, __pyx_L1_error)
   }
-  if (unlikely((PyDict_SetItem(__pyx_v_4core_15model_inference_eval_cache, __pyx_v_fen, __pyx_t_6) < 0))) __PYX_ERR(0, 169, __pyx_L1_error)
+  if (unlikely((PyDict_SetItem(__pyx_v_4core_15model_inference_eval_cache, __pyx_v_fen, __pyx_t_6) < 0))) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "core/model_inference.pyx":170
+  /* "core/model_inference.pyx":129
  *     cdef float score = model.predict(np.array([features]))[0]
  *     eval_cache[fen] = score
  *     return score             # <<<<<<<<<<<<<<
@@ -8026,12 +7505,12 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
   __pyx_r = __pyx_v_score;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":158
+  /* "core/model_inference.pyx":118
  *     return mate_moves, winning_captures
  * 
  * cdef float get_xgb_eval(object board, object model):             # <<<<<<<<<<<<<<
- *     # Tinh diem tu mo hinh XGBoost co dung cache
  *     global node_count
+ *     node_count += 1
 */
 
   /* function exit code */
@@ -8051,137 +7530,76 @@ static float __pyx_f_4core_15model_inference_get_xgb_eval(PyObject *__pyx_v_boar
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":172
+/* "core/model_inference.pyx":131
  *     return score
  * 
  * cdef float leaf_eval(object board, object model):             # <<<<<<<<<<<<<<
- *     # Danh gia node la
- *     cdef float score = get_xgb_eval(board, model)
+ *     # Diem tong hop chuan muc: Vat chat tinh + Diem vi tri XGBoost
+ *     cdef float positional_score = get_xgb_eval(board, model)
 */
 
 static float __pyx_f_4core_15model_inference_leaf_eval(PyObject *__pyx_v_board, PyObject *__pyx_v_model) {
-  float __pyx_v_score;
-  int __pyx_v_white_hang;
-  int __pyx_v_black_hang;
-  float __pyx_v_penalty;
+  float __pyx_v_positional_score;
+  int __pyx_v_material_score;
   float __pyx_r;
-  __Pyx_RefNannyDeclarations
   float __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
-  int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("leaf_eval", 0);
 
-  /* "core/model_inference.pyx":174
+  /* "core/model_inference.pyx":133
  * cdef float leaf_eval(object board, object model):
- *     # Danh gia node la
- *     cdef float score = get_xgb_eval(board, model)             # <<<<<<<<<<<<<<
- *     cdef int white_hang = find_worst_hang(board, chess.WHITE)
- *     cdef int black_hang = find_worst_hang(board, chess.BLACK)
+ *     # Diem tong hop chuan muc: Vat chat tinh + Diem vi tri XGBoost
+ *     cdef float positional_score = get_xgb_eval(board, model)             # <<<<<<<<<<<<<<
+ *     cdef int material_score = material_balance(board)
+ *     return material_score + positional_score
 */
-  __pyx_t_1 = __pyx_f_4core_15model_inference_get_xgb_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_1 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 174, __pyx_L1_error)
-  __pyx_v_score = __pyx_t_1;
+  __pyx_t_1 = __pyx_f_4core_15model_inference_get_xgb_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_1 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_v_positional_score = __pyx_t_1;
 
-  /* "core/model_inference.pyx":175
- *     # Danh gia node la
- *     cdef float score = get_xgb_eval(board, model)
- *     cdef int white_hang = find_worst_hang(board, chess.WHITE)             # <<<<<<<<<<<<<<
- *     cdef int black_hang = find_worst_hang(board, chess.BLACK)
- *     cdef float penalty = HANG_PENALTY_WEIGHT * (black_hang - white_hang) / HANG_PENALTY_SCALE
-*/
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 175, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __pyx_f_4core_15model_inference_find_worst_hang(__pyx_v_board, __pyx_t_4, 0); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 175, __pyx_L1_error)
-  __pyx_v_white_hang = __pyx_t_5;
-
-  /* "core/model_inference.pyx":176
- *     cdef float score = get_xgb_eval(board, model)
- *     cdef int white_hang = find_worst_hang(board, chess.WHITE)
- *     cdef int black_hang = find_worst_hang(board, chess.BLACK)             # <<<<<<<<<<<<<<
- *     cdef float penalty = HANG_PENALTY_WEIGHT * (black_hang - white_hang) / HANG_PENALTY_SCALE
- *     return score + penalty
-*/
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 176, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_5 = __pyx_f_4core_15model_inference_find_worst_hang(__pyx_v_board, __pyx_t_4, 0); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 176, __pyx_L1_error)
-  __pyx_v_black_hang = __pyx_t_5;
-
-  /* "core/model_inference.pyx":177
- *     cdef int white_hang = find_worst_hang(board, chess.WHITE)
- *     cdef int black_hang = find_worst_hang(board, chess.BLACK)
- *     cdef float penalty = HANG_PENALTY_WEIGHT * (black_hang - white_hang) / HANG_PENALTY_SCALE             # <<<<<<<<<<<<<<
- *     return score + penalty
+  /* "core/model_inference.pyx":134
+ *     # Diem tong hop chuan muc: Vat chat tinh + Diem vi tri XGBoost
+ *     cdef float positional_score = get_xgb_eval(board, model)
+ *     cdef int material_score = material_balance(board)             # <<<<<<<<<<<<<<
+ *     return material_score + positional_score
  * 
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_HANG_PENALTY_WEIGHT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyLong_From_int((__pyx_v_black_hang - __pyx_v_white_hang)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = PyNumber_Multiply(__pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 177, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_HANG_PENALTY_SCALE); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyNumber_Divide(__pyx_t_6, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_v_penalty = __pyx_t_1;
+  __pyx_t_2 = __pyx_f_4core_15model_inference_material_balance(__pyx_v_board, 0); if (unlikely(__pyx_t_2 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_v_material_score = __pyx_t_2;
 
-  /* "core/model_inference.pyx":178
- *     cdef int black_hang = find_worst_hang(board, chess.BLACK)
- *     cdef float penalty = HANG_PENALTY_WEIGHT * (black_hang - white_hang) / HANG_PENALTY_SCALE
- *     return score + penalty             # <<<<<<<<<<<<<<
+  /* "core/model_inference.pyx":135
+ *     cdef float positional_score = get_xgb_eval(board, model)
+ *     cdef int material_score = material_balance(board)
+ *     return material_score + positional_score             # <<<<<<<<<<<<<<
  * 
  * cdef float quiescence_search(object board, object model, float alpha, float beta, bint is_maximizing):
 */
-  __pyx_r = (__pyx_v_score + __pyx_v_penalty);
+  __pyx_r = (__pyx_v_material_score + __pyx_v_positional_score);
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":172
+  /* "core/model_inference.pyx":131
  *     return score
  * 
  * cdef float leaf_eval(object board, object model):             # <<<<<<<<<<<<<<
- *     # Danh gia node la
- *     cdef float score = get_xgb_eval(board, model)
+ *     # Diem tong hop chuan muc: Vat chat tinh + Diem vi tri XGBoost
+ *     cdef float positional_score = get_xgb_eval(board, model)
 */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("core.model_inference.leaf_eval", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
-  __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":180
- *     return score + penalty
+/* "core/model_inference.pyx":137
+ *     return material_score + positional_score
  * 
  * cdef float quiescence_search(object board, object model, float alpha, float beta, bint is_maximizing):             # <<<<<<<<<<<<<<
- *     # QS trien khai tuong thich Minimax
  *     global node_count
+ *     if node_count >= MAX_NODES:
 */
 
 static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v_board, PyObject *__pyx_v_model, float __pyx_v_alpha, float __pyx_v_beta, int __pyx_v_is_maximizing) {
@@ -8207,37 +7625,37 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("quiescence_search", 0);
 
-  /* "core/model_inference.pyx":183
- *     # QS trien khai tuong thich Minimax
+  /* "core/model_inference.pyx":139
+ * cdef float quiescence_search(object board, object model, float alpha, float beta, bint is_maximizing):
  *     global node_count
  *     if node_count >= MAX_NODES:             # <<<<<<<<<<<<<<
  *         return leaf_eval(board, model)
  * 
 */
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_GE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_GE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_4) {
 
-    /* "core/model_inference.pyx":184
+    /* "core/model_inference.pyx":140
  *     global node_count
  *     if node_count >= MAX_NODES:
  *         return leaf_eval(board, model)             # <<<<<<<<<<<<<<
  * 
  *     cdef float stand_pat = leaf_eval(board, model)
 */
-    __pyx_t_5 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 184, __pyx_L1_error)
+    __pyx_t_5 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 140, __pyx_L1_error)
     __pyx_r = __pyx_t_5;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":183
- *     # QS trien khai tuong thich Minimax
+    /* "core/model_inference.pyx":139
+ * cdef float quiescence_search(object board, object model, float alpha, float beta, bint is_maximizing):
  *     global node_count
  *     if node_count >= MAX_NODES:             # <<<<<<<<<<<<<<
  *         return leaf_eval(board, model)
@@ -8245,17 +7663,17 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
 */
   }
 
-  /* "core/model_inference.pyx":186
+  /* "core/model_inference.pyx":142
  *         return leaf_eval(board, model)
  * 
  *     cdef float stand_pat = leaf_eval(board, model)             # <<<<<<<<<<<<<<
  *     cdef list captures = [m for m in board.legal_moves if board.is_capture(m)]
  *     cdef list ordered_captures = order_moves(board, captures)
 */
-  __pyx_t_5 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_5 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 142, __pyx_L1_error)
   __pyx_v_stand_pat = __pyx_t_5;
 
-  /* "core/model_inference.pyx":187
+  /* "core/model_inference.pyx":143
  * 
  *     cdef float stand_pat = leaf_eval(board, model)
  *     cdef list captures = [m for m in board.legal_moves if board.is_capture(m)]             # <<<<<<<<<<<<<<
@@ -8263,18 +7681,18 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
  *     cdef float score
 */
   { /* enter inner scope */
-    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 187, __pyx_L6_error)
+    __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 143, __pyx_L6_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L6_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L6_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
       __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1);
       __pyx_t_6 = 0;
       __pyx_t_7 = NULL;
     } else {
-      __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 187, __pyx_L6_error)
+      __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L6_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 187, __pyx_L6_error)
+      __pyx_t_7 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 143, __pyx_L6_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     for (;;) {
@@ -8283,7 +7701,7 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
             #if !CYTHON_ASSUME_SAFE_SIZE
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 187, __pyx_L6_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 143, __pyx_L6_error)
             #endif
             if (__pyx_t_6 >= __pyx_temp) break;
           }
@@ -8293,7 +7711,7 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
             #if !CYTHON_ASSUME_SAFE_SIZE
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 187, __pyx_L6_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 143, __pyx_L6_error)
             #endif
             if (__pyx_t_6 >= __pyx_temp) break;
           }
@@ -8304,13 +7722,13 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
           #endif
           ++__pyx_t_6;
         }
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L6_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L6_error)
       } else {
         __pyx_t_2 = __pyx_t_7(__pyx_t_1);
         if (unlikely(!__pyx_t_2)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
-            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 187, __pyx_L6_error)
+            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 143, __pyx_L6_error)
             PyErr_Clear();
           }
           break;
@@ -8326,13 +7744,13 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
         PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_7genexpr__pyx_v_m};
         __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_capture, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L6_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L6_error)
         __Pyx_GOTREF(__pyx_t_2);
       }
-      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 187, __pyx_L6_error)
+      __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_4 < 0))) __PYX_ERR(0, 143, __pyx_L6_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_4) {
-        if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_7genexpr__pyx_v_m))) __PYX_ERR(0, 187, __pyx_L6_error)
+        if (unlikely(__Pyx_ListComp_Append(__pyx_t_3, (PyObject*)__pyx_7genexpr__pyx_v_m))) __PYX_ERR(0, 143, __pyx_L6_error)
       }
     }
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -8346,86 +7764,54 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
   __pyx_v_captures = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":188
+  /* "core/model_inference.pyx":144
  *     cdef float stand_pat = leaf_eval(board, model)
  *     cdef list captures = [m for m in board.legal_moves if board.is_capture(m)]
  *     cdef list ordered_captures = order_moves(board, captures)             # <<<<<<<<<<<<<<
  *     cdef float score
  * 
 */
-  __pyx_t_3 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, __pyx_v_captures); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, __pyx_v_captures); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_ordered_captures = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":191
+  /* "core/model_inference.pyx":147
  *     cdef float score
  * 
  *     if is_maximizing:             # <<<<<<<<<<<<<<
- *         if stand_pat >= beta:
- *             return beta
+ *         if stand_pat >= beta: return beta
+ *         if stand_pat > alpha: alpha = stand_pat
 */
   if (__pyx_v_is_maximizing) {
 
-    /* "core/model_inference.pyx":192
+    /* "core/model_inference.pyx":148
  * 
  *     if is_maximizing:
- *         if stand_pat >= beta:             # <<<<<<<<<<<<<<
- *             return beta
- *         if stand_pat > alpha:
+ *         if stand_pat >= beta: return beta             # <<<<<<<<<<<<<<
+ *         if stand_pat > alpha: alpha = stand_pat
+ * 
 */
     __pyx_t_4 = (__pyx_v_stand_pat >= __pyx_v_beta);
     if (__pyx_t_4) {
-
-      /* "core/model_inference.pyx":193
- *     if is_maximizing:
- *         if stand_pat >= beta:
- *             return beta             # <<<<<<<<<<<<<<
- *         if stand_pat > alpha:
- *             alpha = stand_pat
-*/
       __pyx_r = __pyx_v_beta;
       goto __pyx_L0;
-
-      /* "core/model_inference.pyx":192
- * 
- *     if is_maximizing:
- *         if stand_pat >= beta:             # <<<<<<<<<<<<<<
- *             return beta
- *         if stand_pat > alpha:
-*/
     }
 
-    /* "core/model_inference.pyx":194
- *         if stand_pat >= beta:
- *             return beta
- *         if stand_pat > alpha:             # <<<<<<<<<<<<<<
- *             alpha = stand_pat
- * 
-*/
-    __pyx_t_4 = (__pyx_v_stand_pat > __pyx_v_alpha);
-    if (__pyx_t_4) {
-
-      /* "core/model_inference.pyx":195
- *             return beta
- *         if stand_pat > alpha:
- *             alpha = stand_pat             # <<<<<<<<<<<<<<
+    /* "core/model_inference.pyx":149
+ *     if is_maximizing:
+ *         if stand_pat >= beta: return beta
+ *         if stand_pat > alpha: alpha = stand_pat             # <<<<<<<<<<<<<<
  * 
  *         for move in ordered_captures:
 */
+    __pyx_t_4 = (__pyx_v_stand_pat > __pyx_v_alpha);
+    if (__pyx_t_4) {
       __pyx_v_alpha = __pyx_v_stand_pat;
-
-      /* "core/model_inference.pyx":194
- *         if stand_pat >= beta:
- *             return beta
- *         if stand_pat > alpha:             # <<<<<<<<<<<<<<
- *             alpha = stand_pat
- * 
-*/
     }
 
-    /* "core/model_inference.pyx":197
- *             alpha = stand_pat
+    /* "core/model_inference.pyx":151
+ *         if stand_pat > alpha: alpha = stand_pat
  * 
  *         for move in ordered_captures:             # <<<<<<<<<<<<<<
  *             board.push(move)
@@ -8433,7 +7819,7 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
 */
     if (unlikely(__pyx_v_ordered_captures == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 197, __pyx_L1_error)
+      __PYX_ERR(0, 151, __pyx_L1_error)
     }
     __pyx_t_3 = __pyx_v_ordered_captures; __Pyx_INCREF(__pyx_t_3);
     __pyx_t_6 = 0;
@@ -8441,18 +7827,18 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 197, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 151, __pyx_L1_error)
         #endif
         if (__pyx_t_6 >= __pyx_temp) break;
       }
       __pyx_t_1 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_6, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_6;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":198
+      /* "core/model_inference.pyx":152
  * 
  *         for move in ordered_captures:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -8466,90 +7852,58 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
         PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_move};
         __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":199
+      /* "core/model_inference.pyx":153
  *         for move in ordered_captures:
  *             board.push(move)
  *             score = quiescence_search(board, model, alpha, beta, False)             # <<<<<<<<<<<<<<
  *             board.pop()
- *             if score > alpha:
+ *             if score > alpha: alpha = score
 */
-      __pyx_t_5 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, 0); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 199, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, 0); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 153, __pyx_L1_error)
       __pyx_v_score = __pyx_t_5;
 
-      /* "core/model_inference.pyx":200
+      /* "core/model_inference.pyx":154
  *             board.push(move)
  *             score = quiescence_search(board, model, alpha, beta, False)
  *             board.pop()             # <<<<<<<<<<<<<<
- *             if score > alpha:
- *                 alpha = score
+ *             if score > alpha: alpha = score
+ *             if alpha >= beta: break
 */
-      __pyx_t_1 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 154, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":201
+      /* "core/model_inference.pyx":155
  *             score = quiescence_search(board, model, alpha, beta, False)
  *             board.pop()
- *             if score > alpha:             # <<<<<<<<<<<<<<
- *                 alpha = score
- *             if alpha >= beta:
+ *             if score > alpha: alpha = score             # <<<<<<<<<<<<<<
+ *             if alpha >= beta: break
+ *         return alpha
 */
       __pyx_t_4 = (__pyx_v_score > __pyx_v_alpha);
       if (__pyx_t_4) {
-
-        /* "core/model_inference.pyx":202
- *             board.pop()
- *             if score > alpha:
- *                 alpha = score             # <<<<<<<<<<<<<<
- *             if alpha >= beta:
- *                 break
-*/
         __pyx_v_alpha = __pyx_v_score;
-
-        /* "core/model_inference.pyx":201
- *             score = quiescence_search(board, model, alpha, beta, False)
- *             board.pop()
- *             if score > alpha:             # <<<<<<<<<<<<<<
- *                 alpha = score
- *             if alpha >= beta:
-*/
       }
 
-      /* "core/model_inference.pyx":203
- *             if score > alpha:
- *                 alpha = score
- *             if alpha >= beta:             # <<<<<<<<<<<<<<
- *                 break
- *         return alpha
-*/
-      __pyx_t_4 = (__pyx_v_alpha >= __pyx_v_beta);
-      if (__pyx_t_4) {
-
-        /* "core/model_inference.pyx":204
- *                 alpha = score
- *             if alpha >= beta:
- *                 break             # <<<<<<<<<<<<<<
+      /* "core/model_inference.pyx":156
+ *             board.pop()
+ *             if score > alpha: alpha = score
+ *             if alpha >= beta: break             # <<<<<<<<<<<<<<
  *         return alpha
  *     else:
 */
+      __pyx_t_4 = (__pyx_v_alpha >= __pyx_v_beta);
+      if (__pyx_t_4) {
         goto __pyx_L16_break;
-
-        /* "core/model_inference.pyx":203
- *             if score > alpha:
- *                 alpha = score
- *             if alpha >= beta:             # <<<<<<<<<<<<<<
- *                 break
- *         return alpha
-*/
       }
 
-      /* "core/model_inference.pyx":197
- *             alpha = stand_pat
+      /* "core/model_inference.pyx":151
+ *         if stand_pat > alpha: alpha = stand_pat
  * 
  *         for move in ordered_captures:             # <<<<<<<<<<<<<<
  *             board.push(move)
@@ -8563,85 +7917,53 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
     goto __pyx_L19_for_end;
     __pyx_L19_for_end:;
 
-    /* "core/model_inference.pyx":205
- *             if alpha >= beta:
- *                 break
+    /* "core/model_inference.pyx":157
+ *             if score > alpha: alpha = score
+ *             if alpha >= beta: break
  *         return alpha             # <<<<<<<<<<<<<<
  *     else:
- *         if stand_pat <= alpha:
+ *         if stand_pat <= alpha: return alpha
 */
     __pyx_r = __pyx_v_alpha;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":191
+    /* "core/model_inference.pyx":147
  *     cdef float score
  * 
  *     if is_maximizing:             # <<<<<<<<<<<<<<
- *         if stand_pat >= beta:
- *             return beta
+ *         if stand_pat >= beta: return beta
+ *         if stand_pat > alpha: alpha = stand_pat
 */
   }
 
-  /* "core/model_inference.pyx":207
+  /* "core/model_inference.pyx":159
  *         return alpha
  *     else:
- *         if stand_pat <= alpha:             # <<<<<<<<<<<<<<
- *             return alpha
- *         if stand_pat < beta:
+ *         if stand_pat <= alpha: return alpha             # <<<<<<<<<<<<<<
+ *         if stand_pat < beta: beta = stand_pat
+ * 
 */
   /*else*/ {
     __pyx_t_4 = (__pyx_v_stand_pat <= __pyx_v_alpha);
     if (__pyx_t_4) {
-
-      /* "core/model_inference.pyx":208
- *     else:
- *         if stand_pat <= alpha:
- *             return alpha             # <<<<<<<<<<<<<<
- *         if stand_pat < beta:
- *             beta = stand_pat
-*/
       __pyx_r = __pyx_v_alpha;
       goto __pyx_L0;
-
-      /* "core/model_inference.pyx":207
- *         return alpha
- *     else:
- *         if stand_pat <= alpha:             # <<<<<<<<<<<<<<
- *             return alpha
- *         if stand_pat < beta:
-*/
     }
 
-    /* "core/model_inference.pyx":209
- *         if stand_pat <= alpha:
- *             return alpha
- *         if stand_pat < beta:             # <<<<<<<<<<<<<<
- *             beta = stand_pat
- * 
-*/
-    __pyx_t_4 = (__pyx_v_stand_pat < __pyx_v_beta);
-    if (__pyx_t_4) {
-
-      /* "core/model_inference.pyx":210
- *             return alpha
- *         if stand_pat < beta:
- *             beta = stand_pat             # <<<<<<<<<<<<<<
+    /* "core/model_inference.pyx":160
+ *     else:
+ *         if stand_pat <= alpha: return alpha
+ *         if stand_pat < beta: beta = stand_pat             # <<<<<<<<<<<<<<
  * 
  *         for move in ordered_captures:
 */
+    __pyx_t_4 = (__pyx_v_stand_pat < __pyx_v_beta);
+    if (__pyx_t_4) {
       __pyx_v_beta = __pyx_v_stand_pat;
-
-      /* "core/model_inference.pyx":209
- *         if stand_pat <= alpha:
- *             return alpha
- *         if stand_pat < beta:             # <<<<<<<<<<<<<<
- *             beta = stand_pat
- * 
-*/
     }
 
-    /* "core/model_inference.pyx":212
- *             beta = stand_pat
+    /* "core/model_inference.pyx":162
+ *         if stand_pat < beta: beta = stand_pat
  * 
  *         for move in ordered_captures:             # <<<<<<<<<<<<<<
  *             board.push(move)
@@ -8649,7 +7971,7 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
 */
     if (unlikely(__pyx_v_ordered_captures == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 212, __pyx_L1_error)
+      __PYX_ERR(0, 162, __pyx_L1_error)
     }
     __pyx_t_3 = __pyx_v_ordered_captures; __Pyx_INCREF(__pyx_t_3);
     __pyx_t_6 = 0;
@@ -8657,18 +7979,18 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 212, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 162, __pyx_L1_error)
         #endif
         if (__pyx_t_6 >= __pyx_temp) break;
       }
       __pyx_t_1 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_6, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_6;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":213
+      /* "core/model_inference.pyx":163
  * 
  *         for move in ordered_captures:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -8682,90 +8004,58 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
         PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_move};
         __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":214
+      /* "core/model_inference.pyx":164
  *         for move in ordered_captures:
  *             board.push(move)
  *             score = quiescence_search(board, model, alpha, beta, True)             # <<<<<<<<<<<<<<
  *             board.pop()
- *             if score < beta:
+ *             if score < beta: beta = score
 */
-      __pyx_t_5 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, 1); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 214, __pyx_L1_error)
+      __pyx_t_5 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, 1); if (unlikely(__pyx_t_5 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 164, __pyx_L1_error)
       __pyx_v_score = __pyx_t_5;
 
-      /* "core/model_inference.pyx":215
+      /* "core/model_inference.pyx":165
  *             board.push(move)
  *             score = quiescence_search(board, model, alpha, beta, True)
  *             board.pop()             # <<<<<<<<<<<<<<
- *             if score < beta:
- *                 beta = score
+ *             if score < beta: beta = score
+ *             if alpha >= beta: break
 */
-      __pyx_t_1 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":216
+      /* "core/model_inference.pyx":166
  *             score = quiescence_search(board, model, alpha, beta, True)
  *             board.pop()
- *             if score < beta:             # <<<<<<<<<<<<<<
- *                 beta = score
- *             if alpha >= beta:
+ *             if score < beta: beta = score             # <<<<<<<<<<<<<<
+ *             if alpha >= beta: break
+ *         return beta
 */
       __pyx_t_4 = (__pyx_v_score < __pyx_v_beta);
       if (__pyx_t_4) {
-
-        /* "core/model_inference.pyx":217
- *             board.pop()
- *             if score < beta:
- *                 beta = score             # <<<<<<<<<<<<<<
- *             if alpha >= beta:
- *                 break
-*/
         __pyx_v_beta = __pyx_v_score;
-
-        /* "core/model_inference.pyx":216
- *             score = quiescence_search(board, model, alpha, beta, True)
- *             board.pop()
- *             if score < beta:             # <<<<<<<<<<<<<<
- *                 beta = score
- *             if alpha >= beta:
-*/
       }
 
-      /* "core/model_inference.pyx":218
- *             if score < beta:
- *                 beta = score
- *             if alpha >= beta:             # <<<<<<<<<<<<<<
- *                 break
- *         return beta
-*/
-      __pyx_t_4 = (__pyx_v_alpha >= __pyx_v_beta);
-      if (__pyx_t_4) {
-
-        /* "core/model_inference.pyx":219
- *                 beta = score
- *             if alpha >= beta:
- *                 break             # <<<<<<<<<<<<<<
+      /* "core/model_inference.pyx":167
+ *             board.pop()
+ *             if score < beta: beta = score
+ *             if alpha >= beta: break             # <<<<<<<<<<<<<<
  *         return beta
  * 
 */
+      __pyx_t_4 = (__pyx_v_alpha >= __pyx_v_beta);
+      if (__pyx_t_4) {
         goto __pyx_L23_break;
-
-        /* "core/model_inference.pyx":218
- *             if score < beta:
- *                 beta = score
- *             if alpha >= beta:             # <<<<<<<<<<<<<<
- *                 break
- *         return beta
-*/
       }
 
-      /* "core/model_inference.pyx":212
- *             beta = stand_pat
+      /* "core/model_inference.pyx":162
+ *         if stand_pat < beta: beta = stand_pat
  * 
  *         for move in ordered_captures:             # <<<<<<<<<<<<<<
  *             board.push(move)
@@ -8779,9 +8069,9 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
     goto __pyx_L26_for_end;
     __pyx_L26_for_end:;
 
-    /* "core/model_inference.pyx":220
- *             if alpha >= beta:
- *                 break
+    /* "core/model_inference.pyx":168
+ *             if score < beta: beta = score
+ *             if alpha >= beta: break
  *         return beta             # <<<<<<<<<<<<<<
  * 
  * cdef float alpha_beta_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, int max_budget):
@@ -8790,12 +8080,12 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
     goto __pyx_L0;
   }
 
-  /* "core/model_inference.pyx":180
- *     return score + penalty
+  /* "core/model_inference.pyx":137
+ *     return material_score + positional_score
  * 
  * cdef float quiescence_search(object board, object model, float alpha, float beta, bint is_maximizing):             # <<<<<<<<<<<<<<
- *     # QS trien khai tuong thich Minimax
  *     global node_count
+ *     if node_count >= MAX_NODES:
 */
 
   /* function exit code */
@@ -8815,12 +8105,12 @@ static float __pyx_f_4core_15model_inference_quiescence_search(PyObject *__pyx_v
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":222
+/* "core/model_inference.pyx":170
  *         return beta
  * 
  * cdef float alpha_beta_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, int max_budget):             # <<<<<<<<<<<<<<
- *     # Thuat toan minimax cat tia alpha-beta
  *     global node_count
+ *     if board.is_game_over() or node_count >= max_budget:
 */
 
 static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v_board, PyObject *__pyx_v_model, int __pyx_v_depth, float __pyx_v_alpha, float __pyx_v_beta, int __pyx_v_is_maximizing, int __pyx_v_max_budget) {
@@ -8832,10 +8122,10 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
   float __pyx_r;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  int __pyx_t_2;
+  PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  size_t __pyx_t_5;
+  size_t __pyx_t_4;
+  int __pyx_t_5;
   float __pyx_t_6;
   double __pyx_t_7;
   Py_ssize_t __pyx_t_8;
@@ -8845,80 +8135,104 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("alpha_beta_search", 0);
 
-  /* "core/model_inference.pyx":225
- *     # Thuat toan minimax cat tia alpha-beta
+  /* "core/model_inference.pyx":172
+ * cdef float alpha_beta_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, int max_budget):
  *     global node_count
- *     if depth == 0 or board.is_game_over() or node_count >= max_budget:             # <<<<<<<<<<<<<<
+ *     if board.is_game_over() or node_count >= max_budget:             # <<<<<<<<<<<<<<
  *         return leaf_eval(board, model)
  * 
 */
-  __pyx_t_2 = (__pyx_v_depth == 0);
-  if (!__pyx_t_2) {
-  } else {
-    __pyx_t_1 = __pyx_t_2;
-    goto __pyx_L4_bool_binop_done;
-  }
-  __pyx_t_4 = __pyx_v_board;
-  __Pyx_INCREF(__pyx_t_4);
-  __pyx_t_5 = 0;
+  __pyx_t_3 = __pyx_v_board;
+  __Pyx_INCREF(__pyx_t_3);
+  __pyx_t_4 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
-    __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_game_over, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
+    __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_game_over, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 172, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
   }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 225, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!__pyx_t_2) {
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 172, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (!__pyx_t_5) {
   } else {
-    __pyx_t_1 = __pyx_t_2;
+    __pyx_t_1 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = (__pyx_v_4core_15model_inference_node_count >= __pyx_v_max_budget);
-  __pyx_t_1 = __pyx_t_2;
+  __pyx_t_5 = (__pyx_v_4core_15model_inference_node_count >= __pyx_v_max_budget);
+  __pyx_t_1 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "core/model_inference.pyx":226
+    /* "core/model_inference.pyx":173
  *     global node_count
- *     if depth == 0 or board.is_game_over() or node_count >= max_budget:
+ *     if board.is_game_over() or node_count >= max_budget:
  *         return leaf_eval(board, model)             # <<<<<<<<<<<<<<
  * 
- *     cdef list ordered_moves = order_moves(board, list(board.legal_moves))
+ *     # IM CHT: Tn cuc cng gi QS thay v dng  node l tnh
 */
-    __pyx_t_6 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 226, __pyx_L1_error)
+    __pyx_t_6 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L1_error)
     __pyx_r = __pyx_t_6;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":225
- *     # Thuat toan minimax cat tia alpha-beta
+    /* "core/model_inference.pyx":172
+ * cdef float alpha_beta_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, int max_budget):
  *     global node_count
- *     if depth == 0 or board.is_game_over() or node_count >= max_budget:             # <<<<<<<<<<<<<<
+ *     if board.is_game_over() or node_count >= max_budget:             # <<<<<<<<<<<<<<
  *         return leaf_eval(board, model)
  * 
 */
   }
 
-  /* "core/model_inference.pyx":228
- *         return leaf_eval(board, model)
+  /* "core/model_inference.pyx":176
+ * 
+ *     # IM CHT: Tn cuc cng gi QS thay v dng  node l tnh
+ *     if depth == 0:             # <<<<<<<<<<<<<<
+ *         return quiescence_search(board, model, alpha, beta, is_maximizing)
+ * 
+*/
+  __pyx_t_1 = (__pyx_v_depth == 0);
+  if (__pyx_t_1) {
+
+    /* "core/model_inference.pyx":177
+ *     # IM CHT: Tn cuc cng gi QS thay v dng  node l tnh
+ *     if depth == 0:
+ *         return quiescence_search(board, model, alpha, beta, is_maximizing)             # <<<<<<<<<<<<<<
+ * 
+ *     cdef list ordered_moves = order_moves(board, list(board.legal_moves))
+*/
+    __pyx_t_6 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, __pyx_v_is_maximizing); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 177, __pyx_L1_error)
+    __pyx_r = __pyx_t_6;
+    goto __pyx_L0;
+
+    /* "core/model_inference.pyx":176
+ * 
+ *     # IM CHT: Tn cuc cng gi QS thay v dng  node l tnh
+ *     if depth == 0:             # <<<<<<<<<<<<<<
+ *         return quiescence_search(board, model, alpha, beta, is_maximizing)
+ * 
+*/
+  }
+
+  /* "core/model_inference.pyx":179
+ *         return quiescence_search(board, model, alpha, beta, is_maximizing)
  * 
  *     cdef list ordered_moves = order_moves(board, list(board.legal_moves))             # <<<<<<<<<<<<<<
  *     cdef float max_eval, min_eval, eval_score
  * 
 */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PySequence_ListKeepNew(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PySequence_ListKeepNew(__pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, ((PyObject*)__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, ((PyObject*)__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 228, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_v_ordered_moves = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
+  __pyx_v_ordered_moves = ((PyObject*)__pyx_t_2);
+  __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":231
+  /* "core/model_inference.pyx":182
  *     cdef float max_eval, min_eval, eval_score
  * 
  *     if is_maximizing:             # <<<<<<<<<<<<<<
@@ -8927,17 +8241,17 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
 */
   if (__pyx_v_is_maximizing) {
 
-    /* "core/model_inference.pyx":232
+    /* "core/model_inference.pyx":183
  * 
  *     if is_maximizing:
  *         max_eval = -float('inf')             # <<<<<<<<<<<<<<
  *         for move in ordered_moves:
  *             board.push(move)
 */
-    __pyx_t_7 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 232, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 183, __pyx_L1_error)
     __pyx_v_max_eval = (-__pyx_t_7);
 
-    /* "core/model_inference.pyx":233
+    /* "core/model_inference.pyx":184
  *     if is_maximizing:
  *         max_eval = -float('inf')
  *         for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -8946,26 +8260,26 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
 */
     if (unlikely(__pyx_v_ordered_moves == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 233, __pyx_L1_error)
+      __PYX_ERR(0, 184, __pyx_L1_error)
     }
-    __pyx_t_3 = __pyx_v_ordered_moves; __Pyx_INCREF(__pyx_t_3);
+    __pyx_t_2 = __pyx_v_ordered_moves; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_8 = 0;
     for (;;) {
       {
-        Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
+        Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 233, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 184, __pyx_L1_error)
         #endif
         if (__pyx_t_8 >= __pyx_temp) break;
       }
-      __pyx_t_4 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
+      __pyx_t_3 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_8;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_4);
-      __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_3);
+      __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":234
+      /* "core/model_inference.pyx":185
  *         max_eval = -float('inf')
  *         for move in ordered_moves:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -8974,38 +8288,38 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
 */
       __pyx_t_9 = __pyx_v_board;
       __Pyx_INCREF(__pyx_t_9);
-      __pyx_t_5 = 0;
+      __pyx_t_4 = 0;
       {
         PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_v_move};
-        __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
       }
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":235
+      /* "core/model_inference.pyx":186
  *         for move in ordered_moves:
  *             board.push(move)
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, False, max_budget)             # <<<<<<<<<<<<<<
  *             board.pop()
  *             if eval_score > max_eval: max_eval = eval_score
 */
-      __pyx_t_6 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 0, __pyx_v_max_budget); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 235, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 0, __pyx_v_max_budget); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 186, __pyx_L1_error)
       __pyx_v_eval_score = __pyx_t_6;
 
-      /* "core/model_inference.pyx":236
+      /* "core/model_inference.pyx":187
  *             board.push(move)
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, False, max_budget)
  *             board.pop()             # <<<<<<<<<<<<<<
  *             if eval_score > max_eval: max_eval = eval_score
  *             if eval_score > alpha: alpha = eval_score
 */
-      __pyx_t_4 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 236, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_3 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 187, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":237
+      /* "core/model_inference.pyx":188
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, False, max_budget)
  *             board.pop()
  *             if eval_score > max_eval: max_eval = eval_score             # <<<<<<<<<<<<<<
@@ -9017,7 +8331,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
         __pyx_v_max_eval = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":238
+      /* "core/model_inference.pyx":189
  *             board.pop()
  *             if eval_score > max_eval: max_eval = eval_score
  *             if eval_score > alpha: alpha = eval_score             # <<<<<<<<<<<<<<
@@ -9029,7 +8343,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
         __pyx_v_alpha = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":239
+      /* "core/model_inference.pyx":190
  *             if eval_score > max_eval: max_eval = eval_score
  *             if eval_score > alpha: alpha = eval_score
  *             if beta <= alpha: break             # <<<<<<<<<<<<<<
@@ -9041,7 +8355,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
         goto __pyx_L9_break;
       }
 
-      /* "core/model_inference.pyx":233
+      /* "core/model_inference.pyx":184
  *     if is_maximizing:
  *         max_eval = -float('inf')
  *         for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -9049,14 +8363,14 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, False, max_budget)
 */
     }
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     goto __pyx_L13_for_end;
     __pyx_L9_break:;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     goto __pyx_L13_for_end;
     __pyx_L13_for_end:;
 
-    /* "core/model_inference.pyx":240
+    /* "core/model_inference.pyx":191
  *             if eval_score > alpha: alpha = eval_score
  *             if beta <= alpha: break
  *         return max_eval             # <<<<<<<<<<<<<<
@@ -9066,7 +8380,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
     __pyx_r = __pyx_v_max_eval;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":231
+    /* "core/model_inference.pyx":182
  *     cdef float max_eval, min_eval, eval_score
  * 
  *     if is_maximizing:             # <<<<<<<<<<<<<<
@@ -9075,7 +8389,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
 */
   }
 
-  /* "core/model_inference.pyx":242
+  /* "core/model_inference.pyx":193
  *         return max_eval
  *     else:
  *         min_eval = float('inf')             # <<<<<<<<<<<<<<
@@ -9083,10 +8397,10 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
  *             board.push(move)
 */
   /*else*/ {
-    __pyx_t_7 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 242, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_7, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 193, __pyx_L1_error)
     __pyx_v_min_eval = __pyx_t_7;
 
-    /* "core/model_inference.pyx":243
+    /* "core/model_inference.pyx":194
  *     else:
  *         min_eval = float('inf')
  *         for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -9095,26 +8409,26 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
 */
     if (unlikely(__pyx_v_ordered_moves == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 243, __pyx_L1_error)
+      __PYX_ERR(0, 194, __pyx_L1_error)
     }
-    __pyx_t_3 = __pyx_v_ordered_moves; __Pyx_INCREF(__pyx_t_3);
+    __pyx_t_2 = __pyx_v_ordered_moves; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_8 = 0;
     for (;;) {
       {
-        Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
+        Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 243, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 194, __pyx_L1_error)
         #endif
         if (__pyx_t_8 >= __pyx_temp) break;
       }
-      __pyx_t_4 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
+      __pyx_t_3 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_8;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 243, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_4);
-      __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 194, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_3);
+      __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":244
+      /* "core/model_inference.pyx":195
  *         min_eval = float('inf')
  *         for move in ordered_moves:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -9123,38 +8437,38 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
 */
       __pyx_t_9 = __pyx_v_board;
       __Pyx_INCREF(__pyx_t_9);
-      __pyx_t_5 = 0;
+      __pyx_t_4 = 0;
       {
         PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_v_move};
-        __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+        __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_4);
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 195, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_3);
       }
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":245
+      /* "core/model_inference.pyx":196
  *         for move in ordered_moves:
  *             board.push(move)
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, True, max_budget)             # <<<<<<<<<<<<<<
  *             board.pop()
  *             if eval_score < min_eval: min_eval = eval_score
 */
-      __pyx_t_6 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 1, __pyx_v_max_budget); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 245, __pyx_L1_error)
+      __pyx_t_6 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 1, __pyx_v_max_budget); if (unlikely(__pyx_t_6 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 196, __pyx_L1_error)
       __pyx_v_eval_score = __pyx_t_6;
 
-      /* "core/model_inference.pyx":246
+      /* "core/model_inference.pyx":197
  *             board.push(move)
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, True, max_budget)
  *             board.pop()             # <<<<<<<<<<<<<<
  *             if eval_score < min_eval: min_eval = eval_score
  *             if eval_score < beta: beta = eval_score
 */
-      __pyx_t_4 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __pyx_t_3 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 197, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":247
+      /* "core/model_inference.pyx":198
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, True, max_budget)
  *             board.pop()
  *             if eval_score < min_eval: min_eval = eval_score             # <<<<<<<<<<<<<<
@@ -9166,7 +8480,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
         __pyx_v_min_eval = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":248
+      /* "core/model_inference.pyx":199
  *             board.pop()
  *             if eval_score < min_eval: min_eval = eval_score
  *             if eval_score < beta: beta = eval_score             # <<<<<<<<<<<<<<
@@ -9178,7 +8492,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
         __pyx_v_beta = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":249
+      /* "core/model_inference.pyx":200
  *             if eval_score < min_eval: min_eval = eval_score
  *             if eval_score < beta: beta = eval_score
  *             if beta <= alpha: break             # <<<<<<<<<<<<<<
@@ -9190,7 +8504,7 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
         goto __pyx_L15_break;
       }
 
-      /* "core/model_inference.pyx":243
+      /* "core/model_inference.pyx":194
  *     else:
  *         min_eval = float('inf')
  *         for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -9198,14 +8512,14 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
  *             eval_score = alpha_beta_search(board, model, depth - 1, alpha, beta, True, max_budget)
 */
     }
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     goto __pyx_L19_for_end;
     __pyx_L15_break:;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     goto __pyx_L19_for_end;
     __pyx_L19_for_end:;
 
-    /* "core/model_inference.pyx":250
+    /* "core/model_inference.pyx":201
  *             if eval_score < beta: beta = eval_score
  *             if beta <= alpha: break
  *         return min_eval             # <<<<<<<<<<<<<<
@@ -9216,18 +8530,18 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
     goto __pyx_L0;
   }
 
-  /* "core/model_inference.pyx":222
+  /* "core/model_inference.pyx":170
  *         return beta
  * 
  * cdef float alpha_beta_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, int max_budget):             # <<<<<<<<<<<<<<
- *     # Thuat toan minimax cat tia alpha-beta
  *     global node_count
+ *     if board.is_game_over() or node_count >= max_budget:
 */
 
   /* function exit code */
   __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_AddTraceback("core.model_inference.alpha_beta_search", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
@@ -9238,12 +8552,12 @@ static float __pyx_f_4core_15model_inference_alpha_beta_search(PyObject *__pyx_v
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":252
+/* "core/model_inference.pyx":203
  *         return min_eval
  * 
  * cdef int score_move(object board, object move):             # <<<<<<<<<<<<<<
- *     # Tinh diem heuristic de sap xep nuoc di
  *     cdef int move_score = 0
+ *     if move.promotion is not None:
 */
 
 static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, PyObject *__pyx_v_move) {
@@ -9269,46 +8583,46 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("score_move", 0);
 
-  /* "core/model_inference.pyx":254
+  /* "core/model_inference.pyx":204
+ * 
  * cdef int score_move(object board, object move):
- *     # Tinh diem heuristic de sap xep nuoc di
  *     cdef int move_score = 0             # <<<<<<<<<<<<<<
  *     if move.promotion is not None:
  *         move_score += 900 if move.promotion == chess.QUEEN else 300
 */
   __pyx_v_move_score = 0;
 
-  /* "core/model_inference.pyx":255
- *     # Tinh diem heuristic de sap xep nuoc di
+  /* "core/model_inference.pyx":205
+ * cdef int score_move(object board, object move):
  *     cdef int move_score = 0
  *     if move.promotion is not None:             # <<<<<<<<<<<<<<
  *         move_score += 900 if move.promotion == chess.QUEEN else 300
  *     if board.is_capture(move):
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_promotion); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_promotion); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = (__pyx_t_1 != Py_None);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "core/model_inference.pyx":256
+    /* "core/model_inference.pyx":206
  *     cdef int move_score = 0
  *     if move.promotion is not None:
  *         move_score += 900 if move.promotion == chess.QUEEN else 300             # <<<<<<<<<<<<<<
  *     if board.is_capture(move):
  *         victim_piece = board.piece_at(move.to_square)
 */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_promotion); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_promotion); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_QUEEN); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_QUEEN); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_4 = PyObject_RichCompare(__pyx_t_1, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 256, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_2) {
       __pyx_t_3 = 0x384;
@@ -9317,8 +8631,8 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
     }
     __pyx_v_move_score = (__pyx_v_move_score + __pyx_t_3);
 
-    /* "core/model_inference.pyx":255
- *     # Tinh diem heuristic de sap xep nuoc di
+    /* "core/model_inference.pyx":205
+ * cdef int score_move(object board, object move):
  *     cdef int move_score = 0
  *     if move.promotion is not None:             # <<<<<<<<<<<<<<
  *         move_score += 900 if move.promotion == chess.QUEEN else 300
@@ -9326,7 +8640,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
 */
   }
 
-  /* "core/model_inference.pyx":257
+  /* "core/model_inference.pyx":207
  *     if move.promotion is not None:
  *         move_score += 900 if move.promotion == chess.QUEEN else 300
  *     if board.is_capture(move):             # <<<<<<<<<<<<<<
@@ -9340,14 +8654,14 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
     PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_v_move};
     __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_capture, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 257, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_2) {
 
-    /* "core/model_inference.pyx":258
+    /* "core/model_inference.pyx":208
  *         move_score += 900 if move.promotion == chess.QUEEN else 300
  *     if board.is_capture(move):
  *         victim_piece = board.piece_at(move.to_square)             # <<<<<<<<<<<<<<
@@ -9356,7 +8670,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
 */
     __pyx_t_5 = __pyx_v_board;
     __Pyx_INCREF(__pyx_t_5);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_to_square); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_to_square); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_6 = 0;
     {
@@ -9364,28 +8678,28 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
       __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_at, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
     __pyx_v_victim_piece = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "core/model_inference.pyx":259
+    /* "core/model_inference.pyx":209
  *     if board.is_capture(move):
  *         victim_piece = board.piece_at(move.to_square)
  *         victim_val = PIECE_VALUES.get(victim_piece.piece_type, 0) if victim_piece else (PIECE_VALUES[chess.PAWN] if board.is_en_passant(move) else 0)             # <<<<<<<<<<<<<<
  *         attacker_piece = board.piece_at(move.from_square)
  *         attacker_val = PIECE_VALUES.get(attacker_piece.piece_type, 0) if attacker_piece else 0
 */
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_victim_piece); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 259, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_victim_piece); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 209, __pyx_L1_error)
     if (__pyx_t_2) {
       __pyx_t_5 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 209, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 209, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_victim_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_victim_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 209, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __pyx_t_6 = 1;
       #if CYTHON_UNPACK_METHODS
@@ -9405,7 +8719,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
       __pyx_t_4 = __pyx_t_1;
@@ -9418,20 +8732,20 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
         PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_move};
         __pyx_t_8 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_en_passant, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 259, __pyx_L1_error)
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
       }
-      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_9 < 0))) __PYX_ERR(0, 209, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       if (__pyx_t_9) {
-        __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_PAWN); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_PAWN); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_8, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 259, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_t_8, __pyx_t_5); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
@@ -9447,7 +8761,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
     __pyx_v_victim_val = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "core/model_inference.pyx":260
+    /* "core/model_inference.pyx":210
  *         victim_piece = board.piece_at(move.to_square)
  *         victim_val = PIECE_VALUES.get(victim_piece.piece_type, 0) if victim_piece else (PIECE_VALUES[chess.PAWN] if board.is_en_passant(move) else 0)
  *         attacker_piece = board.piece_at(move.from_square)             # <<<<<<<<<<<<<<
@@ -9456,7 +8770,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
 */
     __pyx_t_1 = __pyx_v_board;
     __Pyx_INCREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_from_square); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 260, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_move, __pyx_mstate_global->__pyx_n_u_from_square); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 210, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_6 = 0;
     {
@@ -9464,28 +8778,28 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
       __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_piece_at, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 210, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
     __pyx_v_attacker_piece = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "core/model_inference.pyx":261
+    /* "core/model_inference.pyx":211
  *         victim_val = PIECE_VALUES.get(victim_piece.piece_type, 0) if victim_piece else (PIECE_VALUES[chess.PAWN] if board.is_en_passant(move) else 0)
  *         attacker_piece = board.piece_at(move.from_square)
  *         attacker_val = PIECE_VALUES.get(attacker_piece.piece_type, 0) if attacker_piece else 0             # <<<<<<<<<<<<<<
  *         move_score += 1000 + (10 * victim_val) - attacker_val
  *     return move_score
 */
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_attacker_piece); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 261, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_attacker_piece); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 211, __pyx_L1_error)
     if (__pyx_t_2) {
       __pyx_t_1 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_PIECE_VALUES); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 261, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_get); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_attacker_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_attacker_piece, __pyx_mstate_global->__pyx_n_u_piece_type); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 211, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __pyx_t_6 = 1;
       #if CYTHON_UNPACK_METHODS
@@ -9505,7 +8819,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 261, __pyx_L1_error)
+        if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 211, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_7);
       }
       __pyx_t_4 = __pyx_t_7;
@@ -9517,32 +8831,32 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
     __pyx_v_attacker_val = __pyx_t_4;
     __pyx_t_4 = 0;
 
-    /* "core/model_inference.pyx":262
+    /* "core/model_inference.pyx":212
  *         attacker_piece = board.piece_at(move.from_square)
  *         attacker_val = PIECE_VALUES.get(attacker_piece.piece_type, 0) if attacker_piece else 0
  *         move_score += 1000 + (10 * victim_val) - attacker_val             # <<<<<<<<<<<<<<
  *     return move_score
  * 
 */
-    __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_move_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_move_score); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_10, __pyx_v_victim_val, 10, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyLong_MultiplyCObj(__pyx_mstate_global->__pyx_int_10, __pyx_v_victim_val, 10, 0, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyLong_AddCObj(__pyx_mstate_global->__pyx_int_1000, __pyx_t_7, 0x3E8, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyLong_AddCObj(__pyx_mstate_global->__pyx_int_1000, __pyx_t_7, 0x3E8, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = PyNumber_Subtract(__pyx_t_8, __pyx_v_attacker_val); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_7 = PyNumber_Subtract(__pyx_t_8, __pyx_v_attacker_val); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_InPlaceAdd(__pyx_t_4, __pyx_t_7); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 262, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v_move_score = __pyx_t_10;
 
-    /* "core/model_inference.pyx":257
+    /* "core/model_inference.pyx":207
  *     if move.promotion is not None:
  *         move_score += 900 if move.promotion == chess.QUEEN else 300
  *     if board.is_capture(move):             # <<<<<<<<<<<<<<
@@ -9551,7 +8865,7 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
 */
   }
 
-  /* "core/model_inference.pyx":263
+  /* "core/model_inference.pyx":213
  *         attacker_val = PIECE_VALUES.get(attacker_piece.piece_type, 0) if attacker_piece else 0
  *         move_score += 1000 + (10 * victim_val) - attacker_val
  *     return move_score             # <<<<<<<<<<<<<<
@@ -9561,12 +8875,12 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
   __pyx_r = __pyx_v_move_score;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":252
+  /* "core/model_inference.pyx":203
  *         return min_eval
  * 
  * cdef int score_move(object board, object move):             # <<<<<<<<<<<<<<
- *     # Tinh diem heuristic de sap xep nuoc di
  *     cdef int move_score = 0
+ *     if move.promotion is not None:
 */
 
   /* function exit code */
@@ -9587,8 +8901,8 @@ static int __pyx_f_4core_15model_inference_score_move(PyObject *__pyx_v_board, P
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":268
- *     # Sap xep nuoc di theo score_move
+/* "core/model_inference.pyx":217
+ * cdef list order_moves(object board, list legal_moves):
  *     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]
  *     scored_moves.sort(key=lambda x: x[1], reverse=True)             # <<<<<<<<<<<<<<
  *     return [move for move, score in scored_moves]
@@ -9634,32 +8948,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_x,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 268, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 217, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 268, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 217, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "lambda1", 0) < (0)) __PYX_ERR(0, 268, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "lambda1", 0) < (0)) __PYX_ERR(0, 217, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("lambda1", 1, 1, 1, i); __PYX_ERR(0, 268, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("lambda1", 1, 1, 1, i); __PYX_ERR(0, 217, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 268, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 217, __pyx_L3_error)
     }
     __pyx_v_x = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda1", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 268, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda1", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 217, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9689,7 +9003,7 @@ static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("lambda1", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_x, 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_x, 1, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -9706,12 +9020,12 @@ static PyObject *__pyx_lambda_funcdef_lambda1(CYTHON_UNUSED PyObject *__pyx_self
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":265
+/* "core/model_inference.pyx":215
  *     return move_score
  * 
  * cdef list order_moves(object board, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Sap xep nuoc di theo score_move
  *     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]
+ *     scored_moves.sort(key=lambda x: x[1], reverse=True)
 */
 
 static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_board, PyObject *__pyx_v_legal_moves) {
@@ -9736,19 +9050,19 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("order_moves", 0);
 
-  /* "core/model_inference.pyx":267
+  /* "core/model_inference.pyx":216
+ * 
  * cdef list order_moves(object board, list legal_moves):
- *     # Sap xep nuoc di theo score_move
  *     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]             # <<<<<<<<<<<<<<
  *     scored_moves.sort(key=lambda x: x[1], reverse=True)
  *     return [move for move, score in scored_moves]
 */
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 267, __pyx_L5_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 216, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     if (unlikely(__pyx_v_legal_moves == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-      __PYX_ERR(0, 267, __pyx_L5_error)
+      __PYX_ERR(0, 216, __pyx_L5_error)
     }
     __pyx_t_2 = __pyx_v_legal_moves; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_3 = 0;
@@ -9756,28 +9070,28 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 267, __pyx_L5_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 216, __pyx_L5_error)
         #endif
         if (__pyx_t_3 >= __pyx_temp) break;
       }
       __pyx_t_4 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_3, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_3;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L5_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_XDECREF_SET(__pyx_8genexpr1__pyx_v_move, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_5 = __pyx_f_4core_15model_inference_score_move(__pyx_v_board, __pyx_8genexpr1__pyx_v_move); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L5_error)
-      __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 267, __pyx_L5_error)
+      __pyx_t_5 = __pyx_f_4core_15model_inference_score_move(__pyx_v_board, __pyx_8genexpr1__pyx_v_move); if (unlikely(__pyx_t_5 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 216, __pyx_L5_error)
+      __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 267, __pyx_L5_error)
+      __pyx_t_6 = PyTuple_New(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 216, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_INCREF(__pyx_8genexpr1__pyx_v_move);
       __Pyx_GIVEREF(__pyx_8genexpr1__pyx_v_move);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_8genexpr1__pyx_v_move) != (0)) __PYX_ERR(0, 267, __pyx_L5_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_8genexpr1__pyx_v_move) != (0)) __PYX_ERR(0, 216, __pyx_L5_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 267, __pyx_L5_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_t_4) != (0)) __PYX_ERR(0, 216, __pyx_L5_error);
       __pyx_t_4 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 267, __pyx_L5_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_6))) __PYX_ERR(0, 216, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -9791,8 +9105,8 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
   __pyx_v_scored_moves = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":268
- *     # Sap xep nuoc di theo score_move
+  /* "core/model_inference.pyx":217
+ * cdef list order_moves(object board, list legal_moves):
  *     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]
  *     scored_moves.sort(key=lambda x: x[1], reverse=True)             # <<<<<<<<<<<<<<
  *     return [move for move, score in scored_moves]
@@ -9800,25 +9114,25 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
 */
   __pyx_t_2 = __pyx_v_scored_moves;
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_6 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_11order_moves_lambda1, 0, __pyx_mstate_global->__pyx_n_u_order_moves_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_11order_moves_lambda1, 0, __pyx_mstate_global->__pyx_n_u_order_moves_locals_lambda, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_2, NULL};
-    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 268, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_key, __pyx_t_6, __pyx_t_4, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 268, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_reverse, Py_True, __pyx_t_4, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 268, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_key, __pyx_t_6, __pyx_t_4, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 217, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_reverse, Py_True, __pyx_t_4, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 217, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_sort, __pyx_callargs+__pyx_t_7, (1-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":269
+  /* "core/model_inference.pyx":218
  *     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]
  *     scored_moves.sort(key=lambda x: x[1], reverse=True)
  *     return [move for move, score in scored_moves]             # <<<<<<<<<<<<<<
@@ -9827,7 +9141,7 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
 */
   __Pyx_XDECREF(__pyx_r);
   { /* enter inner scope */
-    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L12_error)
+    __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 218, __pyx_L12_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_4 = __pyx_v_scored_moves; __Pyx_INCREF(__pyx_t_4);
     __pyx_t_3 = 0;
@@ -9835,13 +9149,13 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_4);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 269, __pyx_L12_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 218, __pyx_L12_error)
         #endif
         if (__pyx_t_3 >= __pyx_temp) break;
       }
       __pyx_t_6 = __Pyx_PyList_GetItemRefFast(__pyx_t_4, __pyx_t_3, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_3;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 269, __pyx_L12_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L12_error)
       __Pyx_GOTREF(__pyx_t_6);
       if ((likely(PyTuple_CheckExact(__pyx_t_6))) || (PyList_CheckExact(__pyx_t_6))) {
         PyObject* sequence = __pyx_t_6;
@@ -9849,7 +9163,7 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 269, __pyx_L12_error)
+          __PYX_ERR(0, 218, __pyx_L12_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -9859,22 +9173,22 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
           __Pyx_INCREF(__pyx_t_8);
         } else {
           __pyx_t_2 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L12_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L12_error)
           __Pyx_XGOTREF(__pyx_t_2);
           __pyx_t_8 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 269, __pyx_L12_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 218, __pyx_L12_error)
           __Pyx_XGOTREF(__pyx_t_8);
         }
         #else
-        __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L12_error)
+        __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L12_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_8 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 269, __pyx_L12_error)
+        __pyx_t_8 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 218, __pyx_L12_error)
         __Pyx_GOTREF(__pyx_t_8);
         #endif
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_9 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 269, __pyx_L12_error)
+        __pyx_t_9 = PyObject_GetIter(__pyx_t_6); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 218, __pyx_L12_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_10 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_9);
@@ -9882,7 +9196,7 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
         __Pyx_GOTREF(__pyx_t_2);
         index = 1; __pyx_t_8 = __pyx_t_10(__pyx_t_9); if (unlikely(!__pyx_t_8)) goto __pyx_L15_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_8);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < (0)) __PYX_ERR(0, 269, __pyx_L12_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < (0)) __PYX_ERR(0, 218, __pyx_L12_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         goto __pyx_L16_unpacking_done;
@@ -9890,14 +9204,14 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 269, __pyx_L12_error)
+        __PYX_ERR(0, 218, __pyx_L12_error)
         __pyx_L16_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_8genexpr2__pyx_v_move, __pyx_t_2);
       __pyx_t_2 = 0;
       __Pyx_XDECREF_SET(__pyx_8genexpr2__pyx_v_score, __pyx_t_8);
       __pyx_t_8 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_8genexpr2__pyx_v_move))) __PYX_ERR(0, 269, __pyx_L12_error)
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_8genexpr2__pyx_v_move))) __PYX_ERR(0, 218, __pyx_L12_error)
     }
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF(__pyx_8genexpr2__pyx_v_move); __pyx_8genexpr2__pyx_v_move = 0;
@@ -9913,12 +9227,12 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":265
+  /* "core/model_inference.pyx":215
  *     return move_score
  * 
  * cdef list order_moves(object board, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Sap xep nuoc di theo score_move
  *     cdef list scored_moves = [(move, score_move(board, move)) for move in legal_moves]
+ *     scored_moves.sort(key=lambda x: x[1], reverse=True)
 */
 
   /* function exit code */
@@ -9941,15 +9255,15 @@ static PyObject *__pyx_f_4core_15model_inference_order_moves(PyObject *__pyx_v_b
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":271
+/* "core/model_inference.pyx":220
  *     return [move for move, score in scored_moves]
  * 
  * cpdef object minimax_root(object board, object model, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Ham goc cua Minimax cho Tan cuoc
  *     global node_count
+ *     node_count = 0
 */
 
-static PyObject *__pyx_pw_4core_15model_inference_9minimax_root(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_7minimax_root(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -9990,8 +9304,8 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("minimax_root", 0);
 
-  /* "core/model_inference.pyx":274
- *     # Ham goc cua Minimax cho Tan cuoc
+  /* "core/model_inference.pyx":222
+ * cpdef object minimax_root(object board, object model, list legal_moves):
  *     global node_count
  *     node_count = 0             # <<<<<<<<<<<<<<
  *     eval_cache.clear()
@@ -9999,7 +9313,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
   __pyx_v_4core_15model_inference_node_count = 0;
 
-  /* "core/model_inference.pyx":275
+  /* "core/model_inference.pyx":223
  *     global node_count
  *     node_count = 0
  *     eval_cache.clear()             # <<<<<<<<<<<<<<
@@ -10008,18 +9322,18 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
   if (unlikely(__pyx_v_4core_15model_inference_eval_cache == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "clear");
-    __PYX_ERR(0, 275, __pyx_L1_error)
+    __PYX_ERR(0, 223, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_Clear(__pyx_v_4core_15model_inference_eval_cache); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 275, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_Clear(__pyx_v_4core_15model_inference_eval_cache); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 223, __pyx_L1_error)
 
-  /* "core/model_inference.pyx":278
+  /* "core/model_inference.pyx":226
  * 
  *     cdef list mate_moves
  *     mate_moves, _ = find_tactical_moves(board, legal_moves)             # <<<<<<<<<<<<<<
  *     if mate_moves:
  *         move = mate_moves[0]
 */
-  __pyx_t_2 = __pyx_f_4core_15model_inference_find_tactical_moves(__pyx_v_board, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 278, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_4core_15model_inference_find_tactical_moves(__pyx_v_board, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 226, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (likely(__pyx_t_2 != Py_None)) {
     PyObject* sequence = __pyx_t_2;
@@ -10027,7 +9341,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 278, __pyx_L1_error)
+      __PYX_ERR(0, 226, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0);
@@ -10035,22 +9349,22 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     __pyx_t_4 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_4);
     #else
-    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 226, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 226, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     #endif
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 278, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 226, __pyx_L1_error)
   }
-  if (!(likely(PyList_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_3))) __PYX_ERR(0, 278, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_3))) __PYX_ERR(0, 226, __pyx_L1_error)
   __pyx_v_mate_moves = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
   __pyx_v__ = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "core/model_inference.pyx":279
+  /* "core/model_inference.pyx":227
  *     cdef list mate_moves
  *     mate_moves, _ = find_tactical_moves(board, legal_moves)
  *     if mate_moves:             # <<<<<<<<<<<<<<
@@ -10061,13 +9375,13 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
   else
   {
     Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_v_mate_moves);
-    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 279, __pyx_L1_error)
+    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 227, __pyx_L1_error)
     __pyx_t_5 = (__pyx_temp != 0);
   }
 
   if (__pyx_t_5) {
 
-    /* "core/model_inference.pyx":280
+    /* "core/model_inference.pyx":228
  *     mate_moves, _ = find_tactical_moves(board, legal_moves)
  *     if mate_moves:
  *         move = mate_moves[0]             # <<<<<<<<<<<<<<
@@ -10076,14 +9390,14 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
     if (unlikely(__pyx_v_mate_moves == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 280, __pyx_L1_error)
+      __PYX_ERR(0, 228, __pyx_L1_error)
     }
     __pyx_t_2 = __Pyx_PyList_GET_ITEM(__pyx_v_mate_moves, 0);
     __Pyx_INCREF(__pyx_t_2);
     __pyx_v_move = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":281
+    /* "core/model_inference.pyx":229
  *     if mate_moves:
  *         move = mate_moves[0]
  *         print(f"[Endgame Minimax] Chieu het -> {board.san(move)}")             # <<<<<<<<<<<<<<
@@ -10098,13 +9412,13 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
       PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_v_move};
       __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_san, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 229, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
-    __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 229, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Endgame_Minimax_Chieu_het, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Endgame_Minimax_Chieu_het, __pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 229, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_7 = 1;
@@ -10113,12 +9427,12 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 281, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 229, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":282
+    /* "core/model_inference.pyx":230
  *         move = mate_moves[0]
  *         print(f"[Endgame Minimax] Chieu het -> {board.san(move)}")
  *         return move             # <<<<<<<<<<<<<<
@@ -10130,7 +9444,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     __pyx_r = __pyx_v_move;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":279
+    /* "core/model_inference.pyx":227
  *     cdef list mate_moves
  *     mate_moves, _ = find_tactical_moves(board, legal_moves)
  *     if mate_moves:             # <<<<<<<<<<<<<<
@@ -10139,28 +9453,28 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
   }
 
-  /* "core/model_inference.pyx":284
+  /* "core/model_inference.pyx":232
  *         return move
  * 
  *     cdef bint is_ai_white = board.turn == chess.WHITE             # <<<<<<<<<<<<<<
  *     best_move = legal_moves[0]
  *     cdef int current_depth = 1
 */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 284, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_is_ai_white = __pyx_t_5;
 
-  /* "core/model_inference.pyx":285
+  /* "core/model_inference.pyx":233
  * 
  *     cdef bint is_ai_white = board.turn == chess.WHITE
  *     best_move = legal_moves[0]             # <<<<<<<<<<<<<<
@@ -10169,14 +9483,14 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
   if (unlikely(__pyx_v_legal_moves == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 285, __pyx_L1_error)
+    __PYX_ERR(0, 233, __pyx_L1_error)
   }
   __pyx_t_3 = __Pyx_PyList_GET_ITEM(__pyx_v_legal_moves, 0);
   __Pyx_INCREF(__pyx_t_3);
   __pyx_v_best_move = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":286
+  /* "core/model_inference.pyx":234
  *     cdef bint is_ai_white = board.turn == chess.WHITE
  *     best_move = legal_moves[0]
  *     cdef int current_depth = 1             # <<<<<<<<<<<<<<
@@ -10185,7 +9499,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
   __pyx_v_current_depth = 1;
 
-  /* "core/model_inference.pyx":289
+  /* "core/model_inference.pyx":237
  *     cdef float alpha, beta, best_score, score
  * 
  *     while node_count < MAX_NODES:             # <<<<<<<<<<<<<<
@@ -10193,18 +9507,18 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
  *         alpha = -float('inf')
 */
   while (1) {
-    __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 289, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 289, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (!__pyx_t_5) break;
 
-    /* "core/model_inference.pyx":290
+    /* "core/model_inference.pyx":238
  * 
  *     while node_count < MAX_NODES:
  *         temp_best_move = legal_moves[0]             # <<<<<<<<<<<<<<
@@ -10213,46 +9527,46 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
     if (unlikely(__pyx_v_legal_moves == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 290, __pyx_L1_error)
+      __PYX_ERR(0, 238, __pyx_L1_error)
     }
     __pyx_t_2 = __Pyx_PyList_GET_ITEM(__pyx_v_legal_moves, 0);
     __Pyx_INCREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_temp_best_move, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":291
+    /* "core/model_inference.pyx":239
  *     while node_count < MAX_NODES:
  *         temp_best_move = legal_moves[0]
  *         alpha = -float('inf')             # <<<<<<<<<<<<<<
  *         beta = float('inf')
  *         ordered_moves = order_moves(board, legal_moves)
 */
-    __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 239, __pyx_L1_error)
     __pyx_v_alpha = (-__pyx_t_8);
 
-    /* "core/model_inference.pyx":292
+    /* "core/model_inference.pyx":240
  *         temp_best_move = legal_moves[0]
  *         alpha = -float('inf')
  *         beta = float('inf')             # <<<<<<<<<<<<<<
  *         ordered_moves = order_moves(board, legal_moves)
  * 
 */
-    __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 292, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 240, __pyx_L1_error)
     __pyx_v_beta = __pyx_t_8;
 
-    /* "core/model_inference.pyx":293
+    /* "core/model_inference.pyx":241
  *         alpha = -float('inf')
  *         beta = float('inf')
  *         ordered_moves = order_moves(board, legal_moves)             # <<<<<<<<<<<<<<
  * 
  *         if is_ai_white:
 */
-    __pyx_t_2 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, __pyx_v_legal_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 293, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, __pyx_v_legal_moves); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_ordered_moves, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":295
+    /* "core/model_inference.pyx":243
  *         ordered_moves = order_moves(board, legal_moves)
  * 
  *         if is_ai_white:             # <<<<<<<<<<<<<<
@@ -10261,17 +9575,17 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
     if (__pyx_v_is_ai_white) {
 
-      /* "core/model_inference.pyx":296
+      /* "core/model_inference.pyx":244
  * 
  *         if is_ai_white:
  *             best_score = -float('inf')             # <<<<<<<<<<<<<<
  *             for move in ordered_moves:
  *                 board.push(move)
 */
-      __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 296, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L1_error)
       __pyx_v_best_score = (-__pyx_t_8);
 
-      /* "core/model_inference.pyx":297
+      /* "core/model_inference.pyx":245
  *         if is_ai_white:
  *             best_score = -float('inf')
  *             for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -10280,7 +9594,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
       if (unlikely(__pyx_v_ordered_moves == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 297, __pyx_L1_error)
+        __PYX_ERR(0, 245, __pyx_L1_error)
       }
       __pyx_t_2 = __pyx_v_ordered_moves; __Pyx_INCREF(__pyx_t_2);
       __pyx_t_9 = 0;
@@ -10288,18 +9602,18 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 297, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 245, __pyx_L1_error)
           #endif
           if (__pyx_t_9 >= __pyx_temp) break;
         }
         __pyx_t_4 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_9, __Pyx_ReferenceSharing_OwnStrongReference);
         ++__pyx_t_9;
-        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 297, __pyx_L1_error)
+        if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "core/model_inference.pyx":298
+        /* "core/model_inference.pyx":246
  *             best_score = -float('inf')
  *             for move in ordered_moves:
  *                 board.push(move)             # <<<<<<<<<<<<<<
@@ -10313,37 +9627,37 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
           PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_move};
           __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
+          if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
         }
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-        /* "core/model_inference.pyx":299
+        /* "core/model_inference.pyx":247
  *             for move in ordered_moves:
  *                 board.push(move)
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, False, MAX_NODES)             # <<<<<<<<<<<<<<
  *                 board.pop()
  *                 if score > best_score:
 */
-        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 299, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 247, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 299, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_4); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __pyx_t_11 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_current_depth - 1), __pyx_v_alpha, __pyx_v_beta, 0, __pyx_t_10); if (unlikely(__pyx_t_11 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 299, __pyx_L1_error)
+        __pyx_t_11 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_current_depth - 1), __pyx_v_alpha, __pyx_v_beta, 0, __pyx_t_10); if (unlikely(__pyx_t_11 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L1_error)
         __pyx_v_score = __pyx_t_11;
 
-        /* "core/model_inference.pyx":300
+        /* "core/model_inference.pyx":248
  *                 board.push(move)
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, False, MAX_NODES)
  *                 board.pop()             # <<<<<<<<<<<<<<
  *                 if score > best_score:
  *                     best_score = score
 */
-        __pyx_t_4 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 300, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-        /* "core/model_inference.pyx":301
+        /* "core/model_inference.pyx":249
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, False, MAX_NODES)
  *                 board.pop()
  *                 if score > best_score:             # <<<<<<<<<<<<<<
@@ -10353,7 +9667,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
         __pyx_t_5 = (__pyx_v_score > __pyx_v_best_score);
         if (__pyx_t_5) {
 
-          /* "core/model_inference.pyx":302
+          /* "core/model_inference.pyx":250
  *                 board.pop()
  *                 if score > best_score:
  *                     best_score = score             # <<<<<<<<<<<<<<
@@ -10362,7 +9676,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
           __pyx_v_best_score = __pyx_v_score;
 
-          /* "core/model_inference.pyx":303
+          /* "core/model_inference.pyx":251
  *                 if score > best_score:
  *                     best_score = score
  *                     temp_best_move = move             # <<<<<<<<<<<<<<
@@ -10372,7 +9686,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
           __Pyx_INCREF(__pyx_v_move);
           __Pyx_DECREF_SET(__pyx_v_temp_best_move, __pyx_v_move);
 
-          /* "core/model_inference.pyx":301
+          /* "core/model_inference.pyx":249
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, False, MAX_NODES)
  *                 board.pop()
  *                 if score > best_score:             # <<<<<<<<<<<<<<
@@ -10381,7 +9695,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
         }
 
-        /* "core/model_inference.pyx":304
+        /* "core/model_inference.pyx":252
  *                     best_score = score
  *                     temp_best_move = move
  *                 if score > alpha: alpha = score             # <<<<<<<<<<<<<<
@@ -10393,27 +9707,27 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
           __pyx_v_alpha = __pyx_v_score;
         }
 
-        /* "core/model_inference.pyx":305
+        /* "core/model_inference.pyx":253
  *                     temp_best_move = move
  *                 if score > alpha: alpha = score
  *                 if node_count >= MAX_NODES: break             # <<<<<<<<<<<<<<
  *         else:
  *             best_score = float('inf')
 */
-        __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 253, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_6 = PyObject_RichCompare(__pyx_t_4, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 253, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 305, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 253, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         if (__pyx_t_5) {
           goto __pyx_L8_break;
         }
 
-        /* "core/model_inference.pyx":297
+        /* "core/model_inference.pyx":245
  *         if is_ai_white:
  *             best_score = -float('inf')
  *             for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -10428,7 +9742,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
       goto __pyx_L12_for_end;
       __pyx_L12_for_end:;
 
-      /* "core/model_inference.pyx":295
+      /* "core/model_inference.pyx":243
  *         ordered_moves = order_moves(board, legal_moves)
  * 
  *         if is_ai_white:             # <<<<<<<<<<<<<<
@@ -10438,7 +9752,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
       goto __pyx_L6;
     }
 
-    /* "core/model_inference.pyx":307
+    /* "core/model_inference.pyx":255
  *                 if node_count >= MAX_NODES: break
  *         else:
  *             best_score = float('inf')             # <<<<<<<<<<<<<<
@@ -10446,10 +9760,10 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
  *                 board.push(move)
 */
     /*else*/ {
-      __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 307, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_8, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 255, __pyx_L1_error)
       __pyx_v_best_score = __pyx_t_8;
 
-      /* "core/model_inference.pyx":308
+      /* "core/model_inference.pyx":256
  *         else:
  *             best_score = float('inf')
  *             for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -10458,7 +9772,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
       if (unlikely(__pyx_v_ordered_moves == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 308, __pyx_L1_error)
+        __PYX_ERR(0, 256, __pyx_L1_error)
       }
       __pyx_t_2 = __pyx_v_ordered_moves; __Pyx_INCREF(__pyx_t_2);
       __pyx_t_9 = 0;
@@ -10466,18 +9780,18 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 308, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 256, __pyx_L1_error)
           #endif
           if (__pyx_t_9 >= __pyx_temp) break;
         }
         __pyx_t_6 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_9, __Pyx_ReferenceSharing_OwnStrongReference);
         ++__pyx_t_9;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 308, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 256, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_6);
         __pyx_t_6 = 0;
 
-        /* "core/model_inference.pyx":309
+        /* "core/model_inference.pyx":257
  *             best_score = float('inf')
  *             for move in ordered_moves:
  *                 board.push(move)             # <<<<<<<<<<<<<<
@@ -10491,37 +9805,37 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
           PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_move};
           __pyx_t_6 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 309, __pyx_L1_error)
+          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 257, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_6);
         }
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "core/model_inference.pyx":310
+        /* "core/model_inference.pyx":258
  *             for move in ordered_moves:
  *                 board.push(move)
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, True, MAX_NODES)             # <<<<<<<<<<<<<<
  *                 board.pop()
  *                 if score < best_score:
 */
-        __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 310, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 258, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 310, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_10 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 258, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __pyx_t_11 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_current_depth - 1), __pyx_v_alpha, __pyx_v_beta, 1, __pyx_t_10); if (unlikely(__pyx_t_11 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 310, __pyx_L1_error)
+        __pyx_t_11 = __pyx_f_4core_15model_inference_alpha_beta_search(__pyx_v_board, __pyx_v_model, (__pyx_v_current_depth - 1), __pyx_v_alpha, __pyx_v_beta, 1, __pyx_t_10); if (unlikely(__pyx_t_11 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 258, __pyx_L1_error)
         __pyx_v_score = __pyx_t_11;
 
-        /* "core/model_inference.pyx":311
+        /* "core/model_inference.pyx":259
  *                 board.push(move)
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, True, MAX_NODES)
  *                 board.pop()             # <<<<<<<<<<<<<<
  *                 if score < best_score:
  *                     best_score = score
 */
-        __pyx_t_6 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 311, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "core/model_inference.pyx":312
+        /* "core/model_inference.pyx":260
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, True, MAX_NODES)
  *                 board.pop()
  *                 if score < best_score:             # <<<<<<<<<<<<<<
@@ -10531,7 +9845,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
         __pyx_t_5 = (__pyx_v_score < __pyx_v_best_score);
         if (__pyx_t_5) {
 
-          /* "core/model_inference.pyx":313
+          /* "core/model_inference.pyx":261
  *                 board.pop()
  *                 if score < best_score:
  *                     best_score = score             # <<<<<<<<<<<<<<
@@ -10540,7 +9854,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
           __pyx_v_best_score = __pyx_v_score;
 
-          /* "core/model_inference.pyx":314
+          /* "core/model_inference.pyx":262
  *                 if score < best_score:
  *                     best_score = score
  *                     temp_best_move = move             # <<<<<<<<<<<<<<
@@ -10550,7 +9864,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
           __Pyx_INCREF(__pyx_v_move);
           __Pyx_DECREF_SET(__pyx_v_temp_best_move, __pyx_v_move);
 
-          /* "core/model_inference.pyx":312
+          /* "core/model_inference.pyx":260
  *                 score = alpha_beta_search(board, model, current_depth - 1, alpha, beta, True, MAX_NODES)
  *                 board.pop()
  *                 if score < best_score:             # <<<<<<<<<<<<<<
@@ -10559,7 +9873,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
         }
 
-        /* "core/model_inference.pyx":315
+        /* "core/model_inference.pyx":263
  *                     best_score = score
  *                     temp_best_move = move
  *                 if score < beta: beta = score             # <<<<<<<<<<<<<<
@@ -10571,27 +9885,27 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
           __pyx_v_beta = __pyx_v_score;
         }
 
-        /* "core/model_inference.pyx":316
+        /* "core/model_inference.pyx":264
  *                     temp_best_move = move
  *                 if score < beta: beta = score
  *                 if node_count >= MAX_NODES: break             # <<<<<<<<<<<<<<
  * 
  *         if node_count < MAX_NODES:
 */
-        __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 264, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_4 = PyObject_RichCompare(__pyx_t_6, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 316, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 264, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         if (__pyx_t_5) {
           goto __pyx_L14_break;
         }
 
-        /* "core/model_inference.pyx":308
+        /* "core/model_inference.pyx":256
  *         else:
  *             best_score = float('inf')
  *             for move in ordered_moves:             # <<<<<<<<<<<<<<
@@ -10608,25 +9922,25 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     }
     __pyx_L6:;
 
-    /* "core/model_inference.pyx":318
+    /* "core/model_inference.pyx":266
  *                 if node_count >= MAX_NODES: break
  * 
  *         if node_count < MAX_NODES:             # <<<<<<<<<<<<<<
  *             best_move = temp_best_move
  *             print(f"[Endgame Minimax] Depth {current_depth} | Nodes {node_count} | -> {board.san(best_move)}")
 */
-    __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 318, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 266, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 318, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 266, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 318, __pyx_L1_error)
+    __pyx_t_3 = PyObject_RichCompare(__pyx_t_2, __pyx_t_4, Py_LT); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 266, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 318, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 266, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     if (__pyx_t_5) {
 
-      /* "core/model_inference.pyx":319
+      /* "core/model_inference.pyx":267
  * 
  *         if node_count < MAX_NODES:
  *             best_move = temp_best_move             # <<<<<<<<<<<<<<
@@ -10636,7 +9950,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
       __Pyx_INCREF(__pyx_v_temp_best_move);
       __Pyx_DECREF_SET(__pyx_v_best_move, __pyx_v_temp_best_move);
 
-      /* "core/model_inference.pyx":320
+      /* "core/model_inference.pyx":268
  *         if node_count < MAX_NODES:
  *             best_move = temp_best_move
  *             print(f"[Endgame Minimax] Depth {current_depth} | Nodes {node_count} | -> {board.san(best_move)}")             # <<<<<<<<<<<<<<
@@ -10644,16 +9958,16 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
  * 
 */
       __pyx_t_4 = NULL;
-      __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_current_depth, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyUnicode_From_int(__pyx_v_current_depth, 0, ' ', 'd'); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_6 = __Pyx_PyUnicode_From_int(__pyx_v_4core_15model_inference_node_count, 0, ' ', 'd'); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyUnicode_From_int(__pyx_v_4core_15model_inference_node_count, 0, ' ', 'd'); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
-      __pyx_t_13 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_v_best_move); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyObject_CallOneArg(__pyx_t_12, __pyx_v_best_move); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      __pyx_t_12 = __Pyx_PyObject_FormatSimple(__pyx_t_13, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 320, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_FormatSimple(__pyx_t_13, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
       __pyx_t_14[0] = __pyx_mstate_global->__pyx_kp_u_Endgame_Minimax_Depth;
@@ -10663,7 +9977,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
       __pyx_t_14[4] = __pyx_mstate_global->__pyx_kp_u_;
       __pyx_t_14[5] = __pyx_t_12;
       __pyx_t_13 = __Pyx_PyUnicode_Join(__pyx_t_14, 6, 24 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2) + 9 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_6) + 6 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_12), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_12));
-      if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 320, __pyx_L1_error)
+      if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 268, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -10674,12 +9988,12 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
         __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 320, __pyx_L1_error)
+        if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 268, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
       }
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-      /* "core/model_inference.pyx":321
+      /* "core/model_inference.pyx":269
  *             best_move = temp_best_move
  *             print(f"[Endgame Minimax] Depth {current_depth} | Nodes {node_count} | -> {board.san(best_move)}")
  *             current_depth += 1             # <<<<<<<<<<<<<<
@@ -10688,7 +10002,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 */
       __pyx_v_current_depth = (__pyx_v_current_depth + 1);
 
-      /* "core/model_inference.pyx":318
+      /* "core/model_inference.pyx":266
  *                 if node_count >= MAX_NODES: break
  * 
  *         if node_count < MAX_NODES:             # <<<<<<<<<<<<<<
@@ -10698,7 +10012,7 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     }
   }
 
-  /* "core/model_inference.pyx":323
+  /* "core/model_inference.pyx":271
  *             current_depth += 1
  * 
  *     print(f"[Endgame Minimax] Chon cuoi -> {board.san(best_move)}")             # <<<<<<<<<<<<<<
@@ -10713,13 +10027,13 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     PyObject *__pyx_callargs[2] = {__pyx_t_12, __pyx_v_best_move};
     __pyx_t_4 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_san, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 323, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  __pyx_t_12 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_FormatSimple(__pyx_t_4, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Endgame_Minimax_Chon_cuoi, __pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 323, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Endgame_Minimax_Chon_cuoi, __pyx_t_12); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __pyx_t_7 = 1;
@@ -10728,12 +10042,12 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
     __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 323, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":324
+  /* "core/model_inference.pyx":272
  * 
  *     print(f"[Endgame Minimax] Chon cuoi -> {board.san(best_move)}")
  *     return best_move             # <<<<<<<<<<<<<<
@@ -10745,12 +10059,12 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
   __pyx_r = __pyx_v_best_move;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":271
+  /* "core/model_inference.pyx":220
  *     return [move for move, score in scored_moves]
  * 
  * cpdef object minimax_root(object board, object model, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Ham goc cua Minimax cho Tan cuoc
  *     global node_count
+ *     node_count = 0
 */
 
   /* function exit code */
@@ -10776,15 +10090,15 @@ static PyObject *__pyx_f_4core_15model_inference_minimax_root(PyObject *__pyx_v_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_9minimax_root(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_7minimax_root(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_9minimax_root = {"minimax_root", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_9minimax_root, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_9minimax_root(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_4core_15model_inference_7minimax_root = {"minimax_root", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_7minimax_root, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_7minimax_root(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10816,38 +10130,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_model,&__pyx_mstate_global->__pyx_n_u_legal_moves,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 271, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 220, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 271, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 220, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 271, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 220, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 271, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 220, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minimax_root", 0) < (0)) __PYX_ERR(0, 271, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minimax_root", 0) < (0)) __PYX_ERR(0, 220, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minimax_root", 1, 3, 3, i); __PYX_ERR(0, 271, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minimax_root", 1, 3, 3, i); __PYX_ERR(0, 220, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 271, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 220, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 271, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 220, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 271, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 220, __pyx_L3_error)
     }
     __pyx_v_board = values[0];
     __pyx_v_model = values[1];
@@ -10855,7 +10169,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minimax_root", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 271, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minimax_root", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 220, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -10866,8 +10180,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 271, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4core_15model_inference_8minimax_root(__pyx_self, __pyx_v_board, __pyx_v_model, __pyx_v_legal_moves);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 220, __pyx_L1_error)
+  __pyx_r = __pyx_pf_4core_15model_inference_6minimax_root(__pyx_self, __pyx_v_board, __pyx_v_model, __pyx_v_legal_moves);
 
   /* function exit code */
   goto __pyx_L0;
@@ -10886,7 +10200,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4core_15model_inference_8minimax_root(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves) {
+static PyObject *__pyx_pf_4core_15model_inference_6minimax_root(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10895,7 +10209,7 @@ static PyObject *__pyx_pf_4core_15model_inference_8minimax_root(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("minimax_root", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4core_15model_inference_minimax_root(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4core_15model_inference_minimax_root(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -10912,15 +10226,15 @@ static PyObject *__pyx_pf_4core_15model_inference_8minimax_root(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":326
+/* "core/model_inference.pyx":274
  *     return best_move
  * 
  * cpdef object batch_predict_1ply(object board, object model, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Du doan 1-ply theo lo bang XGBoost
+ *     # Tinh luon ca vat chat o 1-ply de rank chuan xac ngay tu dau
  *     cdef list batch = []
 */
 
-static PyObject *__pyx_pw_4core_15model_inference_11batch_predict_1ply(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_9batch_predict_1ply(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10929,8 +10243,10 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ); /*proto*/
 static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyObject *__pyx_v_batch = 0;
+  PyObject *__pyx_v_materials = 0;
   PyObject *__pyx_v_move = NULL;
   PyObject *__pyx_v_features = NULL;
+  PyObject *__pyx_v_pos_scores = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10941,34 +10257,47 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
   PyObject *__pyx_t_6 = NULL;
   PyObject *__pyx_t_7 = NULL;
   int __pyx_t_8;
-  PyObject *__pyx_t_9 = NULL;
+  int __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("batch_predict_1ply", 0);
 
-  /* "core/model_inference.pyx":328
+  /* "core/model_inference.pyx":276
  * cpdef object batch_predict_1ply(object board, object model, list legal_moves):
- *     # Du doan 1-ply theo lo bang XGBoost
+ *     # Tinh luon ca vat chat o 1-ply de rank chuan xac ngay tu dau
  *     cdef list batch = []             # <<<<<<<<<<<<<<
+ *     cdef list materials = []
  *     for move in legal_moves:
- *         board.push(move)
 */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 328, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_batch = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":329
- *     # Du doan 1-ply theo lo bang XGBoost
+  /* "core/model_inference.pyx":277
+ *     # Tinh luon ca vat chat o 1-ply de rank chuan xac ngay tu dau
  *     cdef list batch = []
+ *     cdef list materials = []             # <<<<<<<<<<<<<<
+ *     for move in legal_moves:
+ *         board.push(move)
+*/
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_materials = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "core/model_inference.pyx":278
+ *     cdef list batch = []
+ *     cdef list materials = []
  *     for move in legal_moves:             # <<<<<<<<<<<<<<
  *         board.push(move)
  *         features = extract_features(board)
 */
   if (unlikely(__pyx_v_legal_moves == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 329, __pyx_L1_error)
+    __PYX_ERR(0, 278, __pyx_L1_error)
   }
   __pyx_t_1 = __pyx_v_legal_moves; __Pyx_INCREF(__pyx_t_1);
   __pyx_t_2 = 0;
@@ -10976,19 +10305,19 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_SIZE
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 329, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 278, __pyx_L1_error)
       #endif
       if (__pyx_t_2 >= __pyx_temp) break;
     }
     __pyx_t_3 = __Pyx_PyList_GetItemRefFast(__pyx_t_1, __pyx_t_2, __Pyx_ReferenceSharing_OwnStrongReference);
     ++__pyx_t_2;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 278, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":330
- *     cdef list batch = []
+    /* "core/model_inference.pyx":279
+ *     cdef list materials = []
  *     for move in legal_moves:
  *         board.push(move)             # <<<<<<<<<<<<<<
  *         features = extract_features(board)
@@ -11001,12 +10330,12 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_move};
       __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 279, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":331
+    /* "core/model_inference.pyx":280
  *     for move in legal_moves:
  *         board.push(move)
  *         features = extract_features(board)             # <<<<<<<<<<<<<<
@@ -11014,7 +10343,7 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
  *         batch.append(features)
 */
     __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_extract_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 331, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_extract_features); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 280, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_t_5 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -11033,23 +10362,23 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
       __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 331, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 280, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
     __Pyx_XDECREF_SET(__pyx_v_features, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":332
+    /* "core/model_inference.pyx":281
  *         board.push(move)
  *         features = extract_features(board)
  *         features = np.append(features, 1)             # <<<<<<<<<<<<<<
  *         batch.append(features)
- *         board.pop()
+ *         materials.append(material_balance(board))
 */
     __pyx_t_6 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 332, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_append); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 332, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_append); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_5 = 1;
@@ -11069,35 +10398,48 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
       __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
     __Pyx_DECREF_SET(__pyx_v_features, __pyx_t_3);
     __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":333
+    /* "core/model_inference.pyx":282
  *         features = extract_features(board)
  *         features = np.append(features, 1)
  *         batch.append(features)             # <<<<<<<<<<<<<<
+ *         materials.append(material_balance(board))
  *         board.pop()
- *     return model.predict(np.array(batch))
 */
-    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_batch, __pyx_v_features); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 333, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_batch, __pyx_v_features); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 282, __pyx_L1_error)
 
-    /* "core/model_inference.pyx":334
+    /* "core/model_inference.pyx":283
  *         features = np.append(features, 1)
  *         batch.append(features)
- *         board.pop()             # <<<<<<<<<<<<<<
- *     return model.predict(np.array(batch))
+ *         materials.append(material_balance(board))             # <<<<<<<<<<<<<<
+ *         board.pop()
  * 
 */
-    __pyx_t_3 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L1_error)
+    __pyx_t_9 = __pyx_f_4core_15model_inference_material_balance(__pyx_v_board, 0); if (unlikely(__pyx_t_9 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 283, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyLong_From_int(__pyx_t_9); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 283, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_8 = __Pyx_PyList_Append(__pyx_v_materials, __pyx_t_3); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 283, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+    /* "core/model_inference.pyx":284
+ *         batch.append(features)
+ *         materials.append(material_balance(board))
+ *         board.pop()             # <<<<<<<<<<<<<<
+ * 
+ *     pos_scores = model.predict(np.array(batch))
+*/
+    __pyx_t_3 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":329
- *     # Du doan 1-ply theo lo bang XGBoost
+    /* "core/model_inference.pyx":278
  *     cdef list batch = []
+ *     cdef list materials = []
  *     for move in legal_moves:             # <<<<<<<<<<<<<<
  *         board.push(move)
  *         features = extract_features(board)
@@ -11105,40 +10447,39 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":335
- *         batch.append(features)
+  /* "core/model_inference.pyx":286
  *         board.pop()
- *     return model.predict(np.array(batch))             # <<<<<<<<<<<<<<
  * 
- * cdef float smart_nply_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, bint ai_color):
+ *     pos_scores = model.predict(np.array(batch))             # <<<<<<<<<<<<<<
+ *     return pos_scores + np.array(materials)
+ * 
 */
-  __Pyx_XDECREF(__pyx_r);
   __pyx_t_3 = __pyx_v_model;
   __Pyx_INCREF(__pyx_t_3);
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 335, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_9);
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 286, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_9))) {
-    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_9);
+  if (unlikely(PyMethod_Check(__pyx_t_10))) {
+    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_10);
     assert(__pyx_t_6);
-    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_9);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_10);
     __Pyx_INCREF(__pyx_t_6);
     __Pyx_INCREF(__pyx__function);
-    __Pyx_DECREF_SET(__pyx_t_9, __pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_10, __pyx__function);
     __pyx_t_5 = 0;
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_v_batch};
-    __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 335, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
   }
   __pyx_t_5 = 0;
@@ -11147,18 +10488,58 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_predict, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 335, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_r = __pyx_t_1;
+  __pyx_v_pos_scores = __pyx_t_1;
   __pyx_t_1 = 0;
+
+  /* "core/model_inference.pyx":287
+ * 
+ *     pos_scores = model.predict(np.array(batch))
+ *     return pos_scores + np.array(materials)             # <<<<<<<<<<<<<<
+ * 
+ * cdef float smart_nply_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, bint ai_color):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_7 = NULL;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_array); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_5 = 1;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_10))) {
+    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_10);
+    assert(__pyx_t_7);
+    PyObject* __pyx__function = PyMethod_GET_FUNCTION(__pyx_t_10);
+    __Pyx_INCREF(__pyx_t_7);
+    __Pyx_INCREF(__pyx__function);
+    __Pyx_DECREF_SET(__pyx_t_10, __pyx__function);
+    __pyx_t_5 = 0;
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_materials};
+    __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 287, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_t_10 = PyNumber_Add(__pyx_v_pos_scores, __pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 287, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_10);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_10;
+  __pyx_t_10 = 0;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":326
+  /* "core/model_inference.pyx":274
  *     return best_move
  * 
  * cpdef object batch_predict_1ply(object board, object model, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Du doan 1-ply theo lo bang XGBoost
+ *     # Tinh luon ca vat chat o 1-ply de rank chuan xac ngay tu dau
  *     cdef list batch = []
 */
 
@@ -11169,28 +10550,30 @@ static PyObject *__pyx_f_4core_15model_inference_batch_predict_1ply(PyObject *__
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_XDECREF(__pyx_t_9);
+  __Pyx_XDECREF(__pyx_t_10);
   __Pyx_AddTraceback("core.model_inference.batch_predict_1ply", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_batch);
+  __Pyx_XDECREF(__pyx_v_materials);
   __Pyx_XDECREF(__pyx_v_move);
   __Pyx_XDECREF(__pyx_v_features);
+  __Pyx_XDECREF(__pyx_v_pos_scores);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_11batch_predict_1ply(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_9batch_predict_1ply(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_11batch_predict_1ply = {"batch_predict_1ply", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_11batch_predict_1ply, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_11batch_predict_1ply(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_4core_15model_inference_9batch_predict_1ply = {"batch_predict_1ply", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_9batch_predict_1ply, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_9batch_predict_1ply(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -11222,38 +10605,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_model,&__pyx_mstate_global->__pyx_n_u_legal_moves,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 326, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 274, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 326, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 274, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 326, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 274, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 326, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 274, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "batch_predict_1ply", 0) < (0)) __PYX_ERR(0, 326, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "batch_predict_1ply", 0) < (0)) __PYX_ERR(0, 274, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("batch_predict_1ply", 1, 3, 3, i); __PYX_ERR(0, 326, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("batch_predict_1ply", 1, 3, 3, i); __PYX_ERR(0, 274, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 326, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 274, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 326, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 274, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 326, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 274, __pyx_L3_error)
     }
     __pyx_v_board = values[0];
     __pyx_v_model = values[1];
@@ -11261,7 +10644,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("batch_predict_1ply", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 326, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("batch_predict_1ply", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 274, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11272,8 +10655,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 326, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4core_15model_inference_10batch_predict_1ply(__pyx_self, __pyx_v_board, __pyx_v_model, __pyx_v_legal_moves);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_r = __pyx_pf_4core_15model_inference_8batch_predict_1ply(__pyx_self, __pyx_v_board, __pyx_v_model, __pyx_v_legal_moves);
 
   /* function exit code */
   goto __pyx_L0;
@@ -11292,7 +10675,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4core_15model_inference_10batch_predict_1ply(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves) {
+static PyObject *__pyx_pf_4core_15model_inference_8batch_predict_1ply(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -11301,7 +10684,7 @@ static PyObject *__pyx_pf_4core_15model_inference_10batch_predict_1ply(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("batch_predict_1ply", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_4core_15model_inference_batch_predict_1ply(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_4core_15model_inference_batch_predict_1ply(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -11318,12 +10701,12 @@ static PyObject *__pyx_pf_4core_15model_inference_10batch_predict_1ply(CYTHON_UN
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":337
- *     return model.predict(np.array(batch))
+/* "core/model_inference.pyx":289
+ *     return pos_scores + np.array(materials)
  * 
  * cdef float smart_nply_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, bint ai_color):             # <<<<<<<<<<<<<<
- *     # Tim kiem tiep can Smart N-ply cho Trung cuoc
  *     global node_count
+ * 
 */
 
 static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v_board, PyObject *__pyx_v_model, int __pyx_v_depth, float __pyx_v_alpha, float __pyx_v_beta, int __pyx_v_is_maximizing, int __pyx_v_ai_color) {
@@ -11351,11 +10734,11 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("smart_nply_search", 0);
 
-  /* "core/model_inference.pyx":341
+  /* "core/model_inference.pyx":292
  *     global node_count
  * 
  *     if board.is_game_over() or node_count >= MAX_NODES:             # <<<<<<<<<<<<<<
- *         return get_xgb_eval(board, model)
+ *         return leaf_eval(board, model)
  * 
 */
   __pyx_t_3 = __pyx_v_board;
@@ -11365,52 +10748,52 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
     PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
     __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_is_game_over, __pyx_callargs+__pyx_t_4, (1-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (!__pyx_t_5) {
   } else {
     __pyx_t_1 = __pyx_t_5;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyLong_From_int(__pyx_v_4core_15model_inference_node_count); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MAX_NODES); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_6 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_6 = PyObject_RichCompare(__pyx_t_2, __pyx_t_3, Py_GE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 341, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_5 < 0))) __PYX_ERR(0, 292, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_1 = __pyx_t_5;
   __pyx_L4_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "core/model_inference.pyx":342
+    /* "core/model_inference.pyx":293
  * 
  *     if board.is_game_over() or node_count >= MAX_NODES:
- *         return get_xgb_eval(board, model)             # <<<<<<<<<<<<<<
+ *         return leaf_eval(board, model)             # <<<<<<<<<<<<<<
  * 
- *     # IM CHT: Gi Quiescence Search  Node L
+ *     # IM CHT: Trung cuc chm y cng gi QS
 */
-    __pyx_t_7 = __pyx_f_4core_15model_inference_get_xgb_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 342, __pyx_L1_error)
+    __pyx_t_7 = __pyx_f_4core_15model_inference_leaf_eval(__pyx_v_board, __pyx_v_model); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 293, __pyx_L1_error)
     __pyx_r = __pyx_t_7;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":341
+    /* "core/model_inference.pyx":292
  *     global node_count
  * 
  *     if board.is_game_over() or node_count >= MAX_NODES:             # <<<<<<<<<<<<<<
- *         return get_xgb_eval(board, model)
+ *         return leaf_eval(board, model)
  * 
 */
   }
 
-  /* "core/model_inference.pyx":345
+  /* "core/model_inference.pyx":296
  * 
- *     # IM CHT: Gi Quiescence Search  Node L
+ *     # IM CHT: Trung cuc chm y cng gi QS
  *     if depth == 0:             # <<<<<<<<<<<<<<
  *         return quiescence_search(board, model, alpha, beta, is_maximizing)
  * 
@@ -11418,54 +10801,54 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
   __pyx_t_1 = (__pyx_v_depth == 0);
   if (__pyx_t_1) {
 
-    /* "core/model_inference.pyx":346
- *     # IM CHT: Gi Quiescence Search  Node L
+    /* "core/model_inference.pyx":297
+ *     # IM CHT: Trung cuc chm y cng gi QS
  *     if depth == 0:
  *         return quiescence_search(board, model, alpha, beta, is_maximizing)             # <<<<<<<<<<<<<<
  * 
  *     cdef list legal_moves = list(board.legal_moves)
 */
-    __pyx_t_7 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, __pyx_v_is_maximizing); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 346, __pyx_L1_error)
+    __pyx_t_7 = __pyx_f_4core_15model_inference_quiescence_search(__pyx_v_board, __pyx_v_model, __pyx_v_alpha, __pyx_v_beta, __pyx_v_is_maximizing); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L1_error)
     __pyx_r = __pyx_t_7;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":345
+    /* "core/model_inference.pyx":296
  * 
- *     # IM CHT: Gi Quiescence Search  Node L
+ *     # IM CHT: Trung cuc chm y cng gi QS
  *     if depth == 0:             # <<<<<<<<<<<<<<
  *         return quiescence_search(board, model, alpha, beta, is_maximizing)
  * 
 */
   }
 
-  /* "core/model_inference.pyx":348
+  /* "core/model_inference.pyx":299
  *         return quiescence_search(board, model, alpha, beta, is_maximizing)
  * 
  *     cdef list legal_moves = list(board.legal_moves)             # <<<<<<<<<<<<<<
  *     cdef list ordered_moves = order_moves(board, legal_moves)
  *     cdef list beam_moves = ordered_moves[:MIDDLEGAME_BEAM_WIDTH]
 */
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_3 = __Pyx_PySequence_ListKeepNew(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 348, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PySequence_ListKeepNew(__pyx_t_6); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_legal_moves = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":349
+  /* "core/model_inference.pyx":300
  * 
  *     cdef list legal_moves = list(board.legal_moves)
  *     cdef list ordered_moves = order_moves(board, legal_moves)             # <<<<<<<<<<<<<<
  *     cdef list beam_moves = ordered_moves[:MIDDLEGAME_BEAM_WIDTH]
  *     cdef float max_eval, min_eval, eval_score
 */
-  __pyx_t_3 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, __pyx_v_legal_moves); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 349, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_4core_15model_inference_order_moves(__pyx_v_board, __pyx_v_legal_moves); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_ordered_moves = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":350
+  /* "core/model_inference.pyx":301
  *     cdef list legal_moves = list(board.legal_moves)
  *     cdef list ordered_moves = order_moves(board, legal_moves)
  *     cdef list beam_moves = ordered_moves[:MIDDLEGAME_BEAM_WIDTH]             # <<<<<<<<<<<<<<
@@ -11474,24 +10857,24 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
 */
   if (unlikely(__pyx_v_ordered_moves == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 350, __pyx_L1_error)
+    __PYX_ERR(0, 301, __pyx_L1_error)
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_1 = (__pyx_t_3 == Py_None);
   if (__pyx_t_1) {
     __pyx_t_8 = PY_SSIZE_T_MAX;
   } else {
-    __pyx_t_9 = __Pyx_PyIndex_AsSsize_t(__pyx_t_3); if (unlikely((__pyx_t_9 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 350, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyIndex_AsSsize_t(__pyx_t_3); if (unlikely((__pyx_t_9 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 301, __pyx_L1_error)
     __pyx_t_8 = __pyx_t_9;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyList_GetSlice(__pyx_v_ordered_moves, 0, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 350, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyList_GetSlice(__pyx_v_ordered_moves, 0, __pyx_t_8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 301, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_beam_moves = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":353
+  /* "core/model_inference.pyx":304
  *     cdef float max_eval, min_eval, eval_score
  * 
  *     if is_maximizing:             # <<<<<<<<<<<<<<
@@ -11500,17 +10883,17 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
 */
   if (__pyx_v_is_maximizing) {
 
-    /* "core/model_inference.pyx":354
+    /* "core/model_inference.pyx":305
  * 
  *     if is_maximizing:
  *         max_eval = -float('inf')             # <<<<<<<<<<<<<<
  *         for move in beam_moves:
  *             board.push(move)
 */
-    __pyx_t_10 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_10, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 354, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_10, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 305, __pyx_L1_error)
     __pyx_v_max_eval = (-__pyx_t_10);
 
-    /* "core/model_inference.pyx":355
+    /* "core/model_inference.pyx":306
  *     if is_maximizing:
  *         max_eval = -float('inf')
  *         for move in beam_moves:             # <<<<<<<<<<<<<<
@@ -11523,18 +10906,18 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 355, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 306, __pyx_L1_error)
         #endif
         if (__pyx_t_8 >= __pyx_temp) break;
       }
       __pyx_t_6 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_8;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 355, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 306, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "core/model_inference.pyx":356
+      /* "core/model_inference.pyx":307
  *         max_eval = -float('inf')
  *         for move in beam_moves:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -11548,33 +10931,33 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_move};
         __pyx_t_6 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 356, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 307, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
       }
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "core/model_inference.pyx":357
+      /* "core/model_inference.pyx":308
  *         for move in beam_moves:
  *             board.push(move)
  *             eval_score = smart_nply_search(board, model, depth - 1, alpha, beta, False, ai_color)             # <<<<<<<<<<<<<<
  *             board.pop()
  *             if eval_score > max_eval: max_eval = eval_score
 */
-      __pyx_t_7 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 0, __pyx_v_ai_color); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 357, __pyx_L1_error)
+      __pyx_t_7 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 0, __pyx_v_ai_color); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 308, __pyx_L1_error)
       __pyx_v_eval_score = __pyx_t_7;
 
-      /* "core/model_inference.pyx":358
+      /* "core/model_inference.pyx":309
  *             board.push(move)
  *             eval_score = smart_nply_search(board, model, depth - 1, alpha, beta, False, ai_color)
  *             board.pop()             # <<<<<<<<<<<<<<
  *             if eval_score > max_eval: max_eval = eval_score
  *             if eval_score > alpha: alpha = eval_score
 */
-      __pyx_t_6 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 358, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 309, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "core/model_inference.pyx":359
+      /* "core/model_inference.pyx":310
  *             eval_score = smart_nply_search(board, model, depth - 1, alpha, beta, False, ai_color)
  *             board.pop()
  *             if eval_score > max_eval: max_eval = eval_score             # <<<<<<<<<<<<<<
@@ -11586,7 +10969,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         __pyx_v_max_eval = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":360
+      /* "core/model_inference.pyx":311
  *             board.pop()
  *             if eval_score > max_eval: max_eval = eval_score
  *             if eval_score > alpha: alpha = eval_score             # <<<<<<<<<<<<<<
@@ -11598,7 +10981,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         __pyx_v_alpha = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":361
+      /* "core/model_inference.pyx":312
  *             if eval_score > max_eval: max_eval = eval_score
  *             if eval_score > alpha: alpha = eval_score
  *             if beta <= alpha: break             # <<<<<<<<<<<<<<
@@ -11610,7 +10993,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         goto __pyx_L9_break;
       }
 
-      /* "core/model_inference.pyx":355
+      /* "core/model_inference.pyx":306
  *     if is_maximizing:
  *         max_eval = -float('inf')
  *         for move in beam_moves:             # <<<<<<<<<<<<<<
@@ -11625,7 +11008,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
     goto __pyx_L13_for_end;
     __pyx_L13_for_end:;
 
-    /* "core/model_inference.pyx":362
+    /* "core/model_inference.pyx":313
  *             if eval_score > alpha: alpha = eval_score
  *             if beta <= alpha: break
  *         return max_eval             # <<<<<<<<<<<<<<
@@ -11635,7 +11018,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
     __pyx_r = __pyx_v_max_eval;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":353
+    /* "core/model_inference.pyx":304
  *     cdef float max_eval, min_eval, eval_score
  * 
  *     if is_maximizing:             # <<<<<<<<<<<<<<
@@ -11644,7 +11027,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
 */
   }
 
-  /* "core/model_inference.pyx":364
+  /* "core/model_inference.pyx":315
  *         return max_eval
  *     else:
  *         min_eval = float('inf')             # <<<<<<<<<<<<<<
@@ -11652,10 +11035,10 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
  *             board.push(move)
 */
   /*else*/ {
-    __pyx_t_10 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_10, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 364, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_10, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 315, __pyx_L1_error)
     __pyx_v_min_eval = __pyx_t_10;
 
-    /* "core/model_inference.pyx":365
+    /* "core/model_inference.pyx":316
  *     else:
  *         min_eval = float('inf')
  *         for move in beam_moves:             # <<<<<<<<<<<<<<
@@ -11668,18 +11051,18 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 365, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 316, __pyx_L1_error)
         #endif
         if (__pyx_t_8 >= __pyx_temp) break;
       }
       __pyx_t_6 = __Pyx_PyList_GetItemRefFast(__pyx_t_3, __pyx_t_8, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_8;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 365, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 316, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "core/model_inference.pyx":366
+      /* "core/model_inference.pyx":317
  *         min_eval = float('inf')
  *         for move in beam_moves:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -11693,33 +11076,33 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_move};
         __pyx_t_6 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 366, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 317, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
       }
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "core/model_inference.pyx":367
+      /* "core/model_inference.pyx":318
  *         for move in beam_moves:
  *             board.push(move)
  *             eval_score = smart_nply_search(board, model, depth - 1, alpha, beta, True, ai_color)             # <<<<<<<<<<<<<<
  *             board.pop()
  *             if eval_score < min_eval: min_eval = eval_score
 */
-      __pyx_t_7 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 1, __pyx_v_ai_color); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 367, __pyx_L1_error)
+      __pyx_t_7 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, (__pyx_v_depth - 1), __pyx_v_alpha, __pyx_v_beta, 1, __pyx_v_ai_color); if (unlikely(__pyx_t_7 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 318, __pyx_L1_error)
       __pyx_v_eval_score = __pyx_t_7;
 
-      /* "core/model_inference.pyx":368
+      /* "core/model_inference.pyx":319
  *             board.push(move)
  *             eval_score = smart_nply_search(board, model, depth - 1, alpha, beta, True, ai_color)
  *             board.pop()             # <<<<<<<<<<<<<<
  *             if eval_score < min_eval: min_eval = eval_score
  *             if eval_score < beta: beta = eval_score
 */
-      __pyx_t_6 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 368, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 319, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-      /* "core/model_inference.pyx":369
+      /* "core/model_inference.pyx":320
  *             eval_score = smart_nply_search(board, model, depth - 1, alpha, beta, True, ai_color)
  *             board.pop()
  *             if eval_score < min_eval: min_eval = eval_score             # <<<<<<<<<<<<<<
@@ -11731,7 +11114,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         __pyx_v_min_eval = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":370
+      /* "core/model_inference.pyx":321
  *             board.pop()
  *             if eval_score < min_eval: min_eval = eval_score
  *             if eval_score < beta: beta = eval_score             # <<<<<<<<<<<<<<
@@ -11743,7 +11126,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         __pyx_v_beta = __pyx_v_eval_score;
       }
 
-      /* "core/model_inference.pyx":371
+      /* "core/model_inference.pyx":322
  *             if eval_score < min_eval: min_eval = eval_score
  *             if eval_score < beta: beta = eval_score
  *             if beta <= alpha: break             # <<<<<<<<<<<<<<
@@ -11755,7 +11138,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
         goto __pyx_L15_break;
       }
 
-      /* "core/model_inference.pyx":365
+      /* "core/model_inference.pyx":316
  *     else:
  *         min_eval = float('inf')
  *         for move in beam_moves:             # <<<<<<<<<<<<<<
@@ -11770,7 +11153,7 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
     goto __pyx_L19_for_end;
     __pyx_L19_for_end:;
 
-    /* "core/model_inference.pyx":372
+    /* "core/model_inference.pyx":323
  *             if eval_score < beta: beta = eval_score
  *             if beta <= alpha: break
  *         return min_eval             # <<<<<<<<<<<<<<
@@ -11781,12 +11164,12 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
     goto __pyx_L0;
   }
 
-  /* "core/model_inference.pyx":337
- *     return model.predict(np.array(batch))
+  /* "core/model_inference.pyx":289
+ *     return pos_scores + np.array(materials)
  * 
  * cdef float smart_nply_search(object board, object model, int depth, float alpha, float beta, bint is_maximizing, bint ai_color):             # <<<<<<<<<<<<<<
- *     # Tim kiem tiep can Smart N-ply cho Trung cuoc
  *     global node_count
+ * 
 */
 
   /* function exit code */
@@ -11805,24 +11188,24 @@ static float __pyx_f_4core_15model_inference_smart_nply_search(PyObject *__pyx_v
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":374
+/* "core/model_inference.pyx":325
  *         return min_eval
  * 
  * def get_smart_nply_move(board, model, list legal_moves, object ai_scores):             # <<<<<<<<<<<<<<
- *     # Ham goc xu ly va goi Smart N-ply da duoc lam sach
  *     global node_count
+ *     node_count = 0
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_13get_smart_nply_move(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_11get_smart_nply_move(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_13get_smart_nply_move = {"get_smart_nply_move", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_13get_smart_nply_move, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_13get_smart_nply_move(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_4core_15model_inference_11get_smart_nply_move = {"get_smart_nply_move", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_11get_smart_nply_move, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_11get_smart_nply_move(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -11855,44 +11238,44 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_model,&__pyx_mstate_global->__pyx_n_u_legal_moves,&__pyx_mstate_global->__pyx_n_u_ai_scores,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 374, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 325, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 374, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 325, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 374, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 325, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 374, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 325, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 374, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 325, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_smart_nply_move", 0) < (0)) __PYX_ERR(0, 374, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_smart_nply_move", 0) < (0)) __PYX_ERR(0, 325, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_smart_nply_move", 1, 4, 4, i); __PYX_ERR(0, 374, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_smart_nply_move", 1, 4, 4, i); __PYX_ERR(0, 325, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 374, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 325, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 374, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 325, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 374, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 325, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 374, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 325, __pyx_L3_error)
     }
     __pyx_v_board = values[0];
     __pyx_v_model = values[1];
@@ -11901,7 +11284,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_smart_nply_move", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 374, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_smart_nply_move", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 325, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -11912,8 +11295,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 374, __pyx_L1_error)
-  __pyx_r = __pyx_pf_4core_15model_inference_12get_smart_nply_move(__pyx_self, __pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, __pyx_v_ai_scores);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_legal_moves), (&PyList_Type), 1, "legal_moves", 1))) __PYX_ERR(0, 325, __pyx_L1_error)
+  __pyx_r = __pyx_pf_4core_15model_inference_10get_smart_nply_move(__pyx_self, __pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, __pyx_v_ai_scores);
 
   /* function exit code */
   goto __pyx_L0;
@@ -11932,7 +11315,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":396
+/* "core/model_inference.pyx":345
  *     cdef list ranked = sorted(
  *         legal_moves,
  *         key=lambda m: (sign * move_to_score[m]) + (TACTICAL_BONUS_WEIGHT * winning_captures.get(m, 0)),             # <<<<<<<<<<<<<<
@@ -11979,32 +11362,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_m,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 396, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 345, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 396, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 345, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "lambda2", 0) < (0)) __PYX_ERR(0, 396, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "lambda2", 0) < (0)) __PYX_ERR(0, 345, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("lambda2", 1, 1, 1, i); __PYX_ERR(0, 396, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("lambda2", 1, 1, 1, i); __PYX_ERR(0, 345, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 396, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 345, __pyx_L3_error)
     }
     __pyx_v_m = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("lambda2", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 396, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("lambda2", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 345, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -12041,33 +11424,33 @@ static PyObject *__pyx_lambda_funcdef_lambda2(PyObject *__pyx_self, PyObject *__
   __pyx_outer_scope = (struct __pyx_obj_4core_15model_inference___pyx_scope_struct__get_smart_nply_move *) __Pyx_CyFunction_GetClosure(__pyx_self);
   __pyx_cur_scope = __pyx_outer_scope;
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_cur_scope->__pyx_v_sign); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_From_int(__pyx_cur_scope->__pyx_v_sign); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_move_to_score)) { __Pyx_RaiseClosureNameError("move_to_score"); __PYX_ERR(0, 396, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_move_to_score)) { __Pyx_RaiseClosureNameError("move_to_score"); __PYX_ERR(0, 345, __pyx_L1_error) }
   if (unlikely(__pyx_cur_scope->__pyx_v_move_to_score == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 396, __pyx_L1_error)
+    __PYX_ERR(0, 345, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_move_to_score, __pyx_v_m); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_cur_scope->__pyx_v_move_to_score, __pyx_v_m); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_TACTICAL_BONUS_WEIGHT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_TACTICAL_BONUS_WEIGHT); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (unlikely(!__pyx_cur_scope->__pyx_v_winning_captures)) { __Pyx_RaiseClosureNameError("winning_captures"); __PYX_ERR(0, 396, __pyx_L1_error) }
+  if (unlikely(!__pyx_cur_scope->__pyx_v_winning_captures)) { __Pyx_RaiseClosureNameError("winning_captures"); __PYX_ERR(0, 345, __pyx_L1_error) }
   if (unlikely(__pyx_cur_scope->__pyx_v_winning_captures == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
-    __PYX_ERR(0, 396, __pyx_L1_error)
+    __PYX_ERR(0, 345, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_cur_scope->__pyx_v_winning_captures, __pyx_v_m, __pyx_mstate_global->__pyx_int_0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_GetItemDefault(__pyx_cur_scope->__pyx_v_winning_captures, __pyx_v_m, __pyx_mstate_global->__pyx_int_0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -12089,15 +11472,15 @@ static PyObject *__pyx_lambda_funcdef_lambda2(PyObject *__pyx_self, PyObject *__
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":374
+/* "core/model_inference.pyx":325
  *         return min_eval
  * 
  * def get_smart_nply_move(board, model, list legal_moves, object ai_scores):             # <<<<<<<<<<<<<<
- *     # Ham goc xu ly va goi Smart N-ply da duoc lam sach
  *     global node_count
+ *     node_count = 0
 */
 
-static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves, PyObject *__pyx_v_ai_scores) {
+static PyObject *__pyx_pf_4core_15model_inference_10get_smart_nply_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model, PyObject *__pyx_v_legal_moves, PyObject *__pyx_v_ai_scores) {
   struct __pyx_obj_4core_15model_inference___pyx_scope_struct__get_smart_nply_move *__pyx_cur_scope;
   int __pyx_v_is_ai_white;
   int __pyx_v_ai_color;
@@ -12142,13 +11525,13 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   if (unlikely(!__pyx_cur_scope)) {
     __pyx_cur_scope = ((struct __pyx_obj_4core_15model_inference___pyx_scope_struct__get_smart_nply_move *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 374, __pyx_L1_error)
+    __PYX_ERR(0, 325, __pyx_L1_error)
   } else {
     __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
   }
 
-  /* "core/model_inference.pyx":377
- *     # Ham goc xu ly va goi Smart N-ply da duoc lam sach
+  /* "core/model_inference.pyx":327
+ * def get_smart_nply_move(board, model, list legal_moves, object ai_scores):
  *     global node_count
  *     node_count = 0             # <<<<<<<<<<<<<<
  * 
@@ -12156,7 +11539,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
   __pyx_v_4core_15model_inference_node_count = 0;
 
-  /* "core/model_inference.pyx":379
+  /* "core/model_inference.pyx":329
  *     node_count = 0
  * 
  *     cdef dict move_to_score = {m: s for m, s in zip(legal_moves, ai_scores)}             # <<<<<<<<<<<<<<
@@ -12164,7 +11547,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
  *     cdef bint ai_color = chess.WHITE if is_ai_white else chess.BLACK
 */
   { /* enter inner scope */
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 379, __pyx_L5_error)
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_3 = NULL;
     __pyx_t_4 = 1;
@@ -12172,7 +11555,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_v_legal_moves, __pyx_v_ai_scores};
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_zip, __pyx_callargs+__pyx_t_4, (3-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 379, __pyx_L5_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
@@ -12180,9 +11563,9 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       __pyx_t_5 = 0;
       __pyx_t_6 = NULL;
     } else {
-      __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L5_error)
+      __pyx_t_5 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_6 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 379, __pyx_L5_error)
+      __pyx_t_6 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 329, __pyx_L5_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     for (;;) {
@@ -12191,7 +11574,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
             #if !CYTHON_ASSUME_SAFE_SIZE
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 379, __pyx_L5_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 329, __pyx_L5_error)
             #endif
             if (__pyx_t_5 >= __pyx_temp) break;
           }
@@ -12201,7 +11584,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_3);
             #if !CYTHON_ASSUME_SAFE_SIZE
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 379, __pyx_L5_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 329, __pyx_L5_error)
             #endif
             if (__pyx_t_5 >= __pyx_temp) break;
           }
@@ -12212,13 +11595,13 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
           #endif
           ++__pyx_t_5;
         }
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 379, __pyx_L5_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L5_error)
       } else {
         __pyx_t_2 = __pyx_t_6(__pyx_t_3);
         if (unlikely(!__pyx_t_2)) {
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
-            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 379, __pyx_L5_error)
+            if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 329, __pyx_L5_error)
             PyErr_Clear();
           }
           break;
@@ -12231,7 +11614,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         if (unlikely(size != 2)) {
           if (size > 2) __Pyx_RaiseTooManyValuesError(2);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 379, __pyx_L5_error)
+          __PYX_ERR(0, 329, __pyx_L5_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -12241,22 +11624,22 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
           __Pyx_INCREF(__pyx_t_8);
         } else {
           __pyx_t_7 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 379, __pyx_L5_error)
+          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 329, __pyx_L5_error)
           __Pyx_XGOTREF(__pyx_t_7);
           __pyx_t_8 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 379, __pyx_L5_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 329, __pyx_L5_error)
           __Pyx_XGOTREF(__pyx_t_8);
         }
         #else
-        __pyx_t_7 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 379, __pyx_L5_error)
+        __pyx_t_7 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 329, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_7);
-        __pyx_t_8 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 379, __pyx_L5_error)
+        __pyx_t_8 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 329, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_8);
         #endif
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       } else {
         Py_ssize_t index = -1;
-        __pyx_t_9 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 379, __pyx_L5_error)
+        __pyx_t_9 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 329, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_9);
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_t_10 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_9);
@@ -12264,7 +11647,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         __Pyx_GOTREF(__pyx_t_7);
         index = 1; __pyx_t_8 = __pyx_t_10(__pyx_t_9); if (unlikely(!__pyx_t_8)) goto __pyx_L8_unpacking_failed;
         __Pyx_GOTREF(__pyx_t_8);
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < (0)) __PYX_ERR(0, 379, __pyx_L5_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_10(__pyx_t_9), 2) < (0)) __PYX_ERR(0, 329, __pyx_L5_error)
         __pyx_t_10 = NULL;
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         goto __pyx_L9_unpacking_done;
@@ -12272,14 +11655,14 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_t_10 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 379, __pyx_L5_error)
+        __PYX_ERR(0, 329, __pyx_L5_error)
         __pyx_L9_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_8genexpr3__pyx_v_m, __pyx_t_7);
       __pyx_t_7 = 0;
       __Pyx_XDECREF_SET(__pyx_8genexpr3__pyx_v_s, __pyx_t_8);
       __pyx_t_8 = 0;
-      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr3__pyx_v_m, (PyObject*)__pyx_8genexpr3__pyx_v_s))) __PYX_ERR(0, 379, __pyx_L5_error)
+      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr3__pyx_v_m, (PyObject*)__pyx_8genexpr3__pyx_v_s))) __PYX_ERR(0, 329, __pyx_L5_error)
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_XDECREF(__pyx_8genexpr3__pyx_v_m); __pyx_8genexpr3__pyx_v_m = 0;
@@ -12295,28 +11678,28 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   __pyx_cur_scope->__pyx_v_move_to_score = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":380
+  /* "core/model_inference.pyx":330
  * 
  *     cdef dict move_to_score = {m: s for m, s in zip(legal_moves, ai_scores)}
  *     cdef bint is_ai_white = board.turn == chess.WHITE             # <<<<<<<<<<<<<<
  *     cdef bint ai_color = chess.WHITE if is_ai_white else chess.BLACK
  *     cdef int sign = 1 if is_ai_white else -1
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_t_1, __pyx_t_2, Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 380, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_11 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 330, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_is_ai_white = __pyx_t_11;
 
-  /* "core/model_inference.pyx":381
+  /* "core/model_inference.pyx":331
  *     cdef dict move_to_score = {m: s for m, s in zip(legal_moves, ai_scores)}
  *     cdef bint is_ai_white = board.turn == chess.WHITE
  *     cdef bint ai_color = chess.WHITE if is_ai_white else chess.BLACK             # <<<<<<<<<<<<<<
@@ -12324,27 +11707,27 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
  * 
 */
   if (__pyx_v_is_ai_white) {
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 331, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 331, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 331, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_11 = __pyx_t_12;
   } else {
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 331, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_BLACK); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 331, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 381, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely((__pyx_t_12 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 331, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_11 = __pyx_t_12;
   }
   __pyx_v_ai_color = __pyx_t_11;
 
-  /* "core/model_inference.pyx":382
+  /* "core/model_inference.pyx":332
  *     cdef bint is_ai_white = board.turn == chess.WHITE
  *     cdef bint ai_color = chess.WHITE if is_ai_white else chess.BLACK
  *     cdef int sign = 1 if is_ai_white else -1             # <<<<<<<<<<<<<<
@@ -12358,14 +11741,14 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   }
   __pyx_cur_scope->__pyx_v_sign = __pyx_t_13;
 
-  /* "core/model_inference.pyx":386
+  /* "core/model_inference.pyx":336
  *     cdef list mate_moves
  *     cdef dict winning_captures
  *     mate_moves, winning_captures = find_tactical_moves(board, legal_moves)             # <<<<<<<<<<<<<<
  * 
  *     if mate_moves:
 */
-  __pyx_t_3 = __pyx_f_4core_15model_inference_find_tactical_moves(__pyx_v_board, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 386, __pyx_L1_error)
+  __pyx_t_3 = __pyx_f_4core_15model_inference_find_tactical_moves(__pyx_v_board, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (likely(__pyx_t_3 != Py_None)) {
     PyObject* sequence = __pyx_t_3;
@@ -12373,7 +11756,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 386, __pyx_L1_error)
+      __PYX_ERR(0, 336, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0);
@@ -12381,24 +11764,24 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     __pyx_t_1 = PyTuple_GET_ITEM(sequence, 1);
     __Pyx_INCREF(__pyx_t_1);
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 386, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 336, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     #endif
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   } else {
-    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 386, __pyx_L1_error)
+    __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 336, __pyx_L1_error)
   }
-  if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 386, __pyx_L1_error)
-  if (!(likely(PyDict_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("dict", __pyx_t_1))) __PYX_ERR(0, 386, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_2))) __PYX_ERR(0, 336, __pyx_L1_error)
+  if (!(likely(PyDict_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("dict", __pyx_t_1))) __PYX_ERR(0, 336, __pyx_L1_error)
   __pyx_v_mate_moves = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_cur_scope->__pyx_v_winning_captures = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "core/model_inference.pyx":388
+  /* "core/model_inference.pyx":338
  *     mate_moves, winning_captures = find_tactical_moves(board, legal_moves)
  * 
  *     if mate_moves:             # <<<<<<<<<<<<<<
@@ -12409,13 +11792,13 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   else
   {
     Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_v_mate_moves);
-    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 388, __pyx_L1_error)
+    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 338, __pyx_L1_error)
     __pyx_t_11 = (__pyx_temp != 0);
   }
 
   if (__pyx_t_11) {
 
-    /* "core/model_inference.pyx":389
+    /* "core/model_inference.pyx":339
  * 
  *     if mate_moves:
  *         move = mate_moves[0]             # <<<<<<<<<<<<<<
@@ -12424,14 +11807,14 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
     if (unlikely(__pyx_v_mate_moves == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 389, __pyx_L1_error)
+      __PYX_ERR(0, 339, __pyx_L1_error)
     }
     __pyx_t_3 = __Pyx_PyList_GET_ITEM(__pyx_v_mate_moves, 0);
     __Pyx_INCREF(__pyx_t_3);
     __pyx_v_move = __pyx_t_3;
     __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":390
+    /* "core/model_inference.pyx":340
  *     if mate_moves:
  *         move = mate_moves[0]
  *         print(f"[Smart {SMART_N_PLY}-ply Tactic] Chiu ht -> {board.san(move)}")             # <<<<<<<<<<<<<<
@@ -12439,17 +11822,17 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
  * 
 */
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_8 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 340, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_move); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_move); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 340, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 390, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_14[0] = __pyx_mstate_global->__pyx_kp_u_Smart;
@@ -12457,7 +11840,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     __pyx_t_14[2] = __pyx_mstate_global->__pyx_kp_u_ply_Tactic_Chiu_ht;
     __pyx_t_14[3] = __pyx_t_2;
     __pyx_t_7 = __Pyx_PyUnicode_Join(__pyx_t_14, 4, 7 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_8) + 26 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 65535 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_8) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 390, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 340, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -12467,24 +11850,24 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       __pyx_t_3 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 390, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 340, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "core/model_inference.pyx":391
+    /* "core/model_inference.pyx":341
  *         move = mate_moves[0]
  *         print(f"[Smart {SMART_N_PLY}-ply Tactic] Chiu ht -> {board.san(move)}")
  *         return move             # <<<<<<<<<<<<<<
  * 
- *     # Xep hang tat ca cac nuoc di bang XGBoost va Heuristic
+ *     cdef list ranked = sorted(
 */
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_v_move);
     __pyx_r = __pyx_v_move;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":388
+    /* "core/model_inference.pyx":338
  *     mate_moves, winning_captures = find_tactical_moves(board, legal_moves)
  * 
  *     if mate_moves:             # <<<<<<<<<<<<<<
@@ -12493,26 +11876,26 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
   }
 
-  /* "core/model_inference.pyx":394
+  /* "core/model_inference.pyx":343
+ *         return move
  * 
- *     # Xep hang tat ca cac nuoc di bang XGBoost va Heuristic
  *     cdef list ranked = sorted(             # <<<<<<<<<<<<<<
  *         legal_moves,
  *         key=lambda m: (sign * move_to_score[m]) + (TACTICAL_BONUS_WEIGHT * winning_captures.get(m, 0)),
 */
   __pyx_t_7 = NULL;
 
-  /* "core/model_inference.pyx":396
+  /* "core/model_inference.pyx":345
  *     cdef list ranked = sorted(
  *         legal_moves,
  *         key=lambda m: (sign * move_to_score[m]) + (TACTICAL_BONUS_WEIGHT * winning_captures.get(m, 0)),             # <<<<<<<<<<<<<<
  *         reverse=True,
  *     )
 */
-  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_19get_smart_nply_move_lambda2, 0, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move_locals_lambd, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_19get_smart_nply_move_lambda2, 0, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move_locals_lambd, ((PyObject*)__pyx_cur_scope), __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "core/model_inference.pyx":397
+  /* "core/model_inference.pyx":346
  *         legal_moves,
  *         key=lambda m: (sign * move_to_score[m]) + (TACTICAL_BONUS_WEIGHT * winning_captures.get(m, 0)),
  *         reverse=True,             # <<<<<<<<<<<<<<
@@ -12522,71 +11905,71 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   __pyx_t_4 = 1;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_7, __pyx_v_legal_moves};
-    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_key, __pyx_t_1, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 394, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_reverse, Py_True, __pyx_t_2, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 394, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_key, __pyx_t_1, __pyx_t_2, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 343, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_reverse, Py_True, __pyx_t_2, __pyx_callargs+2, 1) < (0)) __PYX_ERR(0, 343, __pyx_L1_error)
     __pyx_t_3 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_builtin_sorted, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_2);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 343, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
 
-  /* "core/model_inference.pyx":394
+  /* "core/model_inference.pyx":343
+ *         return move
  * 
- *     # Xep hang tat ca cac nuoc di bang XGBoost va Heuristic
  *     cdef list ranked = sorted(             # <<<<<<<<<<<<<<
  *         legal_moves,
  *         key=lambda m: (sign * move_to_score[m]) + (TACTICAL_BONUS_WEIGHT * winning_captures.get(m, 0)),
 */
-  if (!(likely(PyList_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_3))) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (!(likely(PyList_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", __pyx_t_3))) __PYX_ERR(0, 343, __pyx_L1_error)
   __pyx_v_ranked = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":401
+  /* "core/model_inference.pyx":349
+ *     )
  * 
- *     # Cat tia tai goc theo Beam Width (khong loc rui ro nua)
  *     cdef list beam_candidates = ranked[:MIDDLEGAME_BEAM_WIDTH]             # <<<<<<<<<<<<<<
  * 
  *     if SMART_N_PLY <= 1:
 */
   if (unlikely(__pyx_v_ranked == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(0, 401, __pyx_L1_error)
+    __PYX_ERR(0, 349, __pyx_L1_error)
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 401, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_11 = (__pyx_t_3 == Py_None);
   if (__pyx_t_11) {
     __pyx_t_5 = PY_SSIZE_T_MAX;
   } else {
-    __pyx_t_15 = __Pyx_PyIndex_AsSsize_t(__pyx_t_3); if (unlikely((__pyx_t_15 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 401, __pyx_L1_error)
+    __pyx_t_15 = __Pyx_PyIndex_AsSsize_t(__pyx_t_3); if (unlikely((__pyx_t_15 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 349, __pyx_L1_error)
     __pyx_t_5 = __pyx_t_15;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyList_GetSlice(__pyx_v_ranked, 0, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 401, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyList_GetSlice(__pyx_v_ranked, 0, __pyx_t_5); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_beam_candidates = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "core/model_inference.pyx":403
+  /* "core/model_inference.pyx":351
  *     cdef list beam_candidates = ranked[:MIDDLEGAME_BEAM_WIDTH]
  * 
  *     if SMART_N_PLY <= 1:             # <<<<<<<<<<<<<<
  *         chosen_move = beam_candidates[0]
  *         print(f"[Smart 1-ply] -> {board.san(chosen_move)}")
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_3, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 403, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 351, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_11) {
 
-    /* "core/model_inference.pyx":404
+    /* "core/model_inference.pyx":352
  * 
  *     if SMART_N_PLY <= 1:
  *         chosen_move = beam_candidates[0]             # <<<<<<<<<<<<<<
@@ -12598,7 +11981,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     __pyx_v_chosen_move = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":405
+    /* "core/model_inference.pyx":353
  *     if SMART_N_PLY <= 1:
  *         chosen_move = beam_candidates[0]
  *         print(f"[Smart 1-ply] -> {board.san(chosen_move)}")             # <<<<<<<<<<<<<<
@@ -12613,13 +11996,13 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_chosen_move};
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_san, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 405, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_t_1, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_t_1, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Smart_1_ply, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 405, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyUnicode_Concat(__pyx_mstate_global->__pyx_kp_u_Smart_1_ply, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_4 = 1;
@@ -12628,12 +12011,12 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 405, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 353, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":406
+    /* "core/model_inference.pyx":354
  *         chosen_move = beam_candidates[0]
  *         print(f"[Smart 1-ply] -> {board.san(chosen_move)}")
  *         return chosen_move             # <<<<<<<<<<<<<<
@@ -12645,7 +12028,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     __pyx_r = __pyx_v_chosen_move;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":403
+    /* "core/model_inference.pyx":351
  *     cdef list beam_candidates = ranked[:MIDDLEGAME_BEAM_WIDTH]
  * 
  *     if SMART_N_PLY <= 1:             # <<<<<<<<<<<<<<
@@ -12654,7 +12037,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
   }
 
-  /* "core/model_inference.pyx":408
+  /* "core/model_inference.pyx":356
  *         return chosen_move
  * 
  *     print(f"--- [MIDDLEGAME] p duyt su Smart {SMART_N_PLY}-Ply cho Top {len(beam_candidates)} nc ---")             # <<<<<<<<<<<<<<
@@ -12662,13 +12045,13 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
  *     best_move = beam_candidates[0]
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_5 = __Pyx_PyList_GET_SIZE(__pyx_v_beam_candidates); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 408, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_5, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyList_GET_SIZE(__pyx_v_beam_candidates); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 356, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_5, 0, ' ', 'd'); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_16[0] = __pyx_mstate_global->__pyx_kp_u_MIDDLEGAME_p_duyt_su_Smart;
   __pyx_t_16[1] = __pyx_t_7;
@@ -12676,7 +12059,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   __pyx_t_16[3] = __pyx_t_3;
   __pyx_t_16[4] = __pyx_mstate_global->__pyx_kp_u_nc;
   __pyx_t_8 = __Pyx_PyUnicode_Join(__pyx_t_16, 5, 36 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7) + 13 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 9, 65535 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_7));
-  if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 408, __pyx_L1_error)
+  if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 356, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -12686,12 +12069,12 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 408, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 356, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":410
+  /* "core/model_inference.pyx":358
  *     print(f"--- [MIDDLEGAME] p duyt su Smart {SMART_N_PLY}-Ply cho Top {len(beam_candidates)} nc ---")
  * 
  *     best_move = beam_candidates[0]             # <<<<<<<<<<<<<<
@@ -12703,27 +12086,27 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   __pyx_v_best_move = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":411
+  /* "core/model_inference.pyx":359
  * 
  *     best_move = beam_candidates[0]
  *     cdef float alpha = -float('inf')             # <<<<<<<<<<<<<<
  *     cdef float beta = float('inf')
  *     cdef float best_score, score
 */
-  __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 411, __pyx_L1_error)
+  __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 359, __pyx_L1_error)
   __pyx_v_alpha = (-__pyx_t_17);
 
-  /* "core/model_inference.pyx":412
+  /* "core/model_inference.pyx":360
  *     best_move = beam_candidates[0]
  *     cdef float alpha = -float('inf')
  *     cdef float beta = float('inf')             # <<<<<<<<<<<<<<
  *     cdef float best_score, score
  * 
 */
-  __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 360, __pyx_L1_error)
   __pyx_v_beta = __pyx_t_17;
 
-  /* "core/model_inference.pyx":415
+  /* "core/model_inference.pyx":363
  *     cdef float best_score, score
  * 
  *     if is_ai_white:             # <<<<<<<<<<<<<<
@@ -12732,17 +12115,17 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
   if (__pyx_v_is_ai_white) {
 
-    /* "core/model_inference.pyx":416
+    /* "core/model_inference.pyx":364
  * 
  *     if is_ai_white:
  *         best_score = -float('inf')             # <<<<<<<<<<<<<<
  *         for move in beam_candidates:
  *             board.push(move)
 */
-    __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 416, __pyx_L1_error)
+    __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 364, __pyx_L1_error)
     __pyx_v_best_score = (-__pyx_t_17);
 
-    /* "core/model_inference.pyx":417
+    /* "core/model_inference.pyx":365
  *     if is_ai_white:
  *         best_score = -float('inf')
  *         for move in beam_candidates:             # <<<<<<<<<<<<<<
@@ -12755,18 +12138,18 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 417, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 365, __pyx_L1_error)
         #endif
         if (__pyx_t_5 >= __pyx_temp) break;
       }
       __pyx_t_8 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_5, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_5;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 417, __pyx_L1_error)
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 365, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_8);
       __pyx_t_8 = 0;
 
-      /* "core/model_inference.pyx":418
+      /* "core/model_inference.pyx":366
  *         best_score = -float('inf')
  *         for move in beam_candidates:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -12780,40 +12163,40 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_v_move};
         __pyx_t_8 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 418, __pyx_L1_error)
+        if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 366, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_8);
       }
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "core/model_inference.pyx":419
+      /* "core/model_inference.pyx":367
  *         for move in beam_candidates:
  *             board.push(move)
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, False, ai_color)             # <<<<<<<<<<<<<<
  *             board.pop()
  *             if score > best_score:
 */
-      __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 419, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 367, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_1 = __Pyx_PyLong_SubtractObjC(__pyx_t_8, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyLong_SubtractObjC(__pyx_t_8, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 367, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_13 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 419, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyLong_As_int(__pyx_t_1); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 367, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_18 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, __pyx_t_13, __pyx_v_alpha, __pyx_v_beta, 0, __pyx_v_ai_color); if (unlikely(__pyx_t_18 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 419, __pyx_L1_error)
+      __pyx_t_18 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, __pyx_t_13, __pyx_v_alpha, __pyx_v_beta, 0, __pyx_v_ai_color); if (unlikely(__pyx_t_18 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 367, __pyx_L1_error)
       __pyx_v_score = __pyx_t_18;
 
-      /* "core/model_inference.pyx":420
+      /* "core/model_inference.pyx":368
  *             board.push(move)
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, False, ai_color)
  *             board.pop()             # <<<<<<<<<<<<<<
  *             if score > best_score:
  *                 best_score = score
 */
-      __pyx_t_1 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 368, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":421
+      /* "core/model_inference.pyx":369
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, False, ai_color)
  *             board.pop()
  *             if score > best_score:             # <<<<<<<<<<<<<<
@@ -12823,7 +12206,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       __pyx_t_11 = (__pyx_v_score > __pyx_v_best_score);
       if (__pyx_t_11) {
 
-        /* "core/model_inference.pyx":422
+        /* "core/model_inference.pyx":370
  *             board.pop()
  *             if score > best_score:
  *                 best_score = score             # <<<<<<<<<<<<<<
@@ -12832,7 +12215,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
         __pyx_v_best_score = __pyx_v_score;
 
-        /* "core/model_inference.pyx":423
+        /* "core/model_inference.pyx":371
  *             if score > best_score:
  *                 best_score = score
  *                 best_move = move             # <<<<<<<<<<<<<<
@@ -12842,7 +12225,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         __Pyx_INCREF(__pyx_v_move);
         __Pyx_DECREF_SET(__pyx_v_best_move, __pyx_v_move);
 
-        /* "core/model_inference.pyx":421
+        /* "core/model_inference.pyx":369
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, False, ai_color)
  *             board.pop()
  *             if score > best_score:             # <<<<<<<<<<<<<<
@@ -12851,7 +12234,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
       }
 
-      /* "core/model_inference.pyx":424
+      /* "core/model_inference.pyx":372
  *                 best_score = score
  *                 best_move = move
  *             if score > alpha: alpha = score             # <<<<<<<<<<<<<<
@@ -12863,7 +12246,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         __pyx_v_alpha = __pyx_v_score;
       }
 
-      /* "core/model_inference.pyx":417
+      /* "core/model_inference.pyx":365
  *     if is_ai_white:
  *         best_score = -float('inf')
  *         for move in beam_candidates:             # <<<<<<<<<<<<<<
@@ -12873,7 +12256,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":415
+    /* "core/model_inference.pyx":363
  *     cdef float best_score, score
  * 
  *     if is_ai_white:             # <<<<<<<<<<<<<<
@@ -12883,7 +12266,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     goto __pyx_L14;
   }
 
-  /* "core/model_inference.pyx":426
+  /* "core/model_inference.pyx":374
  *             if score > alpha: alpha = score
  *     else:
  *         best_score = float('inf')             # <<<<<<<<<<<<<<
@@ -12891,10 +12274,10 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
  *             board.push(move)
 */
   /*else*/ {
-    __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 426, __pyx_L1_error)
+    __pyx_t_17 = __Pyx_PyUnicode_AsDouble(__pyx_mstate_global->__pyx_n_u_inf); if (unlikely(__PYX_CHECK_FLOAT_EXCEPTION(__pyx_t_17, ((double)((double)-1))) && PyErr_Occurred())) __PYX_ERR(0, 374, __pyx_L1_error)
     __pyx_v_best_score = __pyx_t_17;
 
-    /* "core/model_inference.pyx":427
+    /* "core/model_inference.pyx":375
  *     else:
  *         best_score = float('inf')
  *         for move in beam_candidates:             # <<<<<<<<<<<<<<
@@ -12907,18 +12290,18 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_SIZE
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 427, __pyx_L1_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 375, __pyx_L1_error)
         #endif
         if (__pyx_t_5 >= __pyx_temp) break;
       }
       __pyx_t_1 = __Pyx_PyList_GetItemRefFast(__pyx_t_2, __pyx_t_5, __Pyx_ReferenceSharing_OwnStrongReference);
       ++__pyx_t_5;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 427, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 375, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_move, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":428
+      /* "core/model_inference.pyx":376
  *         best_score = float('inf')
  *         for move in beam_candidates:
  *             board.push(move)             # <<<<<<<<<<<<<<
@@ -12932,40 +12315,40 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_move};
         __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 428, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 376, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "core/model_inference.pyx":429
+      /* "core/model_inference.pyx":377
  *         for move in beam_candidates:
  *             board.push(move)
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, True, ai_color)             # <<<<<<<<<<<<<<
  *             board.pop()
  *             if score < best_score:
 */
-      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 429, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 377, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __pyx_t_8 = __Pyx_PyLong_SubtractObjC(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 429, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyLong_SubtractObjC(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, 1, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 377, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_13 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyLong_As_int(__pyx_t_8); if (unlikely((__pyx_t_13 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 377, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_18 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, __pyx_t_13, __pyx_v_alpha, __pyx_v_beta, 1, __pyx_v_ai_color); if (unlikely(__pyx_t_18 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 429, __pyx_L1_error)
+      __pyx_t_18 = __pyx_f_4core_15model_inference_smart_nply_search(__pyx_v_board, __pyx_v_model, __pyx_t_13, __pyx_v_alpha, __pyx_v_beta, 1, __pyx_v_ai_color); if (unlikely(__pyx_t_18 == ((float)-1) && PyErr_Occurred())) __PYX_ERR(0, 377, __pyx_L1_error)
       __pyx_v_score = __pyx_t_18;
 
-      /* "core/model_inference.pyx":430
+      /* "core/model_inference.pyx":378
  *             board.push(move)
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, True, ai_color)
  *             board.pop()             # <<<<<<<<<<<<<<
  *             if score < best_score:
  *                 best_score = score
 */
-      __pyx_t_8 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 430, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyObject_Pop(__pyx_v_board); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 378, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "core/model_inference.pyx":431
+      /* "core/model_inference.pyx":379
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, True, ai_color)
  *             board.pop()
  *             if score < best_score:             # <<<<<<<<<<<<<<
@@ -12975,7 +12358,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
       __pyx_t_11 = (__pyx_v_score < __pyx_v_best_score);
       if (__pyx_t_11) {
 
-        /* "core/model_inference.pyx":432
+        /* "core/model_inference.pyx":380
  *             board.pop()
  *             if score < best_score:
  *                 best_score = score             # <<<<<<<<<<<<<<
@@ -12984,7 +12367,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
         __pyx_v_best_score = __pyx_v_score;
 
-        /* "core/model_inference.pyx":433
+        /* "core/model_inference.pyx":381
  *             if score < best_score:
  *                 best_score = score
  *                 best_move = move             # <<<<<<<<<<<<<<
@@ -12994,7 +12377,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         __Pyx_INCREF(__pyx_v_move);
         __Pyx_DECREF_SET(__pyx_v_best_move, __pyx_v_move);
 
-        /* "core/model_inference.pyx":431
+        /* "core/model_inference.pyx":379
  *             score = smart_nply_search(board, model, SMART_N_PLY - 1, alpha, beta, True, ai_color)
  *             board.pop()
  *             if score < best_score:             # <<<<<<<<<<<<<<
@@ -13003,7 +12386,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
 */
       }
 
-      /* "core/model_inference.pyx":434
+      /* "core/model_inference.pyx":382
  *                 best_score = score
  *                 best_move = move
  *             if score < beta: beta = score             # <<<<<<<<<<<<<<
@@ -13015,7 +12398,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
         __pyx_v_beta = __pyx_v_score;
       }
 
-      /* "core/model_inference.pyx":427
+      /* "core/model_inference.pyx":375
  *     else:
  *         best_score = float('inf')
  *         for move in beam_candidates:             # <<<<<<<<<<<<<<
@@ -13027,7 +12410,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   }
   __pyx_L14:;
 
-  /* "core/model_inference.pyx":436
+  /* "core/model_inference.pyx":384
  *             if score < beta: beta = score
  * 
  *     print(f"[Smart {SMART_N_PLY}-ply] Cht h: {board.san(best_move)} ( duyt {node_count} nodes)")             # <<<<<<<<<<<<<<
@@ -13035,20 +12418,20 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
  * 
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_SMART_N_PLY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_t_1, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_FormatSimple(__pyx_t_1, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_best_move); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_best_move); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyUnicode_From_int(__pyx_v_4core_15model_inference_node_count, 0, ' ', 'd'); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 436, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyUnicode_From_int(__pyx_v_4core_15model_inference_node_count, 0, ' ', 'd'); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_19[0] = __pyx_mstate_global->__pyx_kp_u_Smart;
   __pyx_t_19[1] = __pyx_t_3;
@@ -13058,7 +12441,7 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   __pyx_t_19[5] = __pyx_t_7;
   __pyx_t_19[6] = __pyx_mstate_global->__pyx_kp_u_nodes;
   __pyx_t_9 = __Pyx_PyUnicode_Join(__pyx_t_19, 7, 7 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_3) + 15 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 11 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_7), 65535 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_3) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1));
-  if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 436, __pyx_L1_error)
+  if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 384, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -13069,12 +12452,12 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (__pyx_t_4*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 436, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 384, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":437
+  /* "core/model_inference.pyx":385
  * 
  *     print(f"[Smart {SMART_N_PLY}-ply] Cht h: {board.san(best_move)} ( duyt {node_count} nodes)")
  *     return best_move             # <<<<<<<<<<<<<<
@@ -13086,12 +12469,12 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   __pyx_r = __pyx_v_best_move;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":374
+  /* "core/model_inference.pyx":325
  *         return min_eval
  * 
  * def get_smart_nply_move(board, model, list legal_moves, object ai_scores):             # <<<<<<<<<<<<<<
- *     # Ham goc xu ly va goi Smart N-ply da duoc lam sach
  *     global node_count
+ *     node_count = 0
 */
 
   /* function exit code */
@@ -13119,24 +12502,24 @@ static PyObject *__pyx_pf_4core_15model_inference_12get_smart_nply_move(CYTHON_U
   return __pyx_r;
 }
 
-/* "core/model_inference.pyx":439
+/* "core/model_inference.pyx":387
  *     return best_move
  * 
  * def get_ai_move(object board, object model):             # <<<<<<<<<<<<<<
- *     # Entry point chinh phia Python calling
  *     cdef list legal_moves = list(board.legal_moves)
+ *     if not legal_moves:
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4core_15model_inference_15get_ai_move(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_4core_15model_inference_13get_ai_move(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_4core_15model_inference_15get_ai_move = {"get_ai_move", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_15get_ai_move, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4core_15model_inference_15get_ai_move(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_4core_15model_inference_13get_ai_move = {"get_ai_move", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_4core_15model_inference_13get_ai_move, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_4core_15model_inference_13get_ai_move(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -13167,39 +12550,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_board,&__pyx_mstate_global->__pyx_n_u_model,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 439, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len < 0)) __PYX_ERR(0, 387, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 439, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 387, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 439, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 387, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_ai_move", 0) < (0)) __PYX_ERR(0, 439, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_ai_move", 0) < (0)) __PYX_ERR(0, 387, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_ai_move", 1, 2, 2, i); __PYX_ERR(0, 439, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_ai_move", 1, 2, 2, i); __PYX_ERR(0, 387, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 439, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 387, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 439, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 387, __pyx_L3_error)
     }
     __pyx_v_board = values[0];
     __pyx_v_model = values[1];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_ai_move", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 439, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_ai_move", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 387, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -13210,7 +12593,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4core_15model_inference_14get_ai_move(__pyx_self, __pyx_v_board, __pyx_v_model);
+  __pyx_r = __pyx_pf_4core_15model_inference_12get_ai_move(__pyx_self, __pyx_v_board, __pyx_v_model);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -13220,7 +12603,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model) {
+static PyObject *__pyx_pf_4core_15model_inference_12get_ai_move(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_board, PyObject *__pyx_v_model) {
   PyObject *__pyx_v_legal_moves = 0;
   PyObject *__pyx_v_ai_scores = NULL;
   int __pyx_v_is_ai_white;
@@ -13243,23 +12626,23 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_ai_move", 0);
 
-  /* "core/model_inference.pyx":441
+  /* "core/model_inference.pyx":388
+ * 
  * def get_ai_move(object board, object model):
- *     # Entry point chinh phia Python calling
  *     cdef list legal_moves = list(board.legal_moves)             # <<<<<<<<<<<<<<
  *     if not legal_moves:
  *         return None
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_legal_moves); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 388, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PySequence_ListKeepNew(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 441, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PySequence_ListKeepNew(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 388, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_legal_moves = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":442
- *     # Entry point chinh phia Python calling
+  /* "core/model_inference.pyx":389
+ * def get_ai_move(object board, object model):
  *     cdef list legal_moves = list(board.legal_moves)
  *     if not legal_moves:             # <<<<<<<<<<<<<<
  *         return None
@@ -13267,14 +12650,14 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
 */
   {
     Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_v_legal_moves);
-    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 442, __pyx_L1_error)
+    if (unlikely(((!CYTHON_ASSUME_SAFE_SIZE) && __pyx_temp < 0))) __PYX_ERR(0, 389, __pyx_L1_error)
     __pyx_t_3 = (__pyx_temp != 0);
   }
 
   __pyx_t_4 = (!__pyx_t_3);
   if (__pyx_t_4) {
 
-    /* "core/model_inference.pyx":443
+    /* "core/model_inference.pyx":390
  *     cdef list legal_moves = list(board.legal_moves)
  *     if not legal_moves:
  *         return None             # <<<<<<<<<<<<<<
@@ -13285,8 +12668,8 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":442
- *     # Entry point chinh phia Python calling
+    /* "core/model_inference.pyx":389
+ * def get_ai_move(object board, object model):
  *     cdef list legal_moves = list(board.legal_moves)
  *     if not legal_moves:             # <<<<<<<<<<<<<<
  *         return None
@@ -13294,50 +12677,50 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
 */
   }
 
-  /* "core/model_inference.pyx":445
+  /* "core/model_inference.pyx":392
  *         return None
  * 
  *     ai_scores = batch_predict_1ply(board, model, legal_moves)             # <<<<<<<<<<<<<<
  *     cdef bint is_ai_white = board.turn == chess.WHITE
  *     cdef int best_idx
 */
-  __pyx_t_2 = __pyx_f_4core_15model_inference_batch_predict_1ply(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 445, __pyx_L1_error)
+  __pyx_t_2 = __pyx_f_4core_15model_inference_batch_predict_1ply(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_ai_scores = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":446
+  /* "core/model_inference.pyx":393
  * 
  *     ai_scores = batch_predict_1ply(board, model, legal_moves)
  *     cdef bint is_ai_white = board.turn == chess.WHITE             # <<<<<<<<<<<<<<
  *     cdef int best_idx
  * 
 */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_turn); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_chess); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_WHITE); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_t_5, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_is_ai_white = __pyx_t_4;
 
-  /* "core/model_inference.pyx":449
+  /* "core/model_inference.pyx":396
  *     cdef int best_idx
  * 
  *     if is_opening_phase(board):             # <<<<<<<<<<<<<<
  *         if is_ai_white:
  *             best_idx = int(np.argmax(ai_scores))
 */
-  __pyx_t_4 = __pyx_f_4core_15model_inference_is_opening_phase(__pyx_v_board); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 449, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_4core_15model_inference_is_opening_phase(__pyx_v_board); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 396, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "core/model_inference.pyx":450
+    /* "core/model_inference.pyx":397
  * 
  *     if is_opening_phase(board):
  *         if is_ai_white:             # <<<<<<<<<<<<<<
@@ -13346,7 +12729,7 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
 */
     if (__pyx_v_is_ai_white) {
 
-      /* "core/model_inference.pyx":451
+      /* "core/model_inference.pyx":398
  *     if is_opening_phase(board):
  *         if is_ai_white:
  *             best_idx = int(np.argmax(ai_scores))             # <<<<<<<<<<<<<<
@@ -13354,9 +12737,9 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
  *             best_idx = int(np.argmin(ai_scores))
 */
       __pyx_t_5 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 451, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_argmax); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 451, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_argmax); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_t_7 = 1;
@@ -13376,17 +12759,17 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
         __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 451, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 398, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
-      __pyx_t_6 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 451, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyNumber_Int(__pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 451, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_6); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 398, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __pyx_v_best_idx = __pyx_t_8;
 
-      /* "core/model_inference.pyx":450
+      /* "core/model_inference.pyx":397
  * 
  *     if is_opening_phase(board):
  *         if is_ai_white:             # <<<<<<<<<<<<<<
@@ -13396,7 +12779,7 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
       goto __pyx_L5;
     }
 
-    /* "core/model_inference.pyx":453
+    /* "core/model_inference.pyx":400
  *             best_idx = int(np.argmax(ai_scores))
  *         else:
  *             best_idx = int(np.argmin(ai_scores))             # <<<<<<<<<<<<<<
@@ -13405,9 +12788,9 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
 */
     /*else*/ {
       __pyx_t_1 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_argmin); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_argmin); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_7 = 1;
@@ -13427,19 +12810,19 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
         __pyx_t_6 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 453, __pyx_L1_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 400, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
       }
-      __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_6); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyLong_As_int(__pyx_t_2); if (unlikely((__pyx_t_8 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 400, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __pyx_v_best_idx = __pyx_t_8;
     }
     __pyx_L5:;
 
-    /* "core/model_inference.pyx":455
+    /* "core/model_inference.pyx":402
  *             best_idx = int(np.argmin(ai_scores))
  * 
  *         best_move = legal_moves[best_idx]             # <<<<<<<<<<<<<<
@@ -13451,7 +12834,7 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
     __pyx_v_best_move = __pyx_t_2;
     __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":456
+    /* "core/model_inference.pyx":403
  * 
  *         best_move = legal_moves[best_idx]
  *         print(f"[Opening 1-ply] -> {board.san(best_move)} (score={ai_scores[best_idx]:.4f})")             # <<<<<<<<<<<<<<
@@ -13459,17 +12842,17 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
  * 
 */
     __pyx_t_6 = NULL;
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_board, __pyx_mstate_global->__pyx_n_u_san); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_best_move); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_CallOneArg(__pyx_t_1, __pyx_v_best_move); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_ai_scores, __pyx_v_best_idx, int, 1, __Pyx_PyLong_From_int, 0, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_v_ai_scores, __pyx_v_best_idx, int, 1, __Pyx_PyLong_From_int, 0, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = __Pyx_PyObject_Format(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_4f); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 456, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Format(__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_4f); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_10[0] = __pyx_mstate_global->__pyx_kp_u_Opening_1_ply;
@@ -13478,7 +12861,7 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
     __pyx_t_10[3] = __pyx_t_9;
     __pyx_t_10[4] = __pyx_mstate_global->__pyx_kp_u__2;
     __pyx_t_5 = __Pyx_PyUnicode_Join(__pyx_t_10, 5, 19 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 8 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_9) + 1, 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_9));
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 456, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 403, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -13488,12 +12871,12 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_print, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "core/model_inference.pyx":457
+    /* "core/model_inference.pyx":404
  *         best_move = legal_moves[best_idx]
  *         print(f"[Opening 1-ply] -> {board.san(best_move)} (score={ai_scores[best_idx]:.4f})")
  *         return best_move             # <<<<<<<<<<<<<<
@@ -13505,7 +12888,7 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
     __pyx_r = __pyx_v_best_move;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":449
+    /* "core/model_inference.pyx":396
  *     cdef int best_idx
  * 
  *     if is_opening_phase(board):             # <<<<<<<<<<<<<<
@@ -13514,17 +12897,17 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
 */
   }
 
-  /* "core/model_inference.pyx":459
+  /* "core/model_inference.pyx":406
  *         return best_move
  * 
  *     if is_endgame_phase(board):             # <<<<<<<<<<<<<<
  *         return minimax_root(board, model, legal_moves)
  * 
 */
-  __pyx_t_4 = __pyx_f_4core_15model_inference_is_endgame_phase(__pyx_v_board); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 459, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_4core_15model_inference_is_endgame_phase(__pyx_v_board); if (unlikely(__pyx_t_4 == ((int)-1) && PyErr_Occurred())) __PYX_ERR(0, 406, __pyx_L1_error)
   if (__pyx_t_4) {
 
-    /* "core/model_inference.pyx":460
+    /* "core/model_inference.pyx":407
  * 
  *     if is_endgame_phase(board):
  *         return minimax_root(board, model, legal_moves)             # <<<<<<<<<<<<<<
@@ -13532,13 +12915,13 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
  *     return get_smart_nply_move(board, model, legal_moves, ai_scores)
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = __pyx_f_4core_15model_inference_minimax_root(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 460, __pyx_L1_error)
+    __pyx_t_2 = __pyx_f_4core_15model_inference_minimax_root(__pyx_v_board, __pyx_v_model, __pyx_v_legal_moves, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 407, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "core/model_inference.pyx":459
+    /* "core/model_inference.pyx":406
  *         return best_move
  * 
  *     if is_endgame_phase(board):             # <<<<<<<<<<<<<<
@@ -13547,14 +12930,14 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
 */
   }
 
-  /* "core/model_inference.pyx":462
+  /* "core/model_inference.pyx":409
  *         return minimax_root(board, model, legal_moves)
  * 
  *     return get_smart_nply_move(board, model, legal_moves, ai_scores)             # <<<<<<<<<<<<<<
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 409, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -13573,19 +12956,19 @@ static PyObject *__pyx_pf_4core_15model_inference_14get_ai_move(CYTHON_UNUSED Py
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (5-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 462, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 409, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "core/model_inference.pyx":439
+  /* "core/model_inference.pyx":387
  *     return best_move
  * 
  * def get_ai_move(object board, object model):             # <<<<<<<<<<<<<<
- *     # Entry point chinh phia Python calling
  *     cdef list legal_moves = list(board.legal_moves)
+ *     if not legal_moves:
 */
 
   /* function exit code */
@@ -13838,15 +13221,15 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
   #if CYTHON_USE_TYPE_SPECS
-  __pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move)) __PYX_ERR(0, 374, __pyx_L1_error)
-  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move_spec, __pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move) < (0)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move_spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move)) __PYX_ERR(0, 325, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move_spec, __pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move) < (0)) __PYX_ERR(0, 325, __pyx_L1_error)
   #else
   __pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move = &__pyx_type_4core_15model_inference___pyx_scope_struct__get_smart_nply_move;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
   #endif
   #if !CYTHON_USE_TYPE_SPECS
-  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move) < (0)) __PYX_ERR(0, 374, __pyx_L1_error)
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move) < (0)) __PYX_ERR(0, 325, __pyx_L1_error)
   #endif
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_4core_15model_inference___pyx_scope_struct__get_smart_nply_move);
@@ -14359,7 +13742,7 @@ __Pyx_RefNannySetupContext("PyInit_model_inference", 0);
  * import xgboost as xgb
  * 
  * from core.utils import extract_features             # <<<<<<<<<<<<<<
- * from config.Setting import PIECE_VALUES, MAX_NODES, OPENING_MOVE_LIMIT, ENDGAME_MATERIAL_THRESHOLD, SMART_N_PLY, MIDDLEGAME_BEAM_WIDTH, HANG_PENALTY_WEIGHT, HANG_PENALTY_SCALE, HANG_THRESHOLD, TACTICAL_BONUS_WEIGHT
+ * from config.Setting import PIECE_VALUES, MAX_NODES, OPENING_MOVE_LIMIT, ENDGAME_MATERIAL_THRESHOLD, SMART_N_PLY, MIDDLEGAME_BEAM_WIDTH, TACTICAL_BONUS_WEIGHT
  * 
 */
   {
@@ -14382,19 +13765,19 @@ __Pyx_RefNannySetupContext("PyInit_model_inference", 0);
   /* "core/model_inference.pyx":12
  * 
  * from core.utils import extract_features
- * from config.Setting import PIECE_VALUES, MAX_NODES, OPENING_MOVE_LIMIT, ENDGAME_MATERIAL_THRESHOLD, SMART_N_PLY, MIDDLEGAME_BEAM_WIDTH, HANG_PENALTY_WEIGHT, HANG_PENALTY_SCALE, HANG_THRESHOLD, TACTICAL_BONUS_WEIGHT             # <<<<<<<<<<<<<<
+ * from config.Setting import PIECE_VALUES, MAX_NODES, OPENING_MOVE_LIMIT, ENDGAME_MATERIAL_THRESHOLD, SMART_N_PLY, MIDDLEGAME_BEAM_WIDTH, TACTICAL_BONUS_WEIGHT             # <<<<<<<<<<<<<<
  * 
  * # Dinh nghia cac bien toan cuc kieu C
 */
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_PIECE_VALUES,__pyx_mstate_global->__pyx_n_u_MAX_NODES,__pyx_mstate_global->__pyx_n_u_OPENING_MOVE_LIMIT,__pyx_mstate_global->__pyx_n_u_ENDGAME_MATERIAL_THRESHOLD,__pyx_mstate_global->__pyx_n_u_SMART_N_PLY,__pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH,__pyx_mstate_global->__pyx_n_u_HANG_PENALTY_WEIGHT,__pyx_mstate_global->__pyx_n_u_HANG_PENALTY_SCALE,__pyx_mstate_global->__pyx_n_u_HANG_THRESHOLD,__pyx_mstate_global->__pyx_n_u_TACTICAL_BONUS_WEIGHT};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_config_Setting, __pyx_imported_names, 10, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_PIECE_VALUES,__pyx_mstate_global->__pyx_n_u_MAX_NODES,__pyx_mstate_global->__pyx_n_u_OPENING_MOVE_LIMIT,__pyx_mstate_global->__pyx_n_u_ENDGAME_MATERIAL_THRESHOLD,__pyx_mstate_global->__pyx_n_u_SMART_N_PLY,__pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH,__pyx_mstate_global->__pyx_n_u_TACTICAL_BONUS_WEIGHT};
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_config_Setting, __pyx_imported_names, 7, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 12, __pyx_L1_error)
   }
   __pyx_t_2 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_2);
   {
-    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_PIECE_VALUES,__pyx_mstate_global->__pyx_n_u_MAX_NODES,__pyx_mstate_global->__pyx_n_u_OPENING_MOVE_LIMIT,__pyx_mstate_global->__pyx_n_u_ENDGAME_MATERIAL_THRESHOLD,__pyx_mstate_global->__pyx_n_u_SMART_N_PLY,__pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH,__pyx_mstate_global->__pyx_n_u_HANG_PENALTY_WEIGHT,__pyx_mstate_global->__pyx_n_u_HANG_PENALTY_SCALE,__pyx_mstate_global->__pyx_n_u_HANG_THRESHOLD,__pyx_mstate_global->__pyx_n_u_TACTICAL_BONUS_WEIGHT};
-    for (__pyx_t_3=0; __pyx_t_3 < 10; __pyx_t_3++) {
+    PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_PIECE_VALUES,__pyx_mstate_global->__pyx_n_u_MAX_NODES,__pyx_mstate_global->__pyx_n_u_OPENING_MOVE_LIMIT,__pyx_mstate_global->__pyx_n_u_ENDGAME_MATERIAL_THRESHOLD,__pyx_mstate_global->__pyx_n_u_SMART_N_PLY,__pyx_mstate_global->__pyx_n_u_MIDDLEGAME_BEAM_WIDTH,__pyx_mstate_global->__pyx_n_u_TACTICAL_BONUS_WEIGHT};
+    for (__pyx_t_3=0; __pyx_t_3 < 7; __pyx_t_3++) {
       __pyx_t_4 = __Pyx_ImportFrom(__pyx_t_2, __pyx_imported_names[__pyx_t_3]); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 12, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_3], __pyx_t_4) < (0)) __PYX_ERR(0, 12, __pyx_L1_error)
@@ -14426,124 +13809,109 @@ __Pyx_RefNannySetupContext("PyInit_model_inference", 0);
 */
   __pyx_v_4core_15model_inference_node_count = 0;
 
-  /* "core/model_inference.pyx":45
+  /* "core/model_inference.pyx":30
+ *     return total_material <= ENDGAME_MATERIAL_THRESHOLD
+ * 
+ * cpdef int material_balance(object board):             # <<<<<<<<<<<<<<
+ *     # Dem vat chat cuc nhanh bang bitboard theo thang Centipawn
+ *     cdef int wp = len(board.pieces(chess.PAWN, chess.WHITE))
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_1material_balance, 0, __pyx_mstate_global->__pyx_n_u_material_balance, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_material_balance, __pyx_t_2) < (0)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "core/model_inference.pyx":59
  *     return out
  * 
  * cpdef int static_exchange_eval(object board, object move):             # <<<<<<<<<<<<<<
- *     # Danh gia chuoi an quan tinh (SEE)
  *     if not board.is_capture(move):
+ *         return 0
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_1static_exchange_eval, 0, __pyx_mstate_global->__pyx_n_u_static_exchange_eval, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_3static_exchange_eval, 0, __pyx_mstate_global->__pyx_n_u_static_exchange_eval, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_static_exchange_eval, __pyx_t_2) < (0)) __PYX_ERR(0, 45, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_static_exchange_eval, __pyx_t_2) < (0)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":87
+  /* "core/model_inference.pyx":100
  *     return gains[0]
- * 
- * cpdef int see_on_square(object board, int square, bint attacker_color):             # <<<<<<<<<<<<<<
- *     # Danh gia trao doi tren mot o cu the
- *     target = board.piece_at(square)
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_3see_on_square, 0, __pyx_mstate_global->__pyx_n_u_see_on_square, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_see_on_square, __pyx_t_2) < (0)) __PYX_ERR(0, 87, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "core/model_inference.pyx":125
- *     return gains[0]
- * 
- * cpdef int find_worst_hang(object board, bint color):             # <<<<<<<<<<<<<<
- *     # Tim loi treo quan nang nhat
- *     cdef int worst = 0
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_5find_worst_hang, 0, __pyx_mstate_global->__pyx_n_u_find_worst_hang, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_find_worst_hang, __pyx_t_2) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "core/model_inference.pyx":139
- *     return worst
  * 
  * cpdef tuple find_tactical_moves(object board, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Tim cac nuoc di chien thuat (chieu bi, an quan loi)
  *     cdef list mate_moves = []
+ *     cdef dict winning_captures = {}
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_7find_tactical_moves, 0, __pyx_mstate_global->__pyx_n_u_find_tactical_moves, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_5find_tactical_moves, 0, __pyx_mstate_global->__pyx_n_u_find_tactical_moves, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_find_tactical_moves, __pyx_t_2) < (0)) __PYX_ERR(0, 139, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_find_tactical_moves, __pyx_t_2) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":271
+  /* "core/model_inference.pyx":220
  *     return [move for move, score in scored_moves]
  * 
  * cpdef object minimax_root(object board, object model, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Ham goc cua Minimax cho Tan cuoc
  *     global node_count
+ *     node_count = 0
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_9minimax_root, 0, __pyx_mstate_global->__pyx_n_u_minimax_root, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_7minimax_root, 0, __pyx_mstate_global->__pyx_n_u_minimax_root, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_minimax_root, __pyx_t_2) < (0)) __PYX_ERR(0, 271, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_minimax_root, __pyx_t_2) < (0)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":326
+  /* "core/model_inference.pyx":274
  *     return best_move
  * 
  * cpdef object batch_predict_1ply(object board, object model, list legal_moves):             # <<<<<<<<<<<<<<
- *     # Du doan 1-ply theo lo bang XGBoost
+ *     # Tinh luon ca vat chat o 1-ply de rank chuan xac ngay tu dau
  *     cdef list batch = []
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_11batch_predict_1ply, 0, __pyx_mstate_global->__pyx_n_u_batch_predict_1ply, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 326, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_9batch_predict_1ply, 0, __pyx_mstate_global->__pyx_n_u_batch_predict_1ply, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_batch_predict_1ply, __pyx_t_2) < (0)) __PYX_ERR(0, 326, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_batch_predict_1ply, __pyx_t_2) < (0)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":374
+  /* "core/model_inference.pyx":325
  *         return min_eval
  * 
  * def get_smart_nply_move(board, model, list legal_moves, object ai_scores):             # <<<<<<<<<<<<<<
- *     # Ham goc xu ly va goi Smart N-ply da duoc lam sach
  *     global node_count
+ *     node_count = 0
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_13get_smart_nply_move, 0, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 374, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_11get_smart_nply_move, 0, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move, __pyx_t_2) < (0)) __PYX_ERR(0, 374, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_get_smart_nply_move, __pyx_t_2) < (0)) __PYX_ERR(0, 325, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "core/model_inference.pyx":439
+  /* "core/model_inference.pyx":387
  *     return best_move
  * 
  * def get_ai_move(object board, object model):             # <<<<<<<<<<<<<<
- *     # Entry point chinh phia Python calling
  *     cdef list legal_moves = list(board.legal_moves)
+ *     if not legal_moves:
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_15get_ai_move, 0, __pyx_mstate_global->__pyx_n_u_get_ai_move, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_4core_15model_inference_13get_ai_move, 0, __pyx_mstate_global->__pyx_n_u_get_ai_move, NULL, __pyx_mstate_global->__pyx_n_u_core_model_inference, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_get_ai_move, __pyx_t_2) < (0)) __PYX_ERR(0, 439, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_get_ai_move, __pyx_t_2) < (0)) __PYX_ERR(0, 387, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "core/model_inference.pyx":1
@@ -14593,9 +13961,9 @@ __Pyx_RefNannySetupContext("PyInit_model_inference", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_print); if (!__pyx_builtin_print) __PYX_ERR(0, 281, __pyx_L1_error)
-  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_sorted); if (!__pyx_builtin_sorted) __PYX_ERR(0, 394, __pyx_L1_error)
-  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 379, __pyx_L1_error)
+  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_print); if (!__pyx_builtin_print) __PYX_ERR(0, 229, __pyx_L1_error)
+  __pyx_builtin_sorted = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_sorted); if (!__pyx_builtin_sorted) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_builtin_zip = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_zip); if (!__pyx_builtin_zip) __PYX_ERR(0, 329, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_get.type = (PyObject*)&PyDict_Type;
@@ -14626,31 +13994,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{6},{3},{31},{31},{24},{40},{9},{179},{19},{13},{7},{17},{1},{1},{1},{8},{24},{7},{15},{6},{2},{9},{12},{7},{38},{33},{19},{30},{8},{5},{26},{18},{19},{14},{4},{9},{21},{18},{4},{12},{20},{5},{11},{21},{5},{8},{9},{5},{12},{6},{6},{6},{5},{18},{14},{9},{18},{15},{8},{9},{10},{4},{5},{5},{11},{17},{18},{5},{14},{20},{10},{16},{3},{19},{15},{11},{15},{8},{3},{11},{19},{37},{3},{11},{14},{10},{12},{13},{13},{12},{5},{3},{8},{11},{1},{8},{10},{12},{5},{10},{4},{13},{8},{2},{5},{29},{8},{9},{10},{3},{7},{5},{9},{4},{12},{6},{7},{1},{3},{5},{13},{12},{10},{4},{4},{6},{35},{6},{20},{8},{9},{4},{6},{16},{1},{3},{7},{3},{8},{103},{8},{182},{34},{92},{79},{305},{479},{438},{290}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2319 bytes) */
-const char* const cstring = "BZh91AY&SY\253\302_=\000\001J\177\377\377\377\377\377\177\377\377\377\277\377\377\377\377\377\377\365@\340`Hx@@X\315@@@`\000@\000`\010<\001\334mb\214\202\2326\310lw@\037oP\224$\241\003\3244h\003&\217Q\264z\236\236\224h\203j11\241\001\243LF\215\r\014\215\250\030\206\2322\006F\207\250\321\246\232b\r\020\010\000\001\031\010\323!\244\232\032\033\024\320\332@\r\001\240\000\000\001\243\324\006\214\2004\365\000\000\rL#DLT\364\217\024=@\032\001\240\000\000\000\000\320\000\000\000d\321\240\014\217P\000\000\002SD\023SD\364\232\247\351\036\223j\232y@\000=@\000\003@\000\000\000\0004\0321\000h\r4\017Q\352h d\301\030\002\r0\021\246\010\32011\0310\021\204i\211\2040\023!\243\020\321\211\2020\230\0010\001R&\t\211\241\223\023#F\324\321\223L\230L&\032M\0310C\004d\311\241\202\r\014\021\211\243\023\020\0312= 4\\Td\226\353q\233\357\374C\220\033\252 \375_r(\"&\356M\037\200\352\210\24092T\250\271-\311HI\002L\201\t2d\222a\010@\201\002\004\231.>*\324\266\24312w\031\217\371\232\354\346\004\200\266'\240^cL\220\2230\311\014$\220\220\025\223^U\242H\223e\263D4\t\010I\002\233cz0\305\311\222\233\r\002bx\365\332\315=\356\341V\032c&\251p\301V\202EBf<r\220\203\033`\3305\371\256.\264\244\365O\250\371\236\323d9h\231\022\214\230\335\212\025\226F\337\205\021\251\030\023d\"qyu\361R\203\320\270C\270\365lM~J\314.\272l\372\344\263\301\"\362\255\227\034\353j\310\311R\226U\250,\213%\213\020\304\016R\r\212\217r\357\270\334.\225G\017\205>\t\307~-<%\034Z\001\226\026\332wJ\346\037\253\334\323\215\324\367/p\232Sn>\355\033\rB\025\002G[\016w\233\331C{+\232\033\t\221\357]\226\275\254\340k\220\323\272\316P\326\322[C\214\207>`\317R\303\227\253\225\003\343\216\030\330\303\361\020}@C\026\211\230\306\024jL\210\026u0\201\017,v\"T\216\313\201\275\2029y\300\204s\314\024\246<1\257*x\305\235#\277m\252\3226PB\263\313\216xC\303\245Hp\254\210c\002\362\277\0061e\035@\364r\002\010d\344\213\241\212y\3326\354\325\020\026b\241c\300S\024Hha{\366\242e\023\331'\004\260\270\212\203\261\216\364\001w\033\357\007[\000x\216\376\371\335\313\367w""\206h\253\215#i\r8s\323#\242\240:KEf@\204\362t\243k\336O\004\370\231p\370\016i\204\217\206\273G\010R\363A\000\220d\237\205\337$\005\320\027\017\214\347<\275\0013\264\3405\217Y\275\"\244\251\247\035\232w\004\302J\206\"\017\276\024\270j\300 \266\006\260\2554\006X\341u\321\3546\210=\3326.\237\033-\303X,k\3472\240\306+\306%\342YdV\013U\004\333\211aD\205\342DI\r\026\332%;b\273b\342\326\264k\034\273\235\374v\371\3646\2076F\326\223mk\316\224O\330\270\360&C\276s5\220\201\276\302\014h\371ep\234\364\236\252\255\035\030\360\2274\003YJ\3226_\026\212\010Op\241\264V\320\003HT#\301x\253\261c!\324\307\311\367\311\342\333\033l\r:\nD@\023\321z\354\265\225\346\035\250\364n\017\303\234h;(\316\330\363\256s\032\225B\322/\177\025\017-\344\352\333>\253\220:}\345(\346\364\326[\362q\327\305\002\323\327\017=\360\221\354\211\343\207B\006\242PR#\0138%\"\026\351y\311d\301\222\025\210\032:4\240\263\263\204\312\014E\252\202>D\363&]\025\273\230\221rB\000Su0\215\263}\251\001\031\021\364\337\002\317H\247\212\354^$\211/\255v\343\001\2459\035\033N@\216?\"\020\210\330/\220\0130\3026\220\361\3453\031d\305s\004\320!\"A)\256\233\030A#w\220@q\300\334\335\343s>\346\265kj\214\224\022\200\223\202+D Pv*\326\r\2402d:y\"H\200\217\222\035\373E\220\306R|\266U\0315\030\345e\363N\311\334A\346\340\014\270\260g\\\030\036 \304\312\0363\013A\301]B\365Fd$4\t\0007F\374\324\024*@\241\244\3605\320\225\244=\237\203_=\345\026\221j\241\022\001V\t\000D\374]L\204\324\300\326\352\354\322T\272\205\222\373\350t\353l\236\016\252w\254[\204A\311a\254\004\205\034.\274\351h\331\230\3071\324I\n\030!P5>\r\311z'\220\022L\211O\222\366\rK\254\314-\010\034\205\3272\017u\222h\032&\277\202\356m\241\020?P\006r\312\\\315\3632\251\343jl\221#x\344\210\314W-\202\246=\376\274=\234t\260\355\271\n\024\221\245aUh\001\231\214\250\3152\0041\026\031\245|=\226\240$\tS\331\334#XP\360\235\t\253|\235T\265,~S\311\036.\240\3446\261\324\245\363\301,\271\202S*\315U\0301\304\002KE\247\220Z\206\255w9\305\214\220A\345\231\243\026\333\310\005\032\"[\251\032ICB_\200""\014\356\001&Dp\261\351\316\306r\025\3500\004\342w$)\255\020\260\004\014\310\303D\226*1\254\2414\316H\345PZn\304\204\017\242!\023\202\301IeT\227\223\227>\2357\313Jk\221\261\231\266\213T\250u8\024\"\001$*8\027\277$E[@,\352\306\014\340\256Q1\314\227\241\t\000H`m/\365\241p\367\017\ts\326\265s@\214w\247\204\202\361$O>\030\260\326\226lN\254\013\351\0033\035\017\\B\204\342\224\2328,\224\023\200qu\356\024Z\201\201\253|>\370Z\250\004\2653\021\265\276\251B$\227>\214U\244\372\010\276\342\245\031\335\222\020a\027\253r\216\0316\032l\322RqI?\215\211\264Vx\256\251v[\212\324\302\375\0211(\275\315+\002i!bA\213\"\034\226\r\274\320\323\256\355^\253\371\334R\216\243\2333\311\335\236C\273j\202\252\224\246y\233\212\002\302\020\211\264-% d\3552\225\244!B\326\2633%\023\001X3\332\231$T.h\017\306\203C\2377d+\300\250\277\206\327/\356A\302=Yr\344\233^\260\025U\200T\270\203\302q\220\270'\202\366\220\t0\030\003\005\223\235\211!\227\2319d1\034\t\253\004\210!\2608\350\013\353\022AF\346\263\n\313y\312\314\025\000`\235\0326}c\347I\317\036\331\202\376\207\nA\232\245&@H\025\001U\014\224\362gf\010c\212\211 \262\236\313u\232\242\240\207\373D\311\2456\337d\3152\0312_A\035\252\333N\210F\317\252\037H\233\341Z\347\003z9\3623\234G\003\022R\222Lbl\036\203*x\303P\301\006@\301\321\313\034\231\000\313\221\374\252\2013\223\nu\202a\250\244\026\212q\350\0319Tt\200\272\266O\242x\257p\316^\371\233-/\231\264\210\324s\224+Rq\241^2\273f\260>\321n\330fW\375k\222`\242\244}]8\311\220%\262\237qB\006\006Y\226\370\223\035q@\031,\010\032\276\303\360L\024\032\344,EgQV\334>6\214\037\330\362\374/%$\301T^\034\265\036\250\263\321\314\\\221\037\227\306\246\236{\326\271M\241\242|[J\275\344J\346\220\257Z\2547\324\243\224R\021\325\222\227\037\364\325j\220\346_\032\227i\"Y\253\200CuX\337GCm$\234\244[z\203\036Wz\024\205\312_\317\275\206\345Zu\020\262\345\220\377o\342\214\201\213\371w\001\247\226^\325%\256\020jq\231d\232\2256a\304b\240\336P\232\224\324\335\023\233cK\255\021\021y\245\241Y\027S[\333k\314\221\256\211dpz\034\242\254\317\3056""\322p9\3461y7\325\273\301\330[\020\342\353\323\333\315\255!!\360\323\267\246\217\301\310\336\227\321'@0\001\316\244&E\003\006\326\300\027\311`\203\310\211b98\370c\333u%$\254@\014\014L\277`\205\027\334Z\300\272\014\351\010t\306\266\263\371Z\036se\316p\t\304\366\205\020PW\0217\336\305\312%\332p\336*R\325{\241\004C\314J\314dE%\021\014\346\223\007\267.\r\003\"H\004\212\210\240P\252\242\307\2332\323+\021E\267y2V\317\236\014\227\0241\027@\211\223e)\030\251\024k;\031<\270\254\001\251\251\261\023D\217\2300<\240\374\3134\"H\221YM\377\027rE8P\220\253\302_=";
-    PyObject *data = __Pyx_DecompressString(cstring, 2319, 2);
+    const struct { const unsigned int length: 9; } index[] = {{6},{3},{31},{31},{24},{40},{9},{179},{19},{13},{7},{17},{1},{1},{1},{8},{24},{7},{15},{6},{2},{9},{12},{7},{38},{33},{19},{30},{8},{6},{5},{26},{4},{6},{9},{21},{18},{4},{12},{20},{5},{4},{11},{21},{5},{8},{9},{5},{12},{6},{6},{6},{5},{18},{9},{18},{15},{8},{9},{10},{4},{5},{5},{11},{17},{18},{14},{20},{10},{16},{3},{19},{11},{15},{8},{3},{11},{19},{37},{3},{11},{10},{12},{13},{13},{12},{5},{3},{8},{11},{1},{8},{10},{16},{12},{5},{10},{4},{13},{8},{2},{5},{29},{8},{9},{10},{6},{3},{7},{5},{9},{4},{12},{6},{7},{1},{3},{5},{12},{10},{4},{4},{6},{35},{20},{8},{9},{4},{6},{16},{1},{3},{7},{3},{8},{103},{8},{182},{34},{282},{113},{305},{477},{438}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2266 bytes) */
+const char* const cstring = "BZh91AY&SYq\347Y\221\000\001,\377\377\377\377\377\377\177\377\377\377\277\377\377\377\377\377\377\365@\340`Hx@@X\315@@@`\000@\000`\007\335\360\354\366\327{\000\351D\202\235bc\201G\002Q\021SLM\352\215\006&\203\324\321\262\236)\355O$\232\r=L\236\246\323SCL\230 \3204h1\030\236\240\323@d\320\033I\351\251\241\2104@\022i\264\0022b\004\023\024\003M1\032\r4\003&@\000\000\000444\323 \320\323 \000\006S\323Q\3454\365444i\223#FM\r\003F\020\3010F\t\204\030M4\003L\010\321\200\r\001\032dd\304`%L\023H\020T\366\251\355$\3654\003M\000i\352\003@2\000\000h\000\000\000\000\000hh\000\321\240 d\301\030\002\r0\021\246\010\32011\0310\021\204i\211\2040\023!\243\020\321\211\2020\230\0010\000\221I\240\246\236\221\r\033SM0\324\000\000\006\215\000h\006\200\000\000\000\014F\200\320\000\000\r\005\246\202'\030\341\234J~g\033\357_\260\375!Ev\250\212\2102\010\357Fn)\013V\222\030\247\361\2664\332cm4\3066\332\006\332chm6\023\221\242\250\037\010\316\030\343\374*q\366dEd\207)IU\266\332\020\332\006\333\033\024\321*\024\223\221\225\312\244\014m\202\214I\023i\223*a:\002\301\246\345\002F\r\251i\266\260R\326\374\023\240\225\rOB\002rB$\352Z\264\306#\000\327\031B@1N\227\207\304\266\241\222N\242pK\330HN8\301\006\000\306\2521\200'.q\350\202\026k\313U\263\225Z\330EQd/\246\026\014\255Z]uAwC\250\227=\211\244D\305\344\020DQ5Yp\261a\201\205%\215\271\263\035\307\017\336\337\002\024hx^\200}\016\220\033 B\220\030\000\016\004n1p\007\321\235J\240\202\200\270Z-\006\020~\"\313\"a\222\020\200@\220\017D\177V%\241mPo\3372\022\206\023$\361l\317^\326\262\324C{\203\304\032v\200-\336\251\2570\224n\250\330\324\216s\022\207W\216\035\001h\274K\362\241\203\321\223-\346\232\2752iC_Cy\177\003\200v\360Wp\336#{\215`F>\003\005\003\027\r2\247x\265$r\233\221[#i\000\257\266i\343\017\350&\313T\031 \267U\356%\214\260sA\220\010L\234\010\321\"\267\237\223m\242\251C\006\"\242\240*\257\225\020pr\244\207\006\233\325EQW^\2506\271\341,SD,\366\231\271\331\3719\271\211\227\350#\254\302\300,\0024\331u\3400\004\235MbA\203B\220f\234=\274HS\257\204\236\350""\322A\212\034\316fNXS0l\3057\003\n\271o\346\306>\177\226\272\017?6wl\3404\236\226\364\n\242\252\254\371o\274L!P\314\"\212\256p\220k\032\205i\2403$X\354\2616\363]O.\236\r\265\317\252\372m\306\246\r\215\212L\\,VU\026\n\275j\240\233b\306T2\324cHh\2616K\231\002\330>V\207\276*\206\244\016:{\235\026\013\010\202\006\200U\250\264\332\225\255\201\033(\010H2R\002)\236\026\343!\303y\007s\233u\310\332=\334\226\212y\362?M\232\350Q\347\210<L\004\325\211\366\353\2544\203@\311\024\2302\252\325\234\351\\B(\212\342\334\033\214&\236<F \224s\320\364Y\242\262\270\303/=\235\341\324\360\315\007\222\215m\030\376\235\206Ncyy\227~+\234\355\355\323\353\367\343\245\310\245\034~\222\313\224d\210R\017\205\000\276K\036\2761\324\341)8\335\016\210\257a\035\020\333\312\026\317\232Ij\342\202\261l\314j\354k{\212\035\005\241O7\240\333\277\263\243A\037E\301\340I<BGM\367$\"\344}\231\261,\366\205=:,\266?\036U\027\332\334\271\200qPGJw\316L\262\371q\204J\301t\006[\350\203HyP3\031\341U\214\032S\004c9\243V\270\241'Q\304\351Jo\203\236\337\363\375\205f\261B\026]Eed\303,\266\214`Py\025\225\243|\006\030\037\n\005\214I\302&\376\321\340c9N[j\220\232\200\214\322\262\351\247l\357'\266\360c\246\276\000Xq\005\246\001\306ah8\250\027\334\254f\004\206\211\0007a\024\324\024j@\241\244\360k\241+H}\372\363\361uk\316P\332\026L\036`)LK\001\232\355\231\2519\204m\\\302\265\263\206/g\374q\246\303\216n\362\337\356\236LIj\244\003\027\302\341\247\222M\233\033\335(pm\261\212@\330h\022/\022\315viV\246i\315\030S{/\033(\204*\233\221\\\350>\003%\333\000\266\347\303\213o\"\300\214QV@\322\235\325\010\032\242%\352\tP\255\001B`\330@\006\014Y,J\014\031\234\234o\304\322jC\267\030\027N\330\030\335\240\312\215\n@\232@/\3214A\371\353\002\001*~\267H\260\241\343:3W\014\235\\\265\254~S\302KD\206\305\266\204\274\356K2\262\006*5R\014\030\352\000i-\214\207x\310\206\255yZ\342\265\004\036\2634Y\276z\001H\214ku#`\2245\245\021b\003e\300$\310\220\372\272=k\34313\020\000\210DId\230\234\036\242\010\252M\221\354\345w\021\333\246\2436\355\002\350Z\016\200\273L""\310C\027\003\025\003b\274\231i\272\354J\270\311\3063NZKvT:\233\343\030\206$\234J\341\311\035m\000\223h3}R\010\034\022\354A \n\014\r\265\376\263\256>\371\342\032\252]\253\344\001\001\311:%\031\204\262T\261,e(\235][QP\264\013\245\2365$\214n\004;i\273\251d\010\032v\023Y+16$\332&P!$\341:-hbB\267\014*&\241{\251\304\340\320\3022A\203\002\022\276)~\302\206m\272AGGQ\035\027\205\206\322\023\205\252[MJ\334h\303i\240Dl\031\214\342\242 \201\310\335\222\014>\203A\265H\315\306\225\224\3768\250\355\322o\rN\252+\212\264\322h\316\351|*\321*q\354\205\224\232\353l\301\312\353\227Ml\206O\216\315\362\331^\010\303V\324\302\n\215\315\021H\203C\2427`/\025\017\341\265\313\373\223\204\233\231\363\3416\252\300UY\000\251x\303\304\370\r qh\216\367\020\t0\032\003FZ\020Z;Y\3139\211\"MX$>\306\261C\264%\322H\210\271\245\271\265W\223\306\271\032\204\305\33429\237\037\006\310\300;L?d;\255\251\260UV\r\243\tz\274\2020\030S\326oi\210\200\305\372\340\331\216\372\2762E*x\222\033\006\331\006\027\034\345\334\021\345 Z\337d\010a\220\360\300]\014\263\273\352\227\230F\036\010\216\271!\362\354\203\240R\3661(\014]cN+\212 \256\257\3211y\360\230\312)1\322\215\0068\350\272\366\316^\231\374g\305b\265\230\307\302Ra~\301\255P\220\227G\342\001U\367*\334\231i=\203\030\377\346\004\226(\256\010+\367\360\302\323EM1Q\306\264\033\007;\036\006\315\242\014\2268\307\374:\211\010\243rN8\254n\204\350!\204\277R\nY}X\244*\266D\345E\203)!op\225\254!\253,\226\333\250\026\025\254\325Q\r\005\247k\001)V\260R65\244Dj\212Ilx\313\"\233\002D\357v\026\223Sm;_\020\215\036\356;\006\341\210p\256\224\273Y<\030\271\221\273\327r\021\327\024\303\310\300\237%\216O\225+ZK\3438\0330\337\230g/*\230kn\017\323\273\337\025\315vv\364\275\312s\002%\315k\360\343\336\252\325\257\302o#\226\027\225\373\022\310O\365=)Y3\260v3\236\232\366\312%\301D\213y\241nm\342;\023\246d\030\370\027\024&\366\352g\245\246\216\314N\205\315i\335|~\266G\002\316\303\223n\303\r\364\312ikj\217Vp\357\257I\233\333~&\225C\316\327\274\344\372\0275\025\326\323\005\262\354R\211\250\024""\261)~\251\036\362\212E\350\356,\r\373\204\205\305r\304v\360w|\226\014F',\223QT\222\005\205\253\\\375\262E\236\325QT\340\272\353\254\245\366\264\322o\252$\370\361XTHUAIi6v`r\253uSs\002\007\273V\246$\202\342XC\022\035\357\253T\271\230fX\360\245\210t\224I\262/\220{\177(\2773\335ik\356\277\377\027rE8P\220q\347Y\221";
+    PyObject *data = __Pyx_DecompressString(cstring, 2266, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2221 bytes) */
-const char* const cstring = "x\332\265UKs\333\326\0256c*\242+\331\"-\311\226b7\003\306\265e%\225R\372\331<\354\016$\302\022k\275(Q\222\035\305\271\271\004.I\304$@\002\240$f<\035\357\312\356\320\035f\272A\333\r\226\\j\342E4\343N\207\313\273\304\222\376\007\371\t=\347\202Rd;m\262\351\014\t\334\3479\347\373\316w\016\244g\322\314}i\366ViG1\2642\2551iY7\364\032\335\177\"\315Wt\326\224*\314\301\023?\265m\032\222\3324\365\237\336\316\262\272S\221fff\244\235\345\\6\273\244,\310\313\312\023\351\345_\352\222\326l\275z\361gG\262_\376\243)m\324\250\345H\3223i\305\324\230\rO\207IN\205:\322|\313A\017\272-i\254\252\027\231E\035VmI\266c\351\252\303,<dHk\312\332\314\255\337\337\222\250\241I\026\373\206\251\216-\331\315\242Z\245\266\r\326\314\222Tl\352UG7$\247Ug\366\254\224+I-\263)\031\214i\222cJu8w\362\202Sa\206d\003d\030HS\3240L\207:\272i\020\270\256\033\345)I\323-p\242\3572\274\375\200Vm6\273\263Zg\006lJ\231\231z\265\365\004\351\230Y\203H\325\212)\025\314\272\264\023A\354\277~<4=\373\007\252i\004\\0\325\264\330\3075 \240Jt\243\304,f\250l\266\336\332\327t\233\026\253L\272\376/\367\345?\217yc\006.\226U\335\216F\232d\374\273\363\352\305\337TA\267\201<N\033\315Z\2755\213vgkM \200Z\026mI%\252W#\340z\255nZ\316\211S\315\032\205|\275y \nv\276\362\352\305_\035\251\362\352\273\277\177*\341\222T\240@\202*4\362\352\273\357\233\270\365\275\320\211t\335Fs\367\346\226\344\371\207\312J\026\263N\226\345\202\262\236\223\227Haq]\331X\\]\312.\312+\013dMY\221\227\n\217\311\306\274\274\244\274\266\262\255\344\026\026\013b\351\370\312\303\334\312\302\262\374\210\254\254f\225\215\037%E\346\024y\231l\347\262\205\305U\270\016\207\310\362\352\226B\226r\313\271\302\232\274\275\262\226S\346\025\262%/m*\033\204\254\265\366\341\237\005\t\221\025\266\357\254\263R~SQV6\226\345\365\002Y!kK\217\013\362|!\007\021\221\271\325\225\315\215~(\333\213\271\202Bu\242\232U\323\202\267\000i\323j\275B\t\351\313\204\301\250\016R\320\250U\206\022\300\247n\010\336\251\3352T\335D\242\315&\210\021n:\016U\2372\253o\260?\263\213\324Q+\244n1\r\003\314\000\323EFk""D\005y\353\032x\260\213\314v\210\256\355\213w\315\334eb \242)2\207\026Mjij\205\3316\210\017\324!\216\020\"\324M\312\314\321\035V\303)\204\000B#\216EUV\004\327\"\n\3254Jzyv\2039\020b9\222\316\353\222\214\204\342\350\240\372}\274\353\220\022\243N\023\230(1\270kh\304\021\272\240U\341\330\026K{\246\005!B\261\226K\226Y#v\243I-VjV\253\"6P \2246!\245\246\241\022\014\021~\004\010\306M\034\332X4\304\000&\376\333\322\354\347U\023<\332\367a@kE\215\336\207xu\033\215\354U\0000\016#~5Rl\301L\245u\214\031G\025\246>\255a\346pr\224\034\030\003s\330\031\250\341\300\004\373\032\001G\026\262g?e\255#?P\203GH\201\325\032\005F\211\260\026-E\235\220X\246\351D<\302\272\326\2542\"\366\005z\307\214rG\210\201N\000\224\250H\323\322\200\023a\345mtu\235\251\014 E\357\032HN\014\260\277\325\315z_;uK7\340a\326L\354^\365\246]!\004\210\257Fn,j\000\033\026\003L\320\364\000f$g\0060\215~\202\010\201.\330\217\nF\032+Qh#\266^6lh\013\370\007:\373\257c\371\276\035ld\314\306&\252\022\266\257\242\014\030a\273\300\033qP\272\202\002q\010rb\300z\223\331{\272\201\375\364(Q\366\376~\271\010?\323\264\235o\365\272\373\236\227\361d/\377<\326\213_\3622a<\355\247~x\367\324\300\231v\302\215\205\211\263\355M7\355f\302\304P\373\266{\326\313\207\303\027\334\262\227\367(n\025\334TOl\014\241\r\330\342\027>\014\322\301\335N:\034\036i\357\273\226\227\n\223\222\037\363'\202T/>\324\376\334mx\037\372\262\237\367)\272\273\354eao\334\247a|\360\271\323\006'#\355F/\236\344\311\017\374\264\1777\230\352\244B8\244\370\027|;\270\03240\254\004\037\274\010Vb\030P&\034\276\350\332^\332\273\341m\243\325\336\033\323\304\230\373\320k\370\002E\236\237\273\342g|%\030\013\362|V>L\035Nw3\335\034\337\334\352{\035<6<\322~\006p\026 \2004\004\315\207\336\367\250\267\347\227\203'\007\351\366C\267\351\315y\265 \023d;\247\371\315\\\367<\177\270\303w\010'_\363\257U\256j\374\324\244\007X\307\335|Db\274\235s7\001\364\234_\n\344\210\305A\0142\034>\033\315F \302\270\277\020\000\230Q\367\036\360q1\210\203\361\0302\330t\347\\\032&' *`/\203\234]\200\205x\342\215""\334\214\362Q\004\007\366G\335\033\3566\244\363\013\277\201\373\333\256\354\346\373\231B\023\267\335\204\027\363\316{w\374\224\237\346\247\000YOP\177\224\301\210\212q\267\000\211\213\243\371i\261\034\357\037\004\233\223\336e\277\020\244\202k\235\263\007\371\360\314\271\266\201\342\211\326\363>\0132x}\323\233\206p\262A\014oV\203\337\0044\370\323\301\223\3565\276\246q\215\t\020n#\214Oxq4\016\241\207\302\347\270G\177H\234\032x7L\214\361\261\253`\256\034lw\036\034\244\221\250[\355\206\240\3548\250\036`\275\tv\366\274b\224a\300\312\307\247\203\363\301\355N\254\003\272\034i;n\306\005L\357\243X\305\254\007\314\r\010\322\216n\236\366oEL\345\333E\367\035\367*\244W\3666A}7\374u\337\351\233\022\304\305\334\024\362?\020\306S\240zd\304\263\375\017\000\344i8u\272\223\351,\037\276\256\3260>\t\210\276\341\327?9\030?\200\244\215\271\n\237\374(\310 \304\024O^\341W\356thg\357\340\210\331\221\366\267^\n\204!\202\321\335\006\237\270\177@\017\232\207\331n\254\233\022\231AEM\270\273H\367\23101\334\006lI7\206\366\322\376\273~1\210\241\245g\210-L\\pM,\263\276\364\241\246\375\253\200'\023\034\345\370L;\305\177\365\273N\214g\376\330Mwovi\027+O\250\021\262\206\2250 \252\034r\305\220nQ{\030&(;Z\301\010\026\201\337\341\224;.\3629|\"kK\207\357\034^9\334\356>\340\353\217\371\343/\360\320\030(\0214\275\353\256\303\331\344\257\001E\36226\215hi\317\253\370\264\227@\355\244\241\013\375B\333\217\370\243\307?o{\027\373\201\200\334\236v3|\354\343\240\321\031\350\024\016R\374\3235\276\226\347\371\365\343\362\212\322\033\306\317\265K\256\300\234r\343|l\312o\004\203\230\321\267\022\305\317\035\033C\235\nj_\323@\262_Yq\010\n\355\r\265?\022AB\301\\\302&%R\330\007\231\300\212\027\005;\341\rA\001AS\350Em\016z\212wU\244f8\211%\034&\217\210JN\360\211i\250\307\251\316\305\203s\207\305\356\351\356]A\013v$<\205\225\234\034u\357@\321g\3021\320A\210<\036-\335\365\257\007i\234|\346\251\376\245@\356\r\243f\251\327\370\305~\276\342_\221\237\367s\007\272Z\354\244\037\200\365\231[\004\007\303\330\334 \203)~\376\267\201""\314g\262\2072W\266\370\3266\337\376\222\177\tM\225rZ\014\207\201\275\276f\241\202\002\2453\326\311w\250\310\032?\005b\355\235lV\203\317\367\332\252\033\225\014V\344\0224T9\330\352\334;\204\004\277\007\211\303/\014V\304T0\30132\226\355\311\317O\2779\215\272\237@+X\217\352\341\274\260='\230\211\213f\344\202\255\343\306\225\352\267\255I>\031}\377\256\037\\;\214\275\331\266f\241\271\247\302\377\335\266\302\377C\333\372\017\243\013\234i";
-    PyObject *data = __Pyx_DecompressString(cstring, 2221, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2157 bytes) */
+const char* const cstring = "x\332\255T\315s\333\306\0257-*\246+\332\"m\311\222c7\263\264\343\017%\225R\372\263MRw(\021\266YI\024)Q\246m\305\331,\201%\211\230\004H|Hb\306\323\361\255\350\r\275a\246\027\264\275\340\210#'>\2043\356tx\334#\216\362\177\220?\241o\001\322\337\235\370\320\031\022X\354\276}\357\375~\357\367\036z\202\026o\241\245k\365\035A\221\032\244M\321\272\254\310m\262\377\010\2554ej\242&5\270\305\373\216U\005\211\246*\277\3778O;F\023-..\242\235\365B>\277&\334\311\255\013\217\320\363\277v\220d\366^<\373\213\201\364\347\3774\321V\233h\006BOPQ\225\250\016O\203\"\243I\014\264\3223x\004YG\022m\3115\252\021\203\266zH74Y4\250\306\215\024T\022J\213\327~w\r\021EB\032\375\236\212\206\216t\263&\266\210\256\2037\265\216j\246\3342d\005\031\275\016\325\227P\241\216z\252\211\024J%d\250\250\003v\257_0\232TA:@\206\005\272D\024E5\210!\253\n\206\353\262\322\270\204$Y\203 \362.\345\267o\223\226N\227v6:T\201C\224]\354\264z\2178\035\213%\310Tl\252\250\242v\320N\004q\364ze\264\260\364G\"I\030BPQ\325\350\027m \240\205e\245N5\252\210t\251\323\333\227d\235\324Z\024]\376\267\375\374_/y\243\n\337l\210\262\036\255$\244\374\307\177\361\354\357bH\267\302y\\P\314v\247\267\304\375.\265M \200h\032\351\241:\221[\021p\271\335Q5\3435+\263M\240^o\033D\311\2564_<\373\233\201\232/~\374\307\227\210o\241\n\001\022\304P#/~\374\311\344G?\205:A\227u\356\356\017\313\205\255\273\033\245\345\265\334\312\252P\314\363\332\343\365\\E\330,\344\326p\345\356\246\000\247k\371\325B\361\316j\261p\347ne=w\037\0277\362\302\326+\255\340e!\267\216\253\205|\005\034\tE0\305\353\033\367\004\274VX/TJ\271j\261T\020V\004|/\267\266-la\\\352\355\303?\017\332\300E\272ol\322zy[\020\212\233\033\033\253[\353\271\315\n.\342\322\332\203Jn\245RX\201\034\2267\212\333[\270*\360\340\325\273\205\212@d,\252-U\203w\210@'\255N\223`<\322\000\205U\007\352,\021\255\001\372\346OY\tI%zO\021e\225\263\250\232\2404\270i\030D|L5\275F\014\261\211;\032\225xZY \256FI\033\213\240VY\002\237z\215\352\006\226\245\375\360\335Vwi\270\010\343\327\250Aj*\321$\261Iu\035\264\004\305""\016M0\016\305\212\033\324\220\r\332\346\237\020\024t\203\r\215\210\264\006\241EU\251\313\215\245-j@>\215H\004o\212+*\271!\203~\367\3715\003\327)1L\200]\247pW\221\260\021V\230\264\302\230z]S\333X\357\232D\243u\263\325\n\363\000\361@Wb\\7\025\021\363t\340\207\201>~\310\227:\327;V\000\365\377\332Z\372\272\245B\010\375\026,H\273&\221[\220\240\254s'{M\000\007K\221txZ|\325\244\342\3436\257\004\377\030\223\rk\340\205\2671Q\014\370\340C\010\203k\215s\243?\246\275\261gh\2301\030\340\254M\200/\034z\213\266`\245\311`P#-\002\374\264\2431\2065U5\"\352\300N2[\024\207\366!~C\215*\205\261\302\203\002\254\260\235TM\002VB\257\357\342\353\310T\244\230\030\321\273\r\222\n\027|8\205+\275\243vFz\351h\262\002\017\265\255\362\001\3241\365&\306P\200V\024L#\312c*i\024\220\302\334\002\360\243T`v\215\322\201\225D\353\004\232_\227\033\212\016\315\314\377T\302\243\327K\225\276\233\245\316\207\236\210\351\276\0103\266A1\335\005f\260\301\265\031\242\016u\000eQ`\337\244\372\236\254\360\3717\256\225\276\277\337\250\301OUu\343\007\271c\177\354d\235\234S~\032\013\342g\234l\020\317\270\351\237?:4y\324J\330\261 q\314\332\2663v6HLY\327\355cN9H\236\262\033N\331!\374\250b\247\017\302\203)\356\003\216\330\251\317\274\214w\323\317\004\311ik\337\326\234t\220Bn\314\235\367\322\007\361)\353k\273\353|\346\346\334\262Kx\270\263N\036\316f]\022\304\217<5,\0102mu\017\342)\226:\347f\334\233\336%?\315\215\004\367\224\253{\027\274.O+\301\216\314\201\227\030O(\033$\347l\335\3118W\234*\367z\360\326gb\306^u\272n\210\242\314\216\237w\263\256\340\315xe\266\224\033\244\007\013\303\354\260\300\266\357\215\242\036y\351x\332z\002p\356@\002\031H\232M}\342\020g\317mx\217\372\031k\3256\235e\247\355e\275\274?\301\256\026\206'\330\352\016\333\301\014\177\307\276\023\231(\261C\037;p\355\204}\336.\333\324\271\t@\256{G<\323\317\005\037\262y\324\237\365\311\377y\363\303\243'\374I\277\374\336\315\203\3701k\313>l\177j\327\234\270\263\342\350\35697\357\035\366>\365D\377\244\277\354K\375s\375\374`bpuP\033\306\207\313C\211mn\263\355\373""\354\376C\366\360[\366-\220\003\025?\210\237\262!; (\210'\336\222\327Iv\222\327'\007+\373\212]\005E>t\273\374\274j\347\354r\220H\333sN\214\235^\360\322^f,\275x\332\236\265\233P\035\r\024\322\365@QS\326W\220\340a\347\"\350*\315\016A\345\"i\215\025\032\225z\326\256\2000\343<\366B\270\035\007CP\300S\010x\3329\353V \310E\377X\277\034\034=n)\2749\242\375\262K\275,\277\276\355,@\256y\036\361\023\247\005$\020\357\317\375G\303\213\254$1\211\2060\355n\020\237\007\252\3009\340\n\302\230\263\016\3719qh\362\243 1\303f.\200\273\206W\365o\3673\\\313\327\254n\220<\026\021\022&u\000D\\\005?{N-R0\020\301f\027\274\023\336u?\346C\337M[\206\235\265\001\023G\031}\035\000\255\223!\243\343\233\023\356\265\210\306\262U\203\362]\000\371\346\234m\250\353\025w\3235F\256\342\274\205cv\232\367\344d\000\254\302\026\027}T\344\t\260\232\360\263\376\372\340\315n\014\342\247\001\321\367\354\362\357\373\263}\340y\306\026\330\351\317\275,\207\230f\251\363\354\374\r\237\370{\3751\263\323\326\017N\332\311D\311\310v\227\315\337\352\223\2769\310\017c\303\364\2502s\366.'\373h\220HZ\200,e\307x\317g\334\217\334\232\027\343~\236pdA\342\224\255\362!2jl\230X\356\005@\223\365\306\025>j\245\331\257~\353\307X\366O\303\314\360\352\220\014\371\\\261\247\303i\020\347}>\031\3160\250\024\345d\207\223\205'9\033\n?\224J\322\272\013\354&\271\306x5\223\257\325lmpxp~P\035\336f\233\017\330\203\207\334h\006D\n3o\327\336\004\333\324\257\001E\352,\037\211\321\326\236\323t\311A\202+'\0033\366\003}C\373<\370e\337\273|\332\205\220\255\005;\313f\276\360\272\320\261\225~\232}Yb\2452+o\362\276\310\276*n\020?n\325\355\020s\332\216\263\231K\320;Gx=\337)\023;\376\322\031WiH\355\033\nH\215\372*\016Iq\177S\326\347a\222\320.g\370\010\016K8\002\t\327\315\250\227\347\235)h\237;\320K\321\020?\r\001/\204\245I\246\354\004\214\340\324\230\250\324<\233\347-\177\311\237\353\037\207\32121\274\031\322\302\347-\267\342}\234:i\337pN\200\361\014\350 \340<\216\267n\272\227aX\300\307W\216\350\236\361r\007I\256X\342t?8\016\214.\374\313qn\270s0\n^\213\223""\210\346\020\340\231\347\017\340\234\235\370\215\227c\213\371A\216\t\367\330\275*\253~\303\276\341S\221\221Z\220\004\366F\232\205\376\361\004\177\306/\3631\016\344\374\027;)p\234";
+    PyObject *data = __Pyx_DecompressString(cstring, 2157, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3732 bytes) */
-const char* const bytes = " | -> .4f[Endgame Minimax] Chieu het -> [Endgame Minimax] Chon cuoi -> [Endgame Minimax] Depth --- [MIDDLEGAME] \303\211p duy\341\273\207t s\303\242u Smart  | Nodes Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.[Opening 1-ply] -> -Ply cho Top [Smart [Smart 1-ply] -> ).?add_notecore/model_inference.pyxdisable (\304\220\303\243 duy\341\273\207t enablegcisenabled n\306\260\341\273\233c --- nodes)numpy.core.multiarray failed to importnumpy.core.umath failed to import-ply] Ch\341\273\221t h\341\272\241: -ply Tactic] Chi\341\272\277u h\341\272\277t ->  (score=BLACKENDGAME_MATERIAL_THRESHOLDHANG_PENALTY_SCALEHANG_PENALTY_WEIGHTHANG_THRESHOLDKINGMAX_NODESMIDDLEGAME_BEAM_WIDTHOPENING_MOVE_LIMITPAWNPIECE_VALUES__Pyx_PyDict_NextRefQUEENSMART_N_PLYTACTICAL_BONUS_WEIGHTWHITEai_colorai_scoresalpha__annotate__appendargmaxargminarrayasyncio.coroutinesattacker_colorattackersbatch_predict_1plybeam_candidatesbest_idxbest_movebest_scorebetaboardchesschosen_move__class_getitem__cline_in_tracebackcolorconfig.Settingcore.model_inferencecore.utilsextract_featuresfenfind_tactical_movesfind_worst_hangfrom_squarefullmove_number__func__getget_ai_moveget_smart_nply_moveget_smart_nply_move.<locals>.<lambda>infis_ai_whiteis_attacked_byis_captureis_checkmate_is_coroutineis_en_passantis_game_overitemskey<lambda>legal_movesm__main__mate_movesminimax_rootmodel__module__movemove_to_score__name__npnumpyorder_moves.<locals>.<lambda>piece_atpiece_mappiece_typepoppredictprintpromotionpush__qualname__rankedreversessanscoresee_on_square__set_name__setdefaultsignsortsorted_sorted_attackers.<locals>.<lambda>squarestatic_exchange_eval__test__to_squareturnvalueswinning_capturesxxgbxgboostzip\220\032\2301\230A\230Q\200\001\340\004\033\2301\330\004!\240\021\360\006\000\005\t\210\010\220\001\330\010\r\210U\220!\2201\330\010\013\2105\220\r\230Q\330\014\026\220g\230Q\230a\330\010\r""\210T\220\021\340\010\013\2105\220\013\2301\230A\330\014\026\320\026*\250!\2507\260!\330\014\017\210x\220r\230\021\330\020 \240\001\240\030\250\021\340\004\013\210<\220q\230*\240A\240Q\240a\200\001\340\004\034\230D\240\001\240\025\240a\330\004\007\200t\2101\330\010\017\210q\340\004\020\320\020\"\240!\2407\250'\260\021\330\004\034\230E\240\026\240s\250%\250q\360\006\000\005\010\320\007\027\220q\230\001\330\010\013\2101\330\014\027\220s\230!\2302\230W\240A\240Q\340\014\027\220s\230!\2302\230W\240A\240Q\340\010\024\220K\230q\240\001\330\010\r\210Q\320\016#\2401\240E\250\024\250Q\320.A\300\021\300)\3101\310I\320UV\330\010\017\210q\340\004\007\320\007\027\220q\230\001\330\010\017\210|\2301\230G\2407\250!\340\004\013\320\013\036\230a\230w\240g\250]\270!\210K\220u\230B\230m\2501\250D\260\003\3203I\310\022\320K[\320[_\320_`\320`c\320cd\320\000\031\230\021\340\004\025\220Q\360\006\000\005\t\210\004\210I\220U\230*\240B\240f\250A\330\010\013\2105\220\007\220s\230!\330\014\r\330\010\013\2105\220\017\230q\240\004\240G\2501\330\014\023\220=\240\001\240\027\250\004\250D\260\001\330\014\017\210u\220B\220a\330\020\030\230\001\330\004\013\2101\200\001\340\004\026\220a\330\004\010\210\010\220\001\330\010\r\210U\220!\2201\330\010\023\320\023#\2401\240A\330\010\023\2202\220W\230A\230Z\240q\330\010\r\210W\220A\220Q\330\010\r\210T\220\021\330\004\013\2105\220\010\230\001\230\022\2306\240\021\240!\320\000\036\230a\340\004\007\200t\2105\220\013\2301\230A\330\010\017\210q\340\004\025\220T\230\021\330\004\r\210U\220)\2301\230A\330\004\036\230a\340\004\007\200q\330\010\031\230\034\240T\250\021\250&\260\r\270Q\330\t\016\210n\230A\230Q\330\010\031\230\034\240Q\240e\2501\340\004\025\220U\230)\2401\240D\250\001\330\004\036\230l\250$\250a\250~\270]\310&\320Pd\320de\340\004\026\220a\220q\330\004\030\230\004\230A\330\004#\2401\330\004\025\220T\230\025\230a\360\010\000\005\006\330\010\024\320\024%\240Q\240g\250W\260F\270!\330\010\013\2104\210q\330\014\r\330\010\r\210U\220)\2301\230A\340\010\023\2203""\220a\220w\230b\240\001\330\010\r\210W\220A\320\025)\250\022\2505\260\001\260\021\340\010\017\210t\2201\220A\330\010\036\230a\330\010\017\210t\2201\340\004\010\210\005\210U\220!\2203\220a\220w\230b\240\003\2404\240q\330\010\r\210Q\210b\220\002\220%\220u\230A\230U\240!\2402\240R\240t\2505\260\001\260\021\340\004\013\2105\220\001\220\021\200\001\340\004\005\330\004\021\220\021\340\004\036\230a\230s\240\"\240D\250\003\2505\260\003\2601\260M\300\021\330\004\034\230E\240\026\240s\250%\250q\330\004\031\230\025\230j\320(9\270\025\270a\330\004\024\220E\320\031+\2501\360\010\000\005\021\320\020#\320#6\260a\260w\270a\340\004\007\200q\330\010\017\210z\230\021\230!\330\010\r\210Q\210i\220q\320\030>\270a\270u\300D\310\001\310\021\330\010\017\210q\360\006\000\005\030\220v\230Q\330\010\t\330\010\014\210A\330\010\020\220\001\360\010\000\005!\240\006\240b\250\001\340\004\007\200|\2203\220a\330\010\026\220o\240Q\240a\330\010\r\210Q\320\016!\240\021\240%\240t\2501\250A\330\010\017\210q\340\004\t\210\021\320\n0\260\001\3201J\310!\3103\310a\310q\340\004\020\220\017\230q\240\001\330\004\027\220q\230\005\230Q\230a\330\004\026\220e\2301\230A\360\006\000\005\010\200q\330\010\025\220Q\220e\2301\230A\330\010\014\210H\220A\330\014\021\220\025\220a\220q\330\014\024\320\024%\240Q\240g\250W\260L\300\002\300#\300W\310F\320RY\320YZ\330\014\021\220\024\220Q\330\014\017\210v\220R\220q\330\020\035\230Q\330\020\034\230A\330\014\017\210v\220R\220w\230h\240a\340\010\025\220U\230!\2301\330\010\014\210H\220A\330\014\021\220\025\220a\220q\330\014\024\320\024%\240Q\240g\250W\260L\300\002\300#\300W\310F\320RX\320XY\330\014\021\220\024\220Q\330\014\017\210v\220R\220q\330\020\035\230Q\330\020\034\230A\330\014\017\210v\220R\220v\230W\240A\340\004\t\210\021\210)\2201\320\024/\250q\260\005\260T\270\021\320:P\320PQ\320QR\330\004\013\2101\200\001\340\004\005\330\004\021\220\021\330\004\016\210f\220A\360\006\000\005\021\220\004\320\024'\240q\250\007\250q\330\004\007\200q\330\010\017\210z\230\021\230!\330\010\r\210Q""\320\016/\250q\260\005\260T\270\021\270!\330\010\017\210q\340\004\034\230E\240\026\240s\250%\250q\330\004\020\220\013\2301\230A\330\004\035\230Q\360\006\000\005\013\210+\220R\220q\330\010\031\230\033\240A\240Q\330\010\020\220\001\220\025\220a\220q\330\010\017\210u\220A\220Q\330\010\030\230\013\2401\240G\2501\340\010\013\2101\330\014\031\230\021\230%\230q\240\001\330\014\020\220\010\230\001\330\020\025\220U\230!\2301\330\020\030\320\030)\250\021\250'\260\027\270\016\300b\310\003\3107\320RX\320X_\320_`\330\020\025\220T\230\021\330\020\023\2206\230\022\2301\330\024!\240\021\330\024%\240Q\330\020\023\2206\230\022\2307\240(\250!\330\020\023\220;\230c\240\033\250A\340\014\031\230\025\230a\230q\330\014\020\220\010\230\001\330\020\025\220U\230!\2301\330\020\030\320\030)\250\021\250'\260\027\270\016\300b\310\003\3107\320RX\320X^\320^_\330\020\025\220T\230\021\330\020\023\2206\230\022\2301\330\024!\240\021\330\024%\240Q\330\020\023\2206\230\022\2306\240\027\250\001\330\020\023\220;\230c\240\033\250A\340\010\013\210;\220b\230\001\330\014\030\230\001\330\014\021\220\021\320\022,\250A\320-D\300A\320EV\320VW\320W\\\320\\`\320`a\320ab\330\014\035\230Q\340\004\t\210\021\320\n+\2501\250E\260\024\260Q\260a\330\004\013\2101\320\000\027\220q\340\004\r\210U\220)\2301\230A\330\004\007\200w\210c\220\021\330\010\017\210q\330\004\034\230L\250\004\250A\250V\260=\300\001\340\004\032\230!\330\004\020\320\020!\240\021\240'\250\030\3201A\300\021\330\004\007\200t\2101\330\010\017\210q\340\004\026\220a\220q\330\004\023\2209\230A\230R\230q\240\001\330\004\022\220)\2301\230B\230a\230q\330\004\013\2104\210q\220\001\340\004#\2401\330\004\025\220T\230\021\360\010\000\005\006\330\010\031\320\031*\250!\2507\260(\270&\300\001\330\010\013\2104\210q\330\014\r\330\010\r\210U\220.\240\001\240\021\330\010\023\2203\220a\220w\230b\240\001\330\010\r\210W\220A\320\025)\250\022\2505\260\001\260\021\330\010\017\210t\2201\220A\330\010\036\230a\330\010\017\210t\2201\340\004\010\210\005\210U\220!\2203\220a\220w\230b""\240\003\2404\240q\330\010\r\210Q\210b\220\002\220%\220u\230A\230U\240!\2402\240R\240t\2505\260\001\260\021\340\004\013\2105\220\001\220\021";
+    #else /* compression: none (3584 bytes) */
+const char* const bytes = " | -> .4f[Endgame Minimax] Chieu het -> [Endgame Minimax] Chon cuoi -> [Endgame Minimax] Depth --- [MIDDLEGAME] \303\211p duy\341\273\207t s\303\242u Smart  | Nodes Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.[Opening 1-ply] -> -Ply cho Top [Smart [Smart 1-ply] -> ).?add_notecore/model_inference.pyxdisable (\304\220\303\243 duy\341\273\207t enablegcisenabled n\306\260\341\273\233c --- nodes)numpy.core.multiarray failed to importnumpy.core.umath failed to import-ply] Ch\341\273\221t h\341\272\241: -ply Tactic] Chi\341\272\277u h\341\272\277t ->  (score=BISHOPBLACKENDGAME_MATERIAL_THRESHOLDKINGKNIGHTMAX_NODESMIDDLEGAME_BEAM_WIDTHOPENING_MOVE_LIMITPAWNPIECE_VALUES__Pyx_PyDict_NextRefQUEENROOKSMART_N_PLYTACTICAL_BONUS_WEIGHTWHITEai_colorai_scoresalpha__annotate__appendargmaxargminarrayasyncio.coroutinesattackersbatch_predict_1plybeam_candidatesbest_idxbest_movebest_scorebetaboardchesschosen_move__class_getitem__cline_in_tracebackconfig.Settingcore.model_inferencecore.utilsextract_featuresfenfind_tactical_movesfrom_squarefullmove_number__func__getget_ai_moveget_smart_nply_moveget_smart_nply_move.<locals>.<lambda>infis_ai_whiteis_captureis_checkmate_is_coroutineis_en_passantis_game_overitemskey<lambda>legal_movesm__main__mate_movesmaterial_balanceminimax_rootmodel__module__movemove_to_score__name__npnumpyorder_moves.<locals>.<lambda>piece_atpiece_mappiece_typepiecespoppredictprintpromotionpush__qualname__rankedreversessanscore__set_name__setdefaultsignsortsorted_sorted_attackers.<locals>.<lambda>static_exchange_eval__test__to_squareturnvalueswinning_capturesxxgbxgboostzip\220\032\2301\230A\230Q\200\001\330\004\033\2301\330\004!\240\021\360\006\000\005\t\210\010\220\001\330\010\r\210U\220!\2201\330\010\013\2105\220\r\230Q\330\014\026\220g\230Q\230a\330\010\r\210T\220\021\340\010\013\2105\220\013\2301\230A\330\014\026\320\026*\250!\2507\260!""\330\014\017\210x\220r\230\021\330\020 \240\001\240\030\250\021\340\004\013\210<\220q\230*\240A\240Q\240a\200\001\330\004\034\230D\240\001\240\025\240a\330\004\007\200t\2101\330\010\017\210q\340\004\020\320\020\"\240!\2407\250'\260\021\330\004\034\230E\240\026\240s\250%\250q\360\006\000\005\010\320\007\027\220q\230\001\330\010\013\2101\330\014\027\220s\230!\2302\230W\240A\240Q\340\014\027\220s\230!\2302\230W\240A\240Q\340\010\024\220K\230q\240\001\330\010\r\210Q\320\016#\2401\240E\250\024\250Q\320.A\300\021\300)\3101\310I\320UV\330\010\017\210q\340\004\007\320\007\027\220q\230\001\330\010\017\210|\2301\230G\2407\250!\340\004\013\320\013\036\230a\230w\240g\250]\270!\210K\220u\230B\230m\2501\250D\260\003\3203I\310\022\320K[\320[_\320_`\320`c\320cd\320\000\032\230!\340\004\022\220#\220Q\220e\2307\240!\2405\250\007\250u\260A\330\004\022\220#\220Q\220e\2307\240!\2405\250\007\250u\260A\330\004\022\220#\220Q\220e\2307\240!\2405\250\t\260\025\260a\330\004\022\220#\220Q\220e\2307\240!\2405\250\t\260\025\260a\330\004\022\220#\220Q\220e\2307\240!\2405\250\t\260\025\260a\330\004\022\220#\220Q\220e\2307\240!\2405\250\t\260\025\260a\330\004\022\220#\220Q\220e\2307\240!\2405\250\007\250u\260A\330\004\022\220#\220Q\220e\2307\240!\2405\250\007\250u\260A\330\004\022\220#\220Q\220e\2307\240!\2405\250\010\260\005\260Q\330\004\022\220#\220Q\220e\2307\240!\2405\250\010\260\005\260Q\340\004\r\210S\220\002\220$\220b\230\004\230C\230s\240\"\240D\250\002\250$\250c\260\023\260B\260d\270\"\270D\300\003\3003\300b\310\004\310B\310d\320RU\320UX\320XZ\320Z^\320^`\320`a\200\001\340\004\026\220a\330\004\032\230!\330\004\010\210\010\220\001\330\010\r\210U\220!\2201\330\010\023\320\023#\2401\240A\330\010\023\2202\220W\230A\230Z\240q\330\010\r\210W\220A\220Q\330\010\021\220\027\230\001\320\031)\250\021\250!\330\010\r\210T\220\021\340\004\021\220\025\220h\230a\230r\240\026\240q\250\001\330\004\013\210;\220b\230\002\230&\240\001\240\021\320\000\036\230a\330\004\007\200t\2105\220\013\2301\230A\330\010""\017\210q\340\004\025\220T\230\021\330\004\r\210U\220)\2301\230A\330\004\036\230a\340\004\007\200q\330\010\031\230\034\240T\250\021\250&\260\r\270Q\330\t\016\210n\230A\230Q\330\010\031\230\034\240Q\240e\2501\340\004\025\220U\230)\2401\240D\250\001\330\004\036\230l\250$\250a\250~\270]\310&\320Pd\320de\340\004\026\220a\220q\330\004\030\230\004\230A\330\004#\2401\330\004\025\220T\230\025\230a\360\010\000\005\006\330\010\024\320\024%\240Q\240g\250W\260F\270!\330\010\013\2104\210q\330\014\r\330\010\r\210U\220)\2301\230A\340\010\023\2203\220a\220w\230b\240\001\330\010\r\210W\220A\320\025)\250\022\2505\260\001\260\021\340\010\017\210t\2201\220A\330\010\036\230a\330\010\017\210t\2201\340\004\010\210\005\210U\220!\2203\220a\220w\230b\240\003\2404\240q\330\010\r\210Q\210b\220\002\220%\220u\230A\230U\240!\2402\240R\240t\2505\260\001\260\021\340\004\013\2105\220\001\220\021\200\001\330\004\005\330\004\021\220\021\340\004\036\230a\230s\240\"\240D\250\003\2505\260\003\2601\260M\300\021\330\004\034\230E\240\026\240s\250%\250q\330\004\031\230\025\230j\320(9\270\025\270a\330\004\024\220E\320\031+\2501\360\010\000\005\021\320\020#\320#6\260a\260w\270a\340\004\007\200q\330\010\017\210z\230\021\230!\330\010\r\210Q\210i\220q\320\030>\270a\270u\300D\310\001\310\021\330\010\017\210q\340\004\027\220v\230Q\330\010\t\330\010\014\210A\330\010\020\220\001\360\006\000\005!\240\006\240b\250\001\340\004\007\200|\2203\220a\330\010\026\220o\240Q\240a\330\010\r\210Q\320\016!\240\021\240%\240t\2501\250A\330\010\017\210q\340\004\t\210\021\320\n0\260\001\3201J\310!\3103\310a\310q\340\004\020\220\017\230q\240\001\330\004\027\220q\230\005\230Q\230a\330\004\026\220e\2301\230A\360\006\000\005\010\200q\330\010\025\220Q\220e\2301\230A\330\010\014\210H\220A\330\014\021\220\025\220a\220q\330\014\024\320\024%\240Q\240g\250W\260L\300\002\300#\300W\310F\320RY\320YZ\330\014\021\220\024\220Q\330\014\017\210v\220R\220q\330\020\035\230Q\330\020\034\230A\330\014\017\210v\220R\220w\230h\240a\340\010\025\220U\230!\2301""\330\010\014\210H\220A\330\014\021\220\025\220a\220q\330\014\024\320\024%\240Q\240g\250W\260L\300\002\300#\300W\310F\320RX\320XY\330\014\021\220\024\220Q\330\014\017\210v\220R\220q\330\020\035\230Q\330\020\034\230A\330\014\017\210v\220R\220v\230W\240A\340\004\t\210\021\210)\2201\320\024/\250q\260\005\260T\270\021\320:P\320PQ\320QR\330\004\013\2101\200\001\330\004\005\330\004\021\220\021\330\004\016\210f\220A\360\006\000\005\021\220\004\320\024'\240q\250\007\250q\330\004\007\200q\330\010\017\210z\230\021\230!\330\010\r\210Q\320\016/\250q\260\005\260T\270\021\270!\330\010\017\210q\340\004\034\230E\240\026\240s\250%\250q\330\004\020\220\013\2301\230A\330\004\035\230Q\360\006\000\005\013\210+\220R\220q\330\010\031\230\033\240A\240Q\330\010\020\220\001\220\025\220a\220q\330\010\017\210u\220A\220Q\330\010\030\230\013\2401\240G\2501\340\010\013\2101\330\014\031\230\021\230%\230q\240\001\330\014\020\220\010\230\001\330\020\025\220U\230!\2301\330\020\030\320\030)\250\021\250'\260\027\270\016\300b\310\003\3107\320RX\320X_\320_`\330\020\025\220T\230\021\330\020\023\2206\230\022\2301\330\024!\240\021\330\024%\240Q\330\020\023\2206\230\022\2307\240(\250!\330\020\023\220;\230c\240\033\250A\340\014\031\230\025\230a\230q\330\014\020\220\010\230\001\330\020\025\220U\230!\2301\330\020\030\320\030)\250\021\250'\260\027\270\016\300b\310\003\3107\320RX\320X^\320^_\330\020\025\220T\230\021\330\020\023\2206\230\022\2301\330\024!\240\021\330\024%\240Q\330\020\023\2206\230\022\2306\240\027\250\001\330\020\023\220;\230c\240\033\250A\340\010\013\210;\220b\230\001\330\014\030\230\001\330\014\021\220\021\320\022,\250A\320-D\300A\320EV\320VW\320W\\\320\\`\320`a\320ab\330\014\035\230Q\340\004\t\210\021\320\n+\2501\250E\260\024\260Q\260a\330\004\013\2101";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 138; i++) {
+    for (int i = 0; i < 134; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 29) PyUnicode_InternInPlace(&string);
@@ -14661,7 +14029,7 @@ const char* const bytes = " | -> .4f[Endgame Minimax] Chieu het -> [Endgame Mini
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 138; i < 149; i++) {
+    for (int i = 134; i < 144; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -14672,15 +14040,15 @@ const char* const bytes = " | -> .4f[Endgame Minimax] Chieu het -> [Endgame Mini
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 149; i++) {
+    for (Py_ssize_t i = 0; i < 144; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 138;
-      for (Py_ssize_t i=0; i<11; ++i) {
+      PyObject **table = stringtab + 134;
+      for (Py_ssize_t i=0; i<10; ++i) {
         #if PY_VERSION_HEX >= 0x030F0000
         PyUnstable_SetImmortal(table[i]);
         #elif CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
@@ -14761,59 +14129,54 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 42};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 56};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_x};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_lambda, __pyx_mstate->__pyx_kp_b_iso88591_1AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 268};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 217};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_x};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_lambda, __pyx_mstate->__pyx_kp_b_iso88591_AQa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 396};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 345};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_m};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_lambda, __pyx_mstate->__pyx_kp_b_iso88591_KuBm1D_3I_K____ccd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 45};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 30};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board};
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_material_balance, __pyx_mstate->__pyx_kp_b_iso88591_Qe7_5_uA_Qe7_5_uA_Qe7_5_a_Qe7_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 59};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_move};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_static_exchange_eval, __pyx_mstate->__pyx_kp_b_iso88591_a_t5_1A_q_T_U_1A_a_q_T_Q_nAQ_Qe, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_static_exchange_eval, __pyx_mstate->__pyx_kp_b_iso88591_a_t5_1A_q_T_U_1A_a_q_T_Q_nAQ_Qe, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 87};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_square, __pyx_mstate->__pyx_n_u_attacker_color};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_see_on_square, __pyx_mstate->__pyx_kp_b_iso88591_q_U_1A_wc_q_L_AV_1A_t1_q_aq_9AR, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 125};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_color};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_find_worst_hang, __pyx_mstate->__pyx_kp_b_iso88591_Q_IU_BfA_5_s_5_q_G1_D_uBa_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 139};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_legal_moves};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_find_tactical_moves, __pyx_mstate->__pyx_kp_b_iso88591_1_U_1_5_Q_gQa_T_5_1A_7_xr_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_find_tactical_moves, __pyx_mstate->__pyx_kp_b_iso88591_1_U_1_5_Q_gQa_T_5_1A_7_xr_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 271};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 220};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_model, __pyx_mstate->__pyx_n_u_legal_moves};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_minimax_root, __pyx_mstate->__pyx_kp_b_iso88591_fA_q_q_q_z_Q_q_T_q_E_s_q_1A_Q_R, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_minimax_root, __pyx_mstate->__pyx_kp_b_iso88591_fA_q_q_q_z_Q_q_T_q_E_s_q_1A_Q_R, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 326};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 274};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_model, __pyx_mstate->__pyx_n_u_legal_moves};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_batch_predict_1ply, __pyx_mstate->__pyx_kp_b_iso88591_a_U_1_1A_2WAZq_WAQ_T_5_6, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_batch_predict_1ply, __pyx_mstate->__pyx_kp_b_iso88591_a_U_1_1A_2WAZq_WAQ_T_har_q_b, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 21, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 374};
+    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 21, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 325};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_model, __pyx_mstate->__pyx_n_u_legal_moves, __pyx_mstate->__pyx_n_u_ai_scores, __pyx_mstate->__pyx_n_u_move_to_score, __pyx_mstate->__pyx_n_u_is_ai_white, __pyx_mstate->__pyx_n_u_ai_color, __pyx_mstate->__pyx_n_u_sign, __pyx_mstate->__pyx_n_u_mate_moves, __pyx_mstate->__pyx_n_u_winning_captures, __pyx_mstate->__pyx_n_u_move, __pyx_mstate->__pyx_n_u_ranked, __pyx_mstate->__pyx_n_u_beam_candidates, __pyx_mstate->__pyx_n_u_chosen_move, __pyx_mstate->__pyx_n_u_best_move, __pyx_mstate->__pyx_n_u_alpha, __pyx_mstate->__pyx_n_u_beta, __pyx_mstate->__pyx_n_u_best_score, __pyx_mstate->__pyx_n_u_score_2, __pyx_mstate->__pyx_n_u_m, __pyx_mstate->__pyx_n_u_s};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_get_smart_nply_move, __pyx_mstate->__pyx_kp_b_iso88591_as_D_5_1M_E_s_q_j_9_a_E_1_6awa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_get_smart_nply_move, __pyx_mstate->__pyx_kp_b_iso88591_as_D_5_1M_E_s_q_j_9_a_E_1_6awa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 439};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 387};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_board, __pyx_mstate->__pyx_n_u_model, __pyx_mstate->__pyx_n_u_legal_moves, __pyx_mstate->__pyx_n_u_ai_scores, __pyx_mstate->__pyx_n_u_is_ai_white, __pyx_mstate->__pyx_n_u_best_idx, __pyx_mstate->__pyx_n_u_best_move};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_get_ai_move, __pyx_mstate->__pyx_kp_b_iso88591_D_a_t1_q_7_E_s_q_q_1_s_2WAQ_s_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_core_model_inference_pyx, __pyx_mstate->__pyx_n_u_get_ai_move, __pyx_mstate->__pyx_kp_b_iso88591_D_a_t1_q_7_E_s_q_q_1_s_2WAQ_s_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -21004,6 +20367,75 @@ bad:
     #endif
 #endif
 
+/* CIntToPy */
+static CYTHON_INLINE PyObject* __Pyx_PyLong_From_int(int value) {
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+    const int neg_one = (int) -1, const_zero = (int) 0;
+#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
+#pragma GCC diagnostic pop
+#endif
+    const int is_unsigned = neg_one > const_zero;
+    if (is_unsigned) {
+        if (sizeof(int) < sizeof(long)) {
+            return PyLong_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(unsigned long)) {
+            return PyLong_FromUnsignedLong((unsigned long) value);
+#if !CYTHON_COMPILING_IN_PYPY
+        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
+            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
+#endif
+        }
+    } else {
+        if (sizeof(int) <= sizeof(long)) {
+            return PyLong_FromLong((long) value);
+        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
+            return PyLong_FromLongLong((PY_LONG_LONG) value);
+        }
+    }
+    {
+        unsigned char *bytes = (unsigned char *)&value;
+#if !CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x030d00A4
+        if (is_unsigned) {
+            return PyLong_FromUnsignedNativeBytes(bytes, sizeof(value), -1);
+        } else {
+            return PyLong_FromNativeBytes(bytes, sizeof(value), -1);
+        }
+#elif !CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX < 0x030d0000
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        return _PyLong_FromByteArray(bytes, sizeof(int),
+                                     little, !is_unsigned);
+#else
+        int one = 1; int little = (int)*(unsigned char *)&one;
+        PyObject *from_bytes, *result = NULL, *kwds = NULL;
+        PyObject *py_bytes = NULL, *order_str = NULL;
+        from_bytes = PyObject_GetAttrString((PyObject*)&PyLong_Type, "from_bytes");
+        if (!from_bytes) return NULL;
+        py_bytes = PyBytes_FromStringAndSize((char*)bytes, sizeof(int));
+        if (!py_bytes) goto limited_bad;
+        order_str = PyUnicode_FromString(little ? "little" : "big");
+        if (!order_str) goto limited_bad;
+        {
+            PyObject *args[3+(CYTHON_VECTORCALL ? 1 : 0)] = { NULL, py_bytes, order_str };
+            if (!is_unsigned) {
+                kwds = __Pyx_MakeVectorcallBuilderKwds(1);
+                if (!kwds) goto limited_bad;
+                if (__Pyx_VectorcallBuilder_AddArgStr("signed", __Pyx_NewRef(Py_True), kwds, args+3, 0) < 0) goto limited_bad;
+            }
+            result = __Pyx_Object_Vectorcall_CallFromBuilder(from_bytes, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET, kwds);
+        }
+        limited_bad:
+        Py_XDECREF(kwds);
+        Py_XDECREF(order_str);
+        Py_XDECREF(py_bytes);
+        Py_XDECREF(from_bytes);
+        return result;
+#endif
+    }
+}
+
 /* CIntFromPy */
 static CYTHON_INLINE int __Pyx_PyLong_As_int(PyObject *x) {
 #ifdef __Pyx_HAS_GCC_DIAGNOSTIC
@@ -21252,75 +20684,6 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to int");
     return (int) -1;
-}
-
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyLong_From_int(int value) {
-#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif
-    const int neg_one = (int) -1, const_zero = (int) 0;
-#ifdef __Pyx_HAS_GCC_DIAGNOSTIC
-#pragma GCC diagnostic pop
-#endif
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(int) < sizeof(long)) {
-            return PyLong_FromLong((long) value);
-        } else if (sizeof(int) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#if !CYTHON_COMPILING_IN_PYPY
-        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(int) <= sizeof(long)) {
-            return PyLong_FromLong((long) value);
-        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-        }
-    }
-    {
-        unsigned char *bytes = (unsigned char *)&value;
-#if !CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x030d00A4
-        if (is_unsigned) {
-            return PyLong_FromUnsignedNativeBytes(bytes, sizeof(value), -1);
-        } else {
-            return PyLong_FromNativeBytes(bytes, sizeof(value), -1);
-        }
-#elif !CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX < 0x030d0000
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        return _PyLong_FromByteArray(bytes, sizeof(int),
-                                     little, !is_unsigned);
-#else
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        PyObject *from_bytes, *result = NULL, *kwds = NULL;
-        PyObject *py_bytes = NULL, *order_str = NULL;
-        from_bytes = PyObject_GetAttrString((PyObject*)&PyLong_Type, "from_bytes");
-        if (!from_bytes) return NULL;
-        py_bytes = PyBytes_FromStringAndSize((char*)bytes, sizeof(int));
-        if (!py_bytes) goto limited_bad;
-        order_str = PyUnicode_FromString(little ? "little" : "big");
-        if (!order_str) goto limited_bad;
-        {
-            PyObject *args[3+(CYTHON_VECTORCALL ? 1 : 0)] = { NULL, py_bytes, order_str };
-            if (!is_unsigned) {
-                kwds = __Pyx_MakeVectorcallBuilderKwds(1);
-                if (!kwds) goto limited_bad;
-                if (__Pyx_VectorcallBuilder_AddArgStr("signed", __Pyx_NewRef(Py_True), kwds, args+3, 0) < 0) goto limited_bad;
-            }
-            result = __Pyx_Object_Vectorcall_CallFromBuilder(from_bytes, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET, kwds);
-        }
-        limited_bad:
-        Py_XDECREF(kwds);
-        Py_XDECREF(order_str);
-        Py_XDECREF(py_bytes);
-        Py_XDECREF(from_bytes);
-        return result;
-#endif
-    }
 }
 
 /* CIntToPy */

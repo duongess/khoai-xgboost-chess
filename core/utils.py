@@ -6,7 +6,9 @@ import numpy as np
 from config.Setting import (
     PAWN_PST, KNIGHT_PST, BISHOP_PST, PIECE_VALUES,
     ROOK_PST, QUEEN_PST, KING_PST, KING_ENDGAME_PST,
-    get_play_path, save_game_history
+    get_play_path, save_game_history, MOBILITY_WEIGHT, BISHOP_PAIR_BONUS, ROOK_OPEN_FILE_BONUS, ROOK_SEMI_OPEN_FILE_BONUS,
+    DOUBLED_PAWN_PENALTY, ISOLATED_PAWN_PENALTY, PASSED_PAWN_BASE_BONUS, PASSED_PAWN_ADVANCE_STEP, KING_SHIELD_BONUS, ENDGAME_MATERIAL_THRESHOLD,
+    PST_TABLES
 )
 
 
@@ -377,3 +379,150 @@ def extract_features(board: chess.Board) -> np.ndarray:
     features.append(evaluate_king_safety_zone(board, not turn))     # [92]
 
     return np.array(features, dtype=np.float32)
+
+def _is_endgame(board: chess.Board) -> bool:
+    total = sum(
+        PIECE_VALUES.get(p.piece_type, 0)
+        for p in board.piece_map().values()
+        if p.piece_type not in (chess.KING, chess.PAWN)
+    )
+    return total <= ENDGAME_MATERIAL_THRESHOLD
+ 
+ 
+def _pst_score(board: chess.Board, endgame: bool) -> int:
+    """
+    Bang PST trong Setting.py duoc viet theo thu tu tu rank8 -> rank1
+    (dung quy uoc pho bien khi go tay bang tra cuu). Voi quan Trang can
+    square_mirror() de doi sang thu tu do; quan Den dung truc tiep vi
+    huong tien cua Den tu nhien da doi xung.
+    """
+    score = 0
+    for square, piece in board.piece_map().items():
+        if piece.piece_type == chess.KING:
+            table = KING_ENDGAME_PST if endgame else KING_PST
+        else:
+            table = PST_TABLES[piece.piece_type]
+ 
+        idx = chess.square_mirror(square) if piece.color == chess.WHITE else square
+        value = table[idx]
+        score += value if piece.color == chess.WHITE else -value
+    return score
+ 
+ 
+def _mobility_score(board: chess.Board) -> int:
+    # Dem so nuoc di hop le cho tung ben bang cach tam doi luot di.
+    # Xap xi: ep_square/castling_rights giu nguyen, chi doi turn.
+    original_turn = board.turn
+ 
+    board.turn = chess.WHITE
+    white_moves = len(list(board.legal_moves))
+    board.turn = chess.BLACK
+    black_moves = len(list(board.legal_moves))
+ 
+    board.turn = original_turn
+    return (white_moves - black_moves) * MOBILITY_WEIGHT
+ 
+ 
+def _bishop_pair_score(board: chess.Board) -> int:
+    score = 0
+    if len(board.pieces(chess.BISHOP, chess.WHITE)) >= 2:
+        score += BISHOP_PAIR_BONUS
+    if len(board.pieces(chess.BISHOP, chess.BLACK)) >= 2:
+        score -= BISHOP_PAIR_BONUS
+    return score
+ 
+ 
+def _rook_file_score(board: chess.Board) -> int:
+    score = 0
+    white_pawn_files = {chess.square_file(sq) for sq in board.pieces(chess.PAWN, chess.WHITE)}
+    black_pawn_files = {chess.square_file(sq) for sq in board.pieces(chess.PAWN, chess.BLACK)}
+ 
+    for sq in board.pieces(chess.ROOK, chess.WHITE):
+        f = chess.square_file(sq)
+        if f not in white_pawn_files and f not in black_pawn_files:
+            score += ROOK_OPEN_FILE_BONUS
+        elif f not in white_pawn_files:
+            score += ROOK_SEMI_OPEN_FILE_BONUS
+ 
+    for sq in board.pieces(chess.ROOK, chess.BLACK):
+        f = chess.square_file(sq)
+        if f not in white_pawn_files and f not in black_pawn_files:
+            score -= ROOK_OPEN_FILE_BONUS
+        elif f not in black_pawn_files:
+            score -= ROOK_SEMI_OPEN_FILE_BONUS
+ 
+    return score
+ 
+ 
+def _pawn_structure_score(board: chess.Board) -> int:
+    score = 0
+    for color, sign in ((chess.WHITE, 1), (chess.BLACK, -1)):
+        own_pawns = list(board.pieces(chess.PAWN, color))
+        opp_pawns = list(board.pieces(chess.PAWN, not color))
+ 
+        files_count = {}
+        for sq in own_pawns:
+            f = chess.square_file(sq)
+            files_count[f] = files_count.get(f, 0) + 1
+ 
+        for sq in own_pawns:
+            f = chess.square_file(sq)
+            r = chess.square_rank(sq)
+ 
+            if files_count[f] > 1:
+                score -= DOUBLED_PAWN_PENALTY * sign
+ 
+            neighbor_files = {f - 1, f + 1}
+            has_support = any(chess.square_file(s) in neighbor_files for s in own_pawns)
+            if not has_support:
+                score -= ISOLATED_PAWN_PENALTY * sign
+ 
+            blocking_files = {f - 1, f, f + 1}
+            is_passed = True
+            for osq in opp_pawns:
+                of = chess.square_file(osq)
+                orank = chess.square_rank(osq)
+                if of in blocking_files:
+                    if (color == chess.WHITE and orank > r) or (color == chess.BLACK and orank < r):
+                        is_passed = False
+                        break
+            if is_passed:
+                advance = r if color == chess.WHITE else (7 - r)
+                score += (PASSED_PAWN_BASE_BONUS + advance * PASSED_PAWN_ADVANCE_STEP) * sign
+ 
+    return score
+ 
+ 
+def _king_shield_score(board: chess.Board) -> int:
+    score = 0
+    for color, sign in ((chess.WHITE, 1), (chess.BLACK, -1)):
+        king_sq = board.king(color)
+        if king_sq is None:
+            continue
+        kf, kr = chess.square_file(king_sq), chess.square_rank(king_sq)
+        shield_rank = kr + 1 if color == chess.WHITE else kr - 1
+        if 0 <= shield_rank <= 7:
+            for f in (kf - 1, kf, kf + 1):
+                if 0 <= f <= 7:
+                    sq = chess.square(f, shield_rank)
+                    piece = board.piece_at(sq)
+                    if piece and piece.piece_type == chess.PAWN and piece.color == color:
+                        score += KING_SHIELD_BONUS * sign
+    return score
+ 
+ 
+def positional_eval(board: chess.Board) -> int:
+    """
+    Diem VI TRI THUAN TUY (KHONG bao gom vat chat), centipawn, goc nhin
+    Trang. Day la TARGET de XGBoost hoc (positional bonus). Luc inference,
+    cong voi material_balance() rieng de ra diem tong (xem model_inference.pyx).
+    """
+    endgame = _is_endgame(board)
+    score = 0
+    score += _pst_score(board, endgame)
+    score += _mobility_score(board)
+    score += _bishop_pair_score(board)
+    score += _rook_file_score(board)
+    score += _pawn_structure_score(board)
+    score += _king_shield_score(board)
+    return score

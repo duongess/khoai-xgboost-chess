@@ -34,12 +34,23 @@ if not METADATA_FILE.exists() or METADATA_FILE.stat().st_size == 0:
     with open(METADATA_FILE, "w", encoding="utf-8") as f:
         json.dump({}, f)
 
-MAX_NODES = 100 
-
 PIECE_VALUES = {
     chess.PAWN: 1, chess.KNIGHT: 3, chess.BISHOP: 3,
     chess.ROOK: 5, chess.QUEEN: 9, chess.KING: 0
 }
+
+MAX_NODES = 5000
+OPENING_MOVE_LIMIT = 10  # tu dieu chinh: so nuoc di (fullmove) duoc coi la khai cuoc
+
+# Tong gia tri quan (tru Vua, Tot) cua CA HAI BEN cong lai, duoi nguong nay thi coi la tan cuoc. 
+ENDGAME_MATERIAL_THRESHOLD = PIECE_VALUES[chess.ROOK] * 2 + PIECE_VALUES[chess.BISHOP] * 2
+
+SMART_N_PLY = 5
+MIDDLEGAME_BEAM_WIDTH = 5 
+
+HANG_PENALTY_SCALE = 300.0
+HANG_PENALTY_WEIGHT = 1.0
+
 
 PAWN_PST = [
       0,   0,   0,   0,   0,   0,   0,   0,
